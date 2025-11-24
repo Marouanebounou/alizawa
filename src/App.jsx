@@ -1,121 +1,225 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 
-// --- 1. DATA & BRANDING ---
+// --- 1. DATA & CONFIGURATION ---
 
-const BRAND_COLORS = {
+const THEME = {
   orange: "#F25C05",
-  yellow: "#FDB813",
   dark: "#1A1A1A",
-  light: "#F5F5F5"
+  paper: "#F4F4F0",
+  white: "#FFFFFF"
 };
 
 const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=600",
-  "https://images.unsplash.com/photo-1542358935-728b78809c95?q=80&w=600",
-  "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=600",
-  "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=600",
+  "https://images.unsplash.com/photo-1542358935-728b78809c95?q=80&w=800",
+  "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=800",
+  "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=800",
+];
+
+const SHOWS = [
+  { id: 1, title: "Rêves Clandestins", category: "Théâtre", year: "2024", image: "https://images.unsplash.com/photo-1503095392213-2e6d338dbbf0?q=80&w=800", desc: "Une épopée théâtrale sur l'espoir et l'exil." },
+  { id: 2, title: "Haut et Fort", category: "Cinéma / Danse", year: "2021", image: "https://images.unsplash.com/photo-1541250628459-d5f2776a82f9?q=80&w=800", desc: "L'histoire vraie de la Positive School portée à l'écran." },
+  { id: 3, title: "Koulchi Zin", category: "Comédie Musicale", year: "2023", image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=800", desc: "Rythmes et couleurs pour célébrer la jeunesse marocaine." },
+  { id: 4, title: "L'Appel de la Rue", category: "Arts de la Rue", year: "2022", image: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=800", desc: "Performances urbaines au cœur de Casablanca." },
+  { id: 5, title: "Makanch Zhar", category: "Théâtre", year: "2023", image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800", desc: "Une satire sociale mordante et hilarante." },
+  { id: 6, title: "Voices of Sidi Moumen", category: "Concert", year: "2024", image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=800", desc: "Le grand concert annuel de la troupe." },
 ];
 
 const CENTERS = [
   { 
-    name: "Les Étoiles de Sidi Moumen", 
+    id: "casa",
+    name: "Sidi Moumen", 
     city: "Casablanca", 
     image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070",
-    desc: "Le berceau des étoiles. Là où tout a commencé en 2014."
+    desc: "Le berceau historique. Là où l'impossible est devenu réalité en 2014.",
+    details: "Situé au cœur du quartier, ce centre de 1000m² dispose d'une salle de spectacle, d'une bibliothèque et de studios de danse.",
+    coords: { top: "40%", left: "45%" }
   },
   { 
-    name: "Les Étoiles du Détroit", 
+    id: "tanger",
+    name: "Détroit", 
     city: "Tanger", 
     image: "https://images.unsplash.com/photo-1541535650810-10d26f5c2ab3?q=80&w=2076",
-    desc: "Un centre culturel face à la mer, carrefour des civilisations."
+    desc: "Un phare culturel face à l'Europe, ancré dans l'Afrique.",
+    details: "Un espace ouvert sur la mer, favorisant les échanges interculturels et les résidences d'artistes internationaux.",
+    coords: { top: "10%", left: "55%" }
   },
   { 
-    name: "Les Étoiles de Jemaa El Fna", 
+    id: "kech",
+    name: "Jemaa El Fna", 
     city: "Marrakech", 
     image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?q=80&w=2072",
-    desc: "Un espace de création au cœur de la cité ocre."
+    desc: "Un riad de création au cœur battant de la cité ocre.",
+    details: "Ce centre valorise le patrimoine oral (Halqa) tout en proposant des formations aux arts numériques.",
+    coords: { top: "60%", left: "40%" }
   },
   { 
-    name: "Les Étoiles du Souss", 
+    id: "agadir",
+    name: "Souss", 
     city: "Agadir", 
     image: "https://images.unsplash.com/photo-1554232682-b9ef9c92f8de?q=80&w=2069",
-    desc: "La culture au service du développement dans le sud."
+    desc: "La culture comme moteur de développement régional.",
+    details: "Focalisé sur la musique et les arts visuels, ce centre est un hub pour la jeunesse du Souss.",
+    coords: { top: "75%", left: "30%" }
   },
   { 
-    name: "Les Étoiles de l'Oriental", 
+    id: "oujda",
+    name: "L'Oriental", 
     city: "Oujda", 
     image: "https://images.unsplash.com/photo-1512553353614-82a7370096dc?q=80&w=1931",
-    desc: "Un pont culturel vers l'est et la méditerranée."
+    desc: "Un pont vers la Méditerranée orientale.",
+    details: "Un espace dédié au théâtre et à la littérature, renforçant les liens culturels du Maghreb.",
+    coords: { top: "20%", left: "80%" }
   },
 ];
 
-const TIMELINE = [
-  { year: "2014", title: "Genèse", desc: "Création de la fondation et ouverture du premier centre à Sidi Moumen." },
-  { year: "2016", title: "Expansion", desc: "Lancement des Étoiles du Détroit à Tanger." },
-  { year: "2018", title: "Reconnaissance", desc: "Nabil Ayouch présente le travail de la fondation à l'international." },
-  { year: "2020", title: "Résilience", desc: "Adaptation numérique avec Digit'Ali pendant la pandémie." },
-  { year: "2024", title: "Maturité", desc: "Un réseau national solide et des milliers de jeunes formés." },
+const NEWS = [
+  { category: "Événement", title: "Festival des Arts de la Rue", date: "12 Octobre", image: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=800" },
+  { category: "Atelier", title: "Masterclass Cinéma avec Nabil Ayouch", date: "05 Novembre", image: "https://images.unsplash.com/photo-1585647347483-22b66260dfff?q=80&w=800" },
+  { category: "Succès", title: "Positive School en tournée européenne", date: "20 Novembre", image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=800" },
 ];
 
-const PILLARS = [
-  { title: "Éducation", desc: "L'accès aux arts comme droit fondamental pour tous les jeunes.", icon: "🎓" },
-  { title: "Arts", desc: "Catalyseur de talents dans la musique, la danse et le théâtre.", icon: "🎭" },
-  { title: "Cultures", desc: "Valorisation du patrimoine et respect des droits culturels.", icon: "🌍" },
-  { title: "Innovation", desc: "Nouvelles technologies et économie créative (Digit'Ali).", icon: "🚀" },
-];
+// --- 2. UI COMPONENTS ---
 
-const TESTIMONIALS = [
-  { name: "Hanane", role: "Les Étoiles d'Agadir", text: "Le Centre a radicalement modifié ma perspective. Je vois le dessin comme un outil professionnel. Aujourd'hui, je suis en licence d'Art Plastique !" },
-  { name: "Ismail", role: "Positive School", text: "Je suis venu pour un casting et j'ai fini dans le film 'Haut et Fort'. Aujourd'hui je suis Manager et ma carrière de rappeur décolle." },
-  { name: "Ilyas", role: "L'Académie (AMC)", text: "Une formation enrichissante. J'ai appris la médiation culturelle auprès des meilleurs intervenants du pays." },
-];
+const Cursor = ({ activeImage }) => {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
-// --- 2. ANIMATION & UI COMPONENTS ---
-
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    const manageMouseMove = (e) => setMouse({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", manageMouseMove);
+    return () => window.removeEventListener("mousemove", manageMouseMove);
+  }, []);
 
   return (
     <>
-      <div className="fixed top-4 right-4 md:top-6 md:right-6 z-50">
-        <button 
-          onClick={() => setIsOpen(!isOpen)}
-          className="bg-[#F25C05] text-white p-3 md:p-4 rounded-full shadow-lg hover:scale-110 transition-transform z-50 relative"
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          ) : (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-          )}
-        </button>
-      </div>
+      <motion.div
+        className="fixed top-0 left-0 w-4 h-4 bg-[#F25C05] rounded-full pointer-events-none z-50 mix-blend-multiply hidden md:block"
+        animate={{ x: mouse.x - 8, y: mouse.y - 8, scale: activeImage ? 0 : 1 }}
+      />
+      <motion.div
+        className="fixed top-0 left-0 w-[300px] h-[400px] rounded-xl overflow-hidden pointer-events-none z-40 hidden md:block bg-white shadow-2xl"
+        animate={{
+          x: mouse.x - 150,
+          y: mouse.y - 200,
+          opacity: activeImage ? 1 : 0,
+          scale: activeImage ? 1 : 0.5
+        }}
+        transition={{ type: "spring", stiffness: 150, damping: 20 }}
+      >
+        {activeImage && <img src={activeImage} className="w-full h-full object-cover" alt="Cursor Reveal" />}
+      </motion.div>
+    </>
+  );
+};
+
+const MagneticButton = ({ children, className = "", onClick }) => {
+  const ref = useRef(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e) => {
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const x = (clientX - (left + width / 2)) * 0.3;
+    const y = (clientY - (top + height / 2)) * 0.3;
+    setPos({ x, y });
+  };
+
+  return (
+    <motion.button
+      ref={ref}
+      className={className}
+      onMouseMove={handleMouse}
+      onMouseLeave={() => setPos({ x: 0, y: 0 })}
+      animate={{ x: pos.x, y: pos.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15 }}
+      onClick={onClick}
+    >
+      {children}
+    </motion.button>
+  );
+};
+
+const Navbar = ({ currentView, setView }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (view, id) => {
+    setView(view);
+    if (view === 'home' && id) {
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+    setMobileMenuOpen(false);
+  };
+
+  return (
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+          isScrolled ? "pt-4 pb-2" : "pt-6 pb-4"
+        }`}
+      >
+        <div className={`mx-auto max-w-7xl px-4 transition-all duration-500 ${
+          isScrolled ? "w-[95%] md:w-auto" : "w-full"
+        }`}>
+          <div className={`relative flex justify-between items-center transition-all duration-500 ${
+            isScrolled 
+              ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 border border-white/20 rounded-full px-2 pr-2 pl-6 py-2" 
+              : "bg-transparent px-4"
+          }`}>
+            
+            <button onClick={() => handleNavClick('home', 'accueil')} className="flex items-center gap-2 group mr-4">
+              <div className="w-9 h-9 bg-[#1A1A1A] rounded-full flex items-center justify-center text-white font-black text-sm group-hover:bg-[#F25C05] transition-colors duration-300">T</div>
+              <span className="font-black text-xl tracking-tight text-[#1A1A1A] hidden sm:block">TROUPE.</span>
+            </button>
+
+            <div className={`hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
+                isScrolled ? "opacity-100" : "bg-white/60 backdrop-blur-md rounded-full px-6 py-2 border border-white/40 shadow-sm"
+            }`}>
+              <button onClick={() => handleNavClick('home', 'accueil')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'home' ? 'text-black' : 'text-neutral-600'}`}>Accueil</button>
+              <button onClick={() => handleNavClick('projects')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'projects' ? 'text-[#F25C05]' : 'text-neutral-600'}`}>Spectacles</button>
+              <button onClick={() => handleNavClick('centers')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'centers' ? 'text-[#F25C05]' : 'text-neutral-600'}`}>Centres</button>
+              <button onClick={() => handleNavClick('contact')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'contact' ? 'text-[#F25C05]' : 'text-neutral-600'}`}>Contact</button>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button onClick={() => handleNavClick('contact')} className="bg-[#F25C05] text-white px-6 py-3 rounded-full text-xs font-bold hover:bg-[#1A1A1A] transition-colors shadow-md flex items-center gap-2">
+                <span>Faire un Don</span>
+              </button>
+              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden w-11 h-11 bg-white rounded-full flex items-center justify-center text-[#1A1A1A] shadow-sm border border-neutral-100 active:scale-95 transition-transform">
+                {mobileMenuOpen ? "✕" : "☰"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.nav>
 
       <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-0 bg-neutral-900 z-40 flex items-center justify-center p-4"
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            animate={{ opacity: 1, clipPath: "circle(150% at 100% 0%)" }}
+            exit={{ opacity: 0, clipPath: "circle(0% at 100% 0%)" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="fixed inset-0 z-40 bg-[#1A1A1A] pt-28 px-6 md:hidden flex flex-col"
           >
-            <nav className="text-center space-y-4 md:space-y-6">
-              {['Accueil', 'Missions', 'Histoire', 'Positive School', "Digit'Ali", 'Centres', 'Témoignages', 'Contact'].map((item, i) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/\s/g, '-').replace(/'/g, '')}`}
-                  onClick={() => setIsOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * i }}
-                  className="block text-3xl md:text-5xl font-bold text-white hover:text-[#F25C05] transition-colors cursor-pointer"
-                >
-                  {item}
-                </motion.a>
-              ))}
-            </nav>
+            <div className="flex flex-col gap-8 text-4xl font-black text-white tracking-tight">
+              <button onClick={() => handleNavClick('home', 'accueil')} className="text-left">Accueil</button>
+              <button onClick={() => handleNavClick('projects')} className="text-left text-[#F25C05]">Spectacles</button>
+              <button onClick={() => handleNavClick('centers')} className="text-left">Nos Centres</button>
+              <button onClick={() => handleNavClick('contact')} className="text-left">Contact</button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -123,11 +227,33 @@ const Navigation = () => {
   );
 };
 
+const VideoModal = ({ isOpen, onClose }) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4"
+          onClick={onClose}
+        >
+          <motion.div 
+            initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }}
+            className="w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+             <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-[#F25C05] z-10 font-bold text-xl">✕</button>
+             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" title="Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const TextReveal = ({ children, className = "", delay = 0, color = "text-white" }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
   const text = typeof children === 'string' ? children : '';
-  
   return (
     <div ref={ref} className={`flex flex-wrap ${className}`}>
       {text.split("").map((char, i) => (
@@ -145,468 +271,270 @@ const TextReveal = ({ children, className = "", delay = 0, color = "text-white" 
   );
 };
 
-const MagneticButton = ({ children, className = "", onClick, style = {} }) => {
-  const ref = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+// --- 3. HOME SECTIONS ---
 
-  const handleMouse = (e) => {
-    // Only apply magnetic effect on larger screens
-    if (window.innerWidth > 768) {
-        const { clientX, clientY } = e;
-        const { left, top, width, height } = ref.current.getBoundingClientRect();
-        const center = { x: left + width / 2, y: top + height / 2 };
-        setPosition({ x: (clientX - center.x) * 0.3, y: (clientY - center.y) * 0.3 });
-    }
-  };
-
-  return (
-    <motion.button
-      ref={ref}
-      className={className}
-      style={style}
-      onMouseMove={handleMouse}
-      onMouseLeave={() => setPosition({ x: 0, y: 0 })}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      onClick={onClick}
-    >
-      {children}
-    </motion.button>
-  );
-};
-
-const InteractiveCursor = ({ activeImage }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState("default");
-
-  useEffect(() => {
-    // Only enable custom cursor logic on desktop/fine pointer devices
-    if (window.matchMedia("(pointer: fine)").matches) {
-        const mouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-            const target = e.target;
-            if (activeImage) setCursorVariant("image");
-            else if (target.closest('button') || target.closest('a')) setCursorVariant("button");
-            else if (['H1', 'H2', 'H3'].includes(target.tagName)) setCursorVariant("text");
-            else setCursorVariant("default");
-        };
-        window.addEventListener("mousemove", mouseMove);
-        return () => window.removeEventListener("mousemove", mouseMove);
-    }
-  }, [activeImage]);
-
-  const variants = {
-    default: { 
-      x: mousePosition.x - 10, y: mousePosition.y - 10, height: 20, width: 20, 
-      backgroundColor: BRAND_COLORS.orange, mixBlendMode: "normal" 
-    },
-    text: { 
-      x: mousePosition.x - 40, y: mousePosition.y - 40, height: 80, width: 80, 
-      backgroundColor: BRAND_COLORS.yellow, mixBlendMode: "difference" 
-    },
-    button: { 
-      x: mousePosition.x - 20, y: mousePosition.y - 20, height: 40, width: 40, 
-      backgroundColor: "#2563EB", mixBlendMode: "overlay" 
-    },
-    image: {
-      x: mousePosition.x - 150,
-      y: mousePosition.y - 200,
-      height: 0, width: 0,
-      backgroundColor: "transparent"
-    }
-  };
-
+const Hero = ({ setView }) => {
+  const [videoOpen, setVideoOpen] = useState(false);
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-50 hidden lg:block"
-        variants={variants}
-        animate={cursorVariant}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
-      />
-      <motion.div 
-        className="fixed top-0 left-0 z-40 pointer-events-none overflow-hidden rounded-xl shadow-2xl hidden lg:block"
-        animate={{
-          x: mousePosition.x - 150,
-          y: mousePosition.y - 200,
-          opacity: activeImage ? 1 : 0,
-          scale: activeImage ? 1 : 0.5,
-          rotate: activeImage ? (mousePosition.x % 10) - 5 : 0 
-        }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        style={{ width: 300, height: 400 }}
-      >
-        {activeImage && (
-          <img src={activeImage} alt="Reveal" className="w-full h-full object-cover" />
-        )}
-      </motion.div>
+      <VideoModal isOpen={videoOpen} onClose={() => setVideoOpen(false)} />
+      <section id="accueil" className="min-h-screen relative flex flex-col justify-center items-center bg-[#F4F4F0] pt-24 pb-20 overflow-hidden">
+        <div className="container mx-auto px-6 text-center z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mb-8">
+             <h2 className="text-sm font-bold tracking-[0.3em] text-neutral-500 mb-4 uppercase">Fondation Ali Zaoua</h2>
+             <div className="flex flex-col items-center">
+                <h1 className="text-6xl md:text-8xl font-black text-[#1A1A1A] tracking-tight leading-[0.9]">TROUPE<span className="block text-[#F25C05]">LES ÉTOILES</span></h1>
+             </div>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
+             {HERO_IMAGES.map((src, i) => (
+               <motion.div key={i} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 + (i * 0.1), duration: 0.8 }} className={`rounded-2xl overflow-hidden h-64 md:h-80 w-full ${i === 1 ? 'md:-mt-12 shadow-2xl z-10' : 'opacity-80'}`}>
+                 <img src={src} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Hero" />
+               </motion.div>
+             ))}
+          </div>
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+             <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#F25C05] transition-colors shadow-lg">Voir nos spectacles</MagneticButton>
+             <button onClick={() => setVideoOpen(true)} className="flex items-center gap-3 font-bold text-neutral-600 hover:text-black transition-colors group">
+                <div className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center group-hover:border-[#F25C05] group-hover:bg-[#F25C05] group-hover:text-white transition-all">▶</div>
+                Voir le film (2min)
+             </button>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
 
-// --- 3. PAGE SECTIONS ---
+const KeyNumbers = () => (
+    <section className="py-20 bg-white border-y border-neutral-100">
+        <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[{ num: "2014", label: "Création" }, { num: "5", label: "Centres Culturels" }, { num: "1000+", label: "Jeunes Formés/An" }, { num: "45", label: "Partenaires" }].map((stat, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                    <h3 className="text-4xl md:text-5xl font-black text-[#F25C05] mb-2">{stat.num}</h3>
+                    <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">{stat.label}</p>
+                </motion.div>
+            ))}
+        </div>
+    </section>
+);
 
-// Updated Section: Uses min-h-screen for mobile scrolling consistency
-const Section = ({ children, className = "", id = "" }) => (
-  <section id={id} className={`min-h-screen w-full snap-start relative flex flex-col justify-center items-center py-20 md:py-0 ${className}`}>
-    {children}
+const NewsSection = () => (
+    <section id="actualites" className="py-24 bg-[#F4F4F0]">
+        <div className="container mx-auto px-6">
+            <div className="flex justify-between items-end mb-12">
+                <div>
+                    <h3 className="text-[#F25C05] font-bold uppercase tracking-widest mb-2 text-sm">Agenda</h3>
+                    <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A]">Actualités</h2>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {NEWS.map((item, i) => (
+                    <motion.div key={i} whileHover={{ y: -10 }} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer group">
+                        <div className="h-48 overflow-hidden relative">
+                            <span className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold z-10">{item.category}</span>
+                            <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={item.title} />
+                        </div>
+                        <div className="p-6">
+                            <span className="text-[#F25C05] font-bold text-sm mb-2 block">{item.date}</span>
+                            <h3 className="text-xl font-bold mb-4 leading-tight">{item.title}</h3>
+                            <p className="text-sm text-neutral-500 flex items-center gap-2 group-hover:text-black transition-colors">Lire la suite <span>→</span></p>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+const MajorProjects = ({ setView }) => (
+  <section id="projets" className="bg-[#1A1A1A] text-white">
+    <div className="container mx-auto px-6 py-24">
+        <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-black mb-4">Nos Grands Projets</h2>
+            <p className="text-neutral-400 max-w-2xl mx-auto">Des initiatives structurantes qui rayonnent sur tout le territoire national.</p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <motion.div whileHover={{ scale: 0.98 }} onClick={() => setView('projects')} className="relative rounded-[2rem] overflow-hidden bg-[#FDB813] text-black h-[500px] group cursor-pointer">
+              <div className="absolute inset-0 z-0"><img src="https://images.unsplash.com/photo-1505934571775-6b45a90d8a63?q=80&w=2070" className="w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500" alt="School" /></div>
+              <div className="relative z-10 p-10 flex flex-col h-full justify-between">
+                  <div><span className="font-bold border border-black px-3 py-1 rounded-full text-xs">HIP HOP & CULTURES URBAINES</span><h3 className="text-5xl md:text-7xl font-black mt-6 leading-none">POSITIVE<br/>SCHOOL</h3></div>
+                  <div className="flex justify-between items-end"><p className="font-bold max-w-xs">Formation de la nouvelle génération d'artistes urbains.</p><div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center text-2xl group-hover:rotate-45 transition-transform">↗</div></div>
+              </div>
+          </motion.div>
+          <motion.div whileHover={{ scale: 0.98 }} className="relative rounded-[2rem] overflow-hidden bg-indigo-600 text-white h-[500px] group cursor-pointer">
+              <div className="absolute inset-0 z-0"><div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 to-transparent" /></div>
+              <div className="relative z-10 p-10 flex flex-col h-full justify-between">
+                  <div><span className="font-bold border border-white/30 px-3 py-1 rounded-full text-xs">INNOVATION NUMÉRIQUE</span><h3 className="text-5xl md:text-7xl font-black mt-6 leading-none">DIGIT'ALI</h3></div>
+                  <div className="flex justify-between items-end"><p className="font-medium opacity-80 max-w-xs">Plateforme e-learning pour démocratiser les métiers de la culture.</p><div className="w-12 h-12 bg-white text-indigo-900 rounded-full flex items-center justify-center text-2xl group-hover:rotate-45 transition-transform">↗</div></div>
+              </div>
+          </motion.div>
+        </div>
+    </div>
   </section>
 );
 
-const Hero = () => {
-  return (
-    <Section id="accueil" className="bg-neutral-900 text-white relative">
-      <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-neutral-900/50" />
-
-      <div className="z-10 text-center max-w-7xl px-4 md:px-6 flex flex-col items-center justify-center h-full">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-          <h2 className="text-xs md:text-xl tracking-[0.2em] md:tracking-[0.4em] text-[#F25C05] mb-4 md:mb-6 uppercase font-bold">Fondation Ali Zaoua</h2>
-        </motion.div>
-
-        <div className="mb-6 md:mb-10 w-full">
-           <TextReveal className="text-4xl sm:text-6xl md:text-9xl font-black text-white justify-center leading-none tracking-tighter">
-             FAIRE BRILLER
-           </TextReveal>
-           <TextReveal className="text-4xl sm:text-6xl md:text-9xl font-black text-[#F25C05] justify-center leading-none tracking-tighter" delay={0.2}>
-             LES ÉTOILES
-           </TextReveal>
-        </div>
-
-        {/* Images under the headline */}
-        <motion.div 
-          className="w-full max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-8 md:mb-10 px-2"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        >
-          {HERO_IMAGES.map((src, i) => (
-             <motion.div 
-               key={i} 
-               className="relative h-24 sm:h-32 md:h-48 rounded-xl md:rounded-2xl overflow-hidden group cursor-pointer"
-               whileHover={{ scale: 1.05 }}
-             >
-               <img src={src} alt="Culture" className="w-full h-full object-cover opacity-80 md:opacity-70 group-hover:opacity-100 transition-opacity" />
-               <div className="absolute inset-0 bg-[#F25C05]/20 mix-blend-overlay group-hover:bg-transparent transition-colors" />
-             </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.p 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          transition={{ delay: 1, duration: 1 }}
-          className="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto mb-8 md:mb-10 font-light px-4"
-        >
-          Transformez la vie des jeunes marocains à travers les arts, la culture et l'éducation.
-        </motion.p>
-        
-        <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 w-full px-6">
-          <MagneticButton className="bg-[#F25C05] text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:bg-white hover:text-[#F25C05] transition-colors shadow-[0_0_30px_rgba(242,92,5,0.4)] w-full sm:w-auto">
-            Découvrir
-          </MagneticButton>
-        </div>
-      </div>
-    </Section>
-  );
-};
-
-const Pillars = () => {
-  return (
-    <Section id="missions" className="bg-white text-neutral-900">
-       <div className="max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start h-full md:h-auto">
-         
-         <div className="lg:sticky lg:top-20">
-           <h3 className="text-[#F25C05] font-bold uppercase tracking-widest mb-2 md:mb-4 text-sm md:text-base">Nos Missions</h3>
-           <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-8 leading-tight">Placer l'Humain au cœur de l'engagement.</h2>
-           <p className="text-base md:text-xl text-gray-600 leading-relaxed mb-6 md:mb-8">
-             Nous œuvrons pour que les arts et les cultures soient accessibles à tous, quel que soit le lieu de vie, l'origine ou l'environnement social.
-           </p>
-           <MagneticButton className="hidden md:inline-block border-2 border-neutral-900 text-neutral-900 px-8 py-3 rounded-full font-bold hover:bg-neutral-900 hover:text-white transition-colors">
-             En savoir plus
-           </MagneticButton>
-         </div>
-
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 md:gap-6 w-full">
-            {PILLARS.map((pillar, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-neutral-50 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-neutral-100 hover:border-[#F25C05]/30 hover:shadow-xl hover:shadow-[#F25C05]/10 transition-all cursor-pointer group"
-              >
-                 <div className="text-3xl md:text-4xl mb-3 md:mb-4 bg-white w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-2xl shadow-sm group-hover:scale-110 transition-transform">{pillar.icon}</div>
-                 <h3 className="text-lg md:text-2xl font-bold mb-2 group-hover:text-[#F25C05] transition-colors">{pillar.title}</h3>
-                 <p className="text-sm md:text-base text-gray-500">{pillar.desc}</p>
-              </motion.div>
-            ))}
-         </div>
-
-       </div>
-    </Section>
-  );
-};
-
-const History = () => {
-  return (
-    <Section id="histoire" className="bg-[#F25C05] text-white">
-      <div className="max-w-6xl w-full px-6">
-        <h2 className="text-3xl md:text-7xl font-bold mb-8 md:mb-16 text-center">Notre Histoire</h2>
-        
-        {/* Mobile: Vertical Timeline | Desktop: Horizontal Grid */}
-        <div className="relative border-l-4 border-white/20 pl-8 ml-4 md:ml-0 md:pl-0 md:border-l-0 md:border-t-4 md:pt-12 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-8">
-           {TIMELINE.map((item, i) => (
-             <motion.div 
-               key={i}
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ delay: i * 0.15 }}
-               className="relative md:text-center group"
-             >
-               {/* Dot indicator */}
-               <div className="absolute -left-[41px] top-0 w-6 h-6 bg-white rounded-full border-4 border-[#F25C05] md:left-1/2 md:-top-[59px] md:-translate-x-1/2 md:group-hover:scale-150 transition-transform" />
-               
-               <h3 className="text-3xl md:text-4xl font-black mb-1 md:mb-2 opacity-70 group-hover:opacity-100 transition-opacity">{item.year}</h3>
-               <h4 className="text-xl md:text-2xl font-bold mb-2">{item.title}</h4>
-               <p className="text-sm opacity-90 leading-relaxed max-w-xs">{item.desc}</p>
-             </motion.div>
-           ))}
-        </div>
-      </div>
-    </Section>
-  );
-};
-
-const PositiveSchool = () => {
-  return (
-    <Section id="positive-school" className="bg-yellow-400 text-black">
-      <div className="max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-         <div className="relative h-[300px] md:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl transform md:rotate-3 md:hover:rotate-0 transition-transform duration-500 order-2 lg:order-1">
-            <img 
-              src="https://images.unsplash.com/photo-1541250628459-d5f2776a82f9?q=80&w=2070" 
-              className="w-full h-full object-cover" 
-              alt="Hip Hop Dance"
-            />
-            <div className="absolute inset-0 bg-black/20" />
-         </div>
-         
-         <div className="order-1 lg:order-2">
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h3 className="text-black font-black uppercase tracking-widest mb-2 md:mb-4 border-b-4 border-black inline-block text-xs md:text-base">Programme Phare</h3>
-              <h2 className="text-4xl md:text-7xl font-black mb-4 md:mb-6">POSITIVE SCHOOL</h2>
-              <p className="text-lg md:text-xl font-medium mb-4 md:mb-6">
-                Bien plus qu'une simple école, un mouvement—une philosophie ancrée dans l'essence même du hip-hop.
-              </p>
-              <p className="text-base md:text-lg mb-6 md:mb-8 opacity-80">
-                Nous formons la prochaine génération de danseurs, rappeurs et beatmakers. Un espace où la rue devient scène et où l'expression devient art.
-              </p>
-              <MagneticButton className="bg-black text-yellow-400 px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-base md:text-lg hover:scale-105 transition-transform w-full md:w-auto">
-                Rejoindre le Crew
-              </MagneticButton>
-            </motion.div>
-         </div>
-      </div>
-    </Section>
-  );
-};
-
-const Digitali = () => {
-  return (
-    <Section id="digitali" className="bg-indigo-900 text-white">
-       <div className="max-w-7xl w-full px-6 flex flex-col lg:flex-row-reverse gap-8 md:gap-12 items-center">
-         <div className="w-full lg:w-1/2">
-             <motion.div 
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                className="relative aspect-video bg-black rounded-2xl border border-indigo-500 shadow-[0_0_50px_rgba(99,102,241,0.3)] overflow-hidden flex items-center justify-center"
-             >
-                <div className="text-center p-4">
-                   <div className="text-4xl md:text-6xl mb-2 md:mb-4">💻</div>
-                   <h3 className="text-xl md:text-2xl font-mono text-indigo-400">e-learning platform</h3>
-                   <p className="text-xs text-gray-500 mt-2">loading modules...</p>
+const InteractiveMapSection = ({ setCursorImage, setView }) => (
+    <section id="centres" className="py-24 bg-white overflow-hidden relative">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row gap-16 relative z-10">
+            <div className="md:w-1/3">
+                <h3 className="text-[#F25C05] font-bold uppercase tracking-widest mb-4 text-sm">Nos Ancrages</h3>
+                <h2 className="text-4xl md:text-5xl font-black mb-6 text-[#1A1A1A]">5 Centres.<br/>5 Âmes.</h2>
+                <p className="text-neutral-500 mb-8 leading-relaxed">Chaque centre est un lieu de vie unique, adapté aux besoins spécifiques de son quartier et de sa ville.</p>
+                <div className="space-y-4">
+                    {CENTERS.map((center, i) => (
+                        <motion.div key={i} className="p-4 rounded-xl border border-neutral-100 hover:border-[#F25C05] hover:bg-[#FFF5F0] cursor-pointer transition-colors group" onMouseEnter={() => setCursorImage(center.image)} onMouseLeave={() => setCursorImage(null)}>
+                            <div className="flex justify-between items-center"><h4 className="font-bold text-lg group-hover:text-[#F25C05] transition-colors">{center.city}</h4><span className="text-xs font-mono text-neutral-400">0{i+1}</span></div>
+                            <p className="text-sm text-neutral-500 mt-1">{center.name}</p>
+                        </motion.div>
+                    ))}
                 </div>
-             </motion.div>
-         </div>
-         
-         <div className="w-full lg:w-1/2">
-            <h3 className="text-indigo-400 font-bold uppercase tracking-widest mb-2 md:mb-4 text-xs md:text-base">Innovation</h3>
-            <h2 className="text-3xl md:text-7xl font-bold mb-4 md:mb-6">DIGIT'ALI</h2>
-            <p className="text-lg md:text-xl text-indigo-100 mb-6 md:mb-8 leading-relaxed">
-              Une plateforme de e-learning artistique ouverte à tous, partout au Maroc.
-            </p>
-            <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8 text-sm md:text-base">
-               <li className="flex items-center gap-3"><span className="text-indigo-400">✓</span> Cours en ligne accessibles gratuitement</li>
-               <li className="flex items-center gap-3"><span className="text-indigo-400">✓</span> Formation aux métiers du numérique</li>
-               <li className="flex items-center gap-3"><span className="text-indigo-400">✓</span> Inclusion numérique pour les zones rurales</li>
-            </ul>
-            <MagneticButton className="bg-indigo-500 text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-indigo-900 transition-colors w-full md:w-auto">
-               Accéder à la plateforme
-            </MagneticButton>
-         </div>
-       </div>
-    </Section>
-  );
-};
+                <button onClick={() => setView('centers')} className="mt-8 text-[#F25C05] font-bold border-b-2 border-[#F25C05] pb-1 hover:text-black hover:border-black transition-colors">Voir tous les détails →</button>
+            </div>
+            <div className="md:w-2/3 relative h-[500px] bg-[#F4F4F0] rounded-[3rem] p-8 hidden md:block">
+                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#1A1A1A 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                 {CENTERS.map((center, i) => (
+                     <motion.div key={i} className="absolute w-4 h-4 bg-[#F25C05] rounded-full shadow-[0_0_0_8px_rgba(242,92,5,0.2)] cursor-pointer hover:scale-150 transition-transform z-10" style={{ top: center.coords.top, left: center.coords.left }} whileHover={{ scale: 1.5 }}>
+                        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">{center.city}</div>
+                     </motion.div>
+                 ))}
+                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20"><path d="M 400 50 Q 350 200 380 300 T 250 380" stroke="#F25C05" strokeWidth="2" fill="none" /></svg>
+            </div>
+        </div>
+    </section>
+);
 
-const CentersList = ({ setCursorImage }) => {
-  return (
-    <Section id="centres" className="bg-neutral-900 text-white">
-      <div className="max-w-6xl w-full px-6 flex flex-col h-full justify-center">
-        <div className="mb-8 md:mb-12 flex items-end justify-between border-b border-gray-800 pb-6">
-          <div>
-            <h3 className="text-[#F25C05] font-bold uppercase tracking-widest mb-2 text-xs md:text-base">Nos Ancrages</h3>
-            <h2 className="text-3xl md:text-6xl font-bold">Les Étoiles du Maroc</h2>
+const GetInvolved = ({ setView }) => (
+    <section id="contact" className="py-24 bg-[#F4F4F0]">
+        <div className="container mx-auto px-6 text-center max-w-4xl">
+            <h2 className="text-4xl md:text-6xl font-black mb-8 text-[#1A1A1A]">Agissons Ensemble.</h2>
+            <div className="flex justify-center gap-4 mb-12">
+                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#1A1A1A] text-white shadow-lg hover:scale-105">Devenir Bénévole</button>
+                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#F25C05] text-white shadow-lg hover:scale-105">Faire un Don</button>
+            </div>
+        </div>
+    </section>
+);
+
+const Footer = () => (
+  <footer className="bg-[#1A1A1A] text-white pt-20 pb-10">
+    <div className="container mx-auto px-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-16">
+          <div className="col-span-1 md:col-span-2">
+              <h2 className="text-3xl font-black mb-6">Restez informés</h2>
+              <div className="flex gap-4"><input type="email" placeholder="Votre email" className="bg-white/10 border-none rounded-lg px-6 py-4 w-full md:w-80 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#F25C05]" /><button className="bg-[#F25C05] px-6 py-4 rounded-lg font-bold hover:bg-white hover:text-[#F25C05] transition-colors">OK</button></div>
           </div>
-          <div className="hidden md:block text-right">
-             <span className="text-5xl font-bold text-[#F25C05]">5</span>
-             <span className="block text-gray-500 uppercase text-sm">Régions</span>
+          <div><h4 className="font-bold text-gray-500 mb-6 uppercase text-sm">Contact</h4><p className="mb-4 text-gray-300">Sidi Moumen, Casablanca<br/>Maroc</p><p className="text-[#F25C05] font-bold">contact@troupe.ma</p></div>
+      </div>
+      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600"><p>© 2025 Troupe Les Étoiles. Tous droits réservés.</p><div className="flex gap-6 mt-4 md:mt-0"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a></div></div>
+    </div>
+  </footer>
+);
+
+// --- 4. ADDITIONAL PAGES ---
+
+const ProjectsPage = ({ setView }) => (
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white min-h-screen pt-32 pb-20">
+    <div className="container mx-auto px-6">
+      <div className="text-center mb-16">
+        <button onClick={() => setView('home')} className="text-[#F25C05] font-bold mb-4 hover:underline">← Retour à l'accueil</button>
+        <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-6">SPECTACLES & CRÉATIONS</h1>
+        <p className="text-xl text-neutral-500 max-w-2xl mx-auto">Découvrez les productions artistiques de la Troupe Les Étoiles.</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {SHOWS.map((show, i) => (
+          <motion.div key={show.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all">
+            <div className="aspect-[3/4] relative overflow-hidden"><img src={show.image} alt={show.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" /></div>
+            <div className="absolute bottom-0 left-0 w-full p-8 text-white">
+              <div className="flex justify-between items-end mb-2"><span className="bg-[#F25C05] text-xs font-bold px-2 py-1 rounded text-white">{show.category}</span><span className="text-sm font-mono opacity-70">{show.year}</span></div>
+              <h3 className="text-2xl font-bold mb-2 leading-tight">{show.title}</h3>
+              <p className="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">{show.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+const CentersPage = ({ setView }) => (
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#F4F4F0] min-h-screen pt-32 pb-20">
+    <div className="container mx-auto px-6">
+      <button onClick={() => setView('home')} className="text-[#F25C05] font-bold mb-8 hover:underline">← Retour à l'accueil</button>
+      <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-16 text-center">NOS CENTRES</h1>
+      <div className="space-y-12">
+        {CENTERS.map((center, i) => (
+          <div key={i} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl flex flex-col md:flex-row gap-12 items-center">
+             <div className="w-full md:w-1/2 h-64 md:h-96 rounded-2xl overflow-hidden relative"><img src={center.image} className="w-full h-full object-cover" alt={center.city} /></div>
+             <div className="w-full md:w-1/2">
+                <div className="flex items-center gap-4 mb-4"><span className="text-[#F25C05] font-black text-2xl">0{i+1}</span><h2 className="text-4xl font-black text-[#1A1A1A]">{center.city}</h2></div>
+                <h3 className="text-xl font-bold text-neutral-700 mb-6">{center.name}</h3>
+                <p className="text-lg text-neutral-600 mb-6 leading-relaxed">{center.details}</p>
+                <button className="border-b-2 border-black pb-1 font-bold hover:text-[#F25C05] hover:border-[#F25C05] transition-colors">Voir la programmation →</button>
+             </div>
           </div>
-        </div>
-
-        <div className="flex flex-col">
-          {CENTERS.map((center, index) => (
-            <motion.div 
-              key={index}
-              className="group relative border-b border-gray-800 py-6 md:py-8 flex flex-col md:flex-row justify-between items-start md:items-center cursor-pointer md:cursor-none transition-colors hover:bg-white/5 px-2 md:px-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              onMouseEnter={() => setCursorImage(center.image)}
-              onMouseLeave={() => setCursorImage(null)}
-            >
-              <div className="z-10 pointer-events-none">
-                <span className="text-[10px] md:text-xs text-[#F25C05] font-mono mb-1 md:mb-2 block">0{index + 1}</span>
-                <h3 className="text-2xl md:text-5xl font-bold group-hover:translate-x-4 transition-transform duration-300 group-hover:text-[#F25C05]">{center.city}</h3>
-                <span className="text-gray-400 text-base md:text-lg mt-1 block group-hover:text-white transition-colors">{center.name}</span>
-              </div>
-              <div className="mt-3 md:mt-0 opacity-80 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 z-10 pointer-events-none md:max-w-xs text-left md:text-right">
-                <p className="text-gray-300 text-sm leading-relaxed">{center.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        ))}
       </div>
-    </Section>
-  );
-};
+    </div>
+  </motion.div>
+);
 
-const Testimonials = () => {
-  return (
-    <Section id="temoignages" className="bg-white text-neutral-900 overflow-hidden">
-      <div className="absolute top-0 left-0 p-4 md:p-10 opacity-5 pointer-events-none">
-         <span className="text-[10rem] md:text-[20rem] font-serif text-[#F25C05]">"</span>
+const ContactPage = ({ setView }) => (
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#1A1A1A] text-white min-h-screen pt-32 pb-20">
+    <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-16">
+      <div className="lg:w-1/2">
+         <button onClick={() => setView('home')} className="text-[#F25C05] font-bold mb-8 hover:underline">← Retour</button>
+         <h1 className="text-5xl md:text-7xl font-black mb-8">CONTACT</h1>
+         <p className="text-xl text-gray-400 mb-12">Vous souhaitez devenir bénévole, partenaire ou simplement nous dire bonjour ?</p>
+         <div className="space-y-6">
+            <div className="flex gap-4"><span className="text-[#F25C05] text-xl">📍</span><div><h4 className="font-bold">Siège Social</h4><p className="text-gray-400">Sidi Moumen, Casablanca</p></div></div>
+            <div className="flex gap-4"><span className="text-[#F25C05] text-xl">✉️</span><div><h4 className="font-bold">Email</h4><p className="text-gray-400">contact@troupe.ma</p></div></div>
+         </div>
       </div>
-
-      <div className="max-w-7xl w-full px-6 z-10">
-        <h2 className="text-3xl md:text-6xl font-bold mb-8 md:mb-16 text-center">Paroles d'Étoiles</h2>
-        
-        <div className="flex overflow-x-auto snap-x no-scrollbar pb-10 gap-4 md:gap-8">
-           {TESTIMONIALS.map((t, i) => (
-             <motion.div 
-               key={i}
-               className="min-w-[300px] md:min-w-[500px] bg-neutral-50 border border-neutral-100 p-6 md:p-10 rounded-2xl md:rounded-3xl shadow-lg snap-center flex flex-col justify-between"
-               whileHover={{ y: -10 }}
-             >
-                <div>
-                   <p className="text-lg md:text-2xl font-medium leading-relaxed mb-4 md:mb-6 italic text-gray-700">"{t.text}"</p>
-                </div>
-                <div className="flex items-center gap-4">
-                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#F25C05] text-white flex items-center justify-center font-bold text-base md:text-lg">
-                      {t.name.charAt(0)}
-                   </div>
-                   <div>
-                      <h4 className="font-bold text-base md:text-lg">{t.name}</h4>
-                      <p className="text-xs md:text-sm text-[#F25C05] uppercase tracking-wide font-bold">{t.role}</p>
-                   </div>
-                </div>
-             </motion.div>
-           ))}
-        </div>
+      <div className="lg:w-1/2 bg-white/5 p-8 rounded-3xl border border-white/10">
+         <form className="space-y-6">
+            <div className="grid grid-cols-2 gap-6">
+               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Nom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none" /></div>
+               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Prénom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none" /></div>
+            </div>
+            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Email</label><input type="email" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none" /></div>
+            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Message</label><textarea rows="4" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none"></textarea></div>
+            <button className="w-full bg-[#F25C05] text-white font-bold py-4 rounded-xl hover:bg-white hover:text-[#F25C05] transition-colors">Envoyer</button>
+         </form>
       </div>
-    </Section>
-  );
-};
+    </div>
+  </motion.div>
+);
 
-const Contact = () => {
-  return (
-    <Section id="contact" className="bg-neutral-900 text-white relative">
-      <div className="text-center max-w-4xl px-6">
-        <h2 className="text-3xl md:text-8xl font-bold mb-6 md:mb-8">Rejoignez le Mouvement.</h2>
-        <p className="text-base md:text-xl mb-8 md:mb-12 text-gray-400">Devenez parrain, partenaire ou bénévole et aidez-nous à faire briller les étoiles de demain.</p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-10 md:mb-16">
-           <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 text-left hover:bg-white/10 transition-colors">
-              <h3 className="text-[#F25C05] text-xl md:text-2xl font-bold mb-2 md:mb-4">Contact</h3>
-              <p className="text-base md:text-lg text-gray-300 mb-2">📞 +212(0) 5 22 72 49 23</p>
-              <p className="text-base md:text-lg text-gray-300 break-all">✉️ contact@fondationalizaoua.org</p>
-           </div>
-           <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 text-left hover:bg-white/10 transition-colors">
-              <h3 className="text-[#F25C05] text-xl md:text-2xl font-bold mb-2 md:mb-4">Siège Social</h3>
-              <p className="text-base md:text-lg text-gray-300">Angle Bd. Mohammed Zefzaf<br/>Sidi Moumen – Casablanca</p>
-           </div>
-        </div>
-
-        <div className="flex justify-center gap-6">
-           <MagneticButton className="bg-white text-[#F25C05] px-10 py-4 md:px-12 md:py-5 rounded-full font-bold text-lg md:text-xl hover:scale-105 transition-transform shadow-2xl w-full md:w-auto">
-              Faire un Don
-           </MagneticButton>
-        </div>
-        
-        <footer className="absolute bottom-4 md:bottom-8 w-full text-center opacity-40 text-xs md:text-sm">
-          © 2025 Fondation Ali Zaoua. Tous droits réservés.
-        </footer>
-      </div>
-    </Section>
-  );
-};
-
-// --- MAIN APP ---
+// --- 5. MAIN APP ---
 
 export default function App() {
   const [cursorImage, setCursorImage] = useState(null);
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ container: containerRef });
-  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const [currentView, setCurrentView] = useState('home');
+
+  useEffect(() => { window.scrollTo(0, 0); }, [currentView]);
 
   return (
-    <div className="relative">
-      <Navigation />
-      
-      {/* Scroll Progress Bar */}
-      <motion.div 
-        style={{ scaleX }} 
-        className="fixed bottom-0 left-0 right-0 h-1 md:h-2 bg-[#F25C05] origin-left z-50" 
-      />
-
-      <main 
-        ref={containerRef}
-        className="h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth no-scrollbar cursor-none bg-neutral-900 selection:bg-[#F25C05] selection:text-white"
-      >
-        <InteractiveCursor activeImage={cursorImage} />
-        
-        <style>{`
-          .no-scrollbar::-webkit-scrollbar { display: none; }
-          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          /* Only hide default cursor on non-touch devices to ensure usability on mobile */
-          @media (pointer: fine) {
-            * { cursor: none !important; }
-          }
-        `}</style>
-
-        <Hero />
-        <Pillars />
-        <History />
-        <PositiveSchool />
-        <Digitali />
-        <CentersList setCursorImage={setCursorImage} />
-        <Testimonials />
-        <Contact />
-      </main>
+    <div className="bg-white min-h-screen cursor-none selection:bg-[#F25C05] selection:text-white">
+      <div className="hidden md:block"><Cursor activeImage={cursorImage} /></div>
+      <Navbar currentView={currentView} setView={setCurrentView} />
+      <AnimatePresence mode='wait'>
+        {currentView === 'home' && (
+          <motion.main key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <Hero setView={setCurrentView} />
+            <KeyNumbers />
+            <MajorProjects setView={setCurrentView} />
+            <NewsSection />
+            <InteractiveMapSection setCursorImage={setCursorImage} setView={setCurrentView} />
+            <GetInvolved setView={setCurrentView} />
+          </motion.main>
+        )}
+        {currentView === 'projects' && <ProjectsPage key="projects" setView={setCurrentView} />}
+        {currentView === 'centers' && <CentersPage key="centers" setView={setCurrentView} />}
+        {currentView === 'contact' && <ContactPage key="contact" setView={setCurrentView} />}
+      </AnimatePresence>
+      <Footer />
+      <style>{`html { scroll-behavior: smooth; } body::-webkit-scrollbar { display: none; } body { -ms-overflow-style: none; scrollbar-width: none; } @media (pointer: coarse) { .cursor-none { cursor: auto; } }`}</style>
     </div>
   );
 }
