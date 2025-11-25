@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 // import logo from './logo.jpg'; // Uncomment this if running locally with the file
-import logo from './logo.jpg'; // Placeholder to prevent build errors
+import logo from './1.png'; // Placeholder to prevent build errors
 
 // --- 1. DATA & CONFIGURATION ---
 
@@ -49,6 +49,15 @@ const CENTERS = [
     coords: { top: "18%", left: "46%" }
   },
   { 
+    id: "fes",
+    name: "Sidi Moumen", 
+    city: "Fes", 
+    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070",
+    desc: "Le berceau historique. Là où l'impossible est devenu réalité en 2014.",
+    details: "Situé au cœur du quartier, ce centre de 1000m² dispose d'une salle de spectacle, d'une bibliothèque et de studios de danse.",
+    coords: { top: "18%", left: "46%" }
+  },
+  { 
     id: "kech",
     name: "Jemaa El Fna", 
     city: "Marrakech", 
@@ -88,7 +97,7 @@ const Cursor = ({ activeImage }) => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-[#5e2b79] rounded-full pointer-events-none z-50 mix-blend-multiply hidden md:block"
+        className="fixed top-0 left-0 w-4 h-4 bg-[#f4e222] rounded-full pointer-events-none z-50 mix-blend-multiply hidden md:block"
         animate={{ x: mouse.x - 8, y: mouse.y - 8, scale: activeImage ? 0 : 1 }}
       />
       <motion.div
@@ -180,7 +189,7 @@ const Navbar = ({ currentView, setView }) => {
               ) : (
                 <div className="w-9 h-9 bg-[#1A1A1A] rounded-full flex items-center justify-center text-white font-black text-sm group-hover:bg-[#5e2b79] transition-colors duration-300">T</div>
               )}
-              <span className="font-black text-xl tracking-tight text-[#1A1A1A] hidden sm:block">Troupe les Étoiles du Détroit</span>
+              <span className="font-black text-xl tracking-tight text-[#8f4699] hidden sm:block">Centres Culturels Les Étoiles</span>
             </button>
 
             <div className={`hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
@@ -241,7 +250,7 @@ const VideoModal = ({ isOpen, onClose }) => {
             onClick={(e) => e.stopPropagation()}
           >
              <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-[#5e2b79] z-10 font-bold text-xl">✕</button>
-             <iframe width="100%" height="100%" src="https://www.instagram.com/p/DQ9-jj7DfxO/?hl=en" title="Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+             <iframe width="100%" height="100%" src="https://www.facebook.com/share/r/1BZBK7YyHx/" title="Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </motion.div>
         </motion.div>
       )}
@@ -280,9 +289,9 @@ const Hero = ({ setView }) => {
       <section id="accueil" className="min-h-screen relative flex flex-col justify-center items-center bg-[#F4F4F0] pt-24 pb-20 overflow-hidden">
         <div className="container mx-auto px-6 text-center z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mb-8">
-             <h2 className="text-sm font-bold tracking-[0.3em] text-neutral-500 mb-4 uppercase">Fondation Ali Zaoua</h2>
+             <h2 className="text-sm font-bold tracking-[0.3em] text-neutral-500 mb-4 uppercase">Centres Culturels Les Étoiles</h2>
              <div className="flex flex-col items-center">
-                <h1 className="text-6xl md:text-8xl font-black text-[#1A1A1A] tracking-tight leading-[0.9]">TROUPE<span className="block text-[#5e2b79]">LES ÉTOILES</span></h1>
+                <h1 className="text-6xl md:text-8xl font-black text-[#1A1A1A] tracking-tight leading-[0.9]">Les etoiles<span className="block text-[#f4e222]">Maroc</span></h1>
              </div>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
@@ -293,7 +302,7 @@ const Hero = ({ setView }) => {
              ))}
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-             <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#5e2b79] transition-colors shadow-lg">Voir nos spectacles</MagneticButton>
+             <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#5e2b79] transition-colors shadow-lg">Nos événements</MagneticButton>
              <button onClick={() => setVideoOpen(true)} className="flex items-center gap-3 font-bold text-neutral-600 hover:text-black transition-colors group">
                 <div className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center group-hover:border-[#5e2b79] group-hover:bg-[#5e2b79] group-hover:text-white transition-all">▶</div>
                 Voir le film (2min)
