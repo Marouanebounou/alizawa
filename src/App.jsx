@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+// import logo from './logo.jpg'; // Uncomment this if running locally with the file
+import logo from './logo.jpg'; // Placeholder to prevent build errors
 
 // --- 1. DATA & CONFIGURATION ---
 
@@ -9,11 +11,13 @@ const THEME = {
   paper: "#F4F4F0",
   white: "#FFFFFF"
 };
-
+import hero1 from "./get.jpeg" 
+import hero2 from "./img1.webp" 
+import hero3 from "./img2.jpg" 
 const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1542358935-728b78809c95?q=80&w=800",
-  "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=800",
-  "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=800",
+  hero1,
+  hero2,
+  hero3,
 ];
 
 const SHOWS = [
@@ -27,22 +31,22 @@ const SHOWS = [
 
 const CENTERS = [
   { 
-    id: "casa",
-    name: "Sidi Moumen", 
-    city: "Casablanca", 
-    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070",
-    desc: "Le berceau historique. Là où l'impossible est devenu réalité en 2014.",
-    details: "Situé au cœur du quartier, ce centre de 1000m² dispose d'une salle de spectacle, d'une bibliothèque et de studios de danse.",
-    coords: { top: "40%", left: "45%" }
-  },
-  { 
     id: "tanger",
     name: "Détroit", 
     city: "Tanger", 
     image: "https://images.unsplash.com/photo-1541535650810-10d26f5c2ab3?q=80&w=2076",
     desc: "Un phare culturel face à l'Europe, ancré dans l'Afrique.",
     details: "Un espace ouvert sur la mer, favorisant les échanges interculturels et les résidences d'artistes internationaux.",
-    coords: { top: "10%", left: "55%" }
+    coords: { top: "7%", left: "61%" }
+  },
+  { 
+    id: "casa",
+    name: "Sidi Moumen", 
+    city: "Casablanca", 
+    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070",
+    desc: "Le berceau historique. Là où l'impossible est devenu réalité en 2014.",
+    details: "Situé au cœur du quartier, ce centre de 1000m² dispose d'une salle de spectacle, d'une bibliothèque et de studios de danse.",
+    coords: { top: "18%", left: "46%" }
   },
   { 
     id: "kech",
@@ -51,7 +55,7 @@ const CENTERS = [
     image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?q=80&w=2072",
     desc: "Un riad de création au cœur battant de la cité ocre.",
     details: "Ce centre valorise le patrimoine oral (Halqa) tout en proposant des formations aux arts numériques.",
-    coords: { top: "60%", left: "40%" }
+    coords: { top: "35%", left: "41%" }
   },
   { 
     id: "agadir",
@@ -60,16 +64,7 @@ const CENTERS = [
     image: "https://images.unsplash.com/photo-1554232682-b9ef9c92f8de?q=80&w=2069",
     desc: "La culture comme moteur de développement régional.",
     details: "Focalisé sur la musique et les arts visuels, ce centre est un hub pour la jeunesse du Souss.",
-    coords: { top: "75%", left: "30%" }
-  },
-  { 
-    id: "oujda",
-    name: "L'Oriental", 
-    city: "Oujda", 
-    image: "https://images.unsplash.com/photo-1512553353614-82a7370096dc?q=80&w=1931",
-    desc: "Un pont vers la Méditerranée orientale.",
-    details: "Un espace dédié au théâtre et à la littérature, renforçant les liens culturels du Maghreb.",
-    coords: { top: "20%", left: "80%" }
+    coords: { top: "45%", left: "32%" }
   },
 ];
 
@@ -93,7 +88,7 @@ const Cursor = ({ activeImage }) => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-[#F25C05] rounded-full pointer-events-none z-50 mix-blend-multiply hidden md:block"
+        className="fixed top-0 left-0 w-4 h-4 bg-[#5e2b79] rounded-full pointer-events-none z-50 mix-blend-multiply hidden md:block"
         animate={{ x: mouse.x - 8, y: mouse.y - 8, scale: activeImage ? 0 : 1 }}
       />
       <motion.div
@@ -180,21 +175,25 @@ const Navbar = ({ currentView, setView }) => {
           }`}>
             
             <button onClick={() => handleNavClick('home', 'accueil')} className="flex items-center gap-2 group mr-4">
-              <div className="w-9 h-9 bg-[#1A1A1A] rounded-full flex items-center justify-center text-white font-black text-sm group-hover:bg-[#F25C05] transition-colors duration-300">T</div>
-              <span className="font-black text-xl tracking-tight text-[#1A1A1A] hidden sm:block">TROUPE.</span>
+              {logo ? (
+                <img src={logo} alt="Troupe Les Etoiles" className="h-10 w-auto object-contain rounded-md" />
+              ) : (
+                <div className="w-9 h-9 bg-[#1A1A1A] rounded-full flex items-center justify-center text-white font-black text-sm group-hover:bg-[#5e2b79] transition-colors duration-300">T</div>
+              )}
+              <span className="font-black text-xl tracking-tight text-[#1A1A1A] hidden sm:block">Troupe les Étoiles du Détroit</span>
             </button>
 
             <div className={`hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
                 isScrolled ? "opacity-100" : "bg-white/60 backdrop-blur-md rounded-full px-6 py-2 border border-white/40 shadow-sm"
             }`}>
               <button onClick={() => handleNavClick('home', 'accueil')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'home' ? 'text-black' : 'text-neutral-600'}`}>Accueil</button>
-              <button onClick={() => handleNavClick('projects')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'projects' ? 'text-[#F25C05]' : 'text-neutral-600'}`}>Spectacles</button>
-              <button onClick={() => handleNavClick('centers')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'centers' ? 'text-[#F25C05]' : 'text-neutral-600'}`}>Centres</button>
-              <button onClick={() => handleNavClick('contact')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'contact' ? 'text-[#F25C05]' : 'text-neutral-600'}`}>Contact</button>
+              <button onClick={() => handleNavClick('projects')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'projects' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Spectacles</button>
+              <button onClick={() => handleNavClick('centers')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'centers' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Centres</button>
+              <button onClick={() => handleNavClick('contact')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'contact' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Contact</button>
             </div>
 
             <div className="flex items-center gap-2">
-              <button onClick={() => handleNavClick('contact')} className="bg-[#F25C05] text-white px-6 py-3 rounded-full text-xs font-bold hover:bg-[#1A1A1A] transition-colors shadow-md flex items-center gap-2">
+              <button onClick={() => handleNavClick('contact')} className="bg-[#5e2b79] text-white px-6 py-3 rounded-full text-xs font-bold hover:bg-[#1A1A1A] transition-colors shadow-md flex items-center gap-2">
                 <span>Faire un Don</span>
               </button>
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden w-11 h-11 bg-white rounded-full flex items-center justify-center text-[#1A1A1A] shadow-sm border border-neutral-100 active:scale-95 transition-transform">
@@ -216,7 +215,7 @@ const Navbar = ({ currentView, setView }) => {
           >
             <div className="flex flex-col gap-8 text-4xl font-black text-white tracking-tight">
               <button onClick={() => handleNavClick('home', 'accueil')} className="text-left">Accueil</button>
-              <button onClick={() => handleNavClick('projects')} className="text-left text-[#F25C05]">Spectacles</button>
+              <button onClick={() => handleNavClick('projects')} className="text-left text-[#5e2b79]">Spectacles</button>
               <button onClick={() => handleNavClick('centers')} className="text-left">Nos Centres</button>
               <button onClick={() => handleNavClick('contact')} className="text-left">Contact</button>
             </div>
@@ -241,8 +240,8 @@ const VideoModal = ({ isOpen, onClose }) => {
             className="w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
-             <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-[#F25C05] z-10 font-bold text-xl">✕</button>
-             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" title="Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+             <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-[#5e2b79] z-10 font-bold text-xl">✕</button>
+             <iframe width="100%" height="100%" src="https://www.instagram.com/p/DQ9-jj7DfxO/?hl=en" title="Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </motion.div>
         </motion.div>
       )}
@@ -283,7 +282,7 @@ const Hero = ({ setView }) => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mb-8">
              <h2 className="text-sm font-bold tracking-[0.3em] text-neutral-500 mb-4 uppercase">Fondation Ali Zaoua</h2>
              <div className="flex flex-col items-center">
-                <h1 className="text-6xl md:text-8xl font-black text-[#1A1A1A] tracking-tight leading-[0.9]">TROUPE<span className="block text-[#F25C05]">LES ÉTOILES</span></h1>
+                <h1 className="text-6xl md:text-8xl font-black text-[#1A1A1A] tracking-tight leading-[0.9]">TROUPE<span className="block text-[#5e2b79]">LES ÉTOILES</span></h1>
              </div>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
@@ -294,9 +293,9 @@ const Hero = ({ setView }) => {
              ))}
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-             <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#F25C05] transition-colors shadow-lg">Voir nos spectacles</MagneticButton>
+             <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#5e2b79] transition-colors shadow-lg">Voir nos spectacles</MagneticButton>
              <button onClick={() => setVideoOpen(true)} className="flex items-center gap-3 font-bold text-neutral-600 hover:text-black transition-colors group">
-                <div className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center group-hover:border-[#F25C05] group-hover:bg-[#F25C05] group-hover:text-white transition-all">▶</div>
+                <div className="w-10 h-10 rounded-full border border-neutral-300 flex items-center justify-center group-hover:border-[#5e2b79] group-hover:bg-[#5e2b79] group-hover:text-white transition-all">▶</div>
                 Voir le film (2min)
              </button>
           </div>
@@ -311,7 +310,7 @@ const KeyNumbers = () => (
         <div className="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[{ num: "2014", label: "Création" }, { num: "5", label: "Centres Culturels" }, { num: "1000+", label: "Jeunes Formés/An" }, { num: "45", label: "Partenaires" }].map((stat, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                    <h3 className="text-4xl md:text-5xl font-black text-[#F25C05] mb-2">{stat.num}</h3>
+                    <h3 className="text-4xl md:text-5xl font-black text-[#5e2b79] mb-2">{stat.num}</h3>
                     <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">{stat.label}</p>
                 </motion.div>
             ))}
@@ -324,7 +323,7 @@ const NewsSection = () => (
         <div className="container mx-auto px-6">
             <div className="flex justify-between items-end mb-12">
                 <div>
-                    <h3 className="text-[#F25C05] font-bold uppercase tracking-widest mb-2 text-sm">Agenda</h3>
+                    <h3 className="text-[#5e2b79] font-bold uppercase tracking-widest mb-2 text-sm">Agenda</h3>
                     <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A]">Actualités</h2>
                 </div>
             </div>
@@ -336,7 +335,7 @@ const NewsSection = () => (
                             <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={item.title} />
                         </div>
                         <div className="p-6">
-                            <span className="text-[#F25C05] font-bold text-sm mb-2 block">{item.date}</span>
+                            <span className="text-[#5e2b79] font-bold text-sm mb-2 block">{item.date}</span>
                             <h3 className="text-xl font-bold mb-4 leading-tight">{item.title}</h3>
                             <p className="text-sm text-neutral-500 flex items-center gap-2 group-hover:text-black transition-colors">Lire la suite <span>→</span></p>
                         </div>
@@ -374,31 +373,40 @@ const MajorProjects = ({ setView }) => (
   </section>
 );
 
+// Updated InteractiveMapSection with Mobile Visibility
 const InteractiveMapSection = ({ setCursorImage, setView }) => (
     <section id="centres" className="py-24 bg-white overflow-hidden relative">
         <div className="container mx-auto px-6 flex flex-col md:flex-row gap-16 relative z-10">
             <div className="md:w-1/3">
-                <h3 className="text-[#F25C05] font-bold uppercase tracking-widest mb-4 text-sm">Nos Ancrages</h3>
+                <h3 className="text-[#5e2b79] font-bold uppercase tracking-widest mb-4 text-sm">Nos Ancrages</h3>
                 <h2 className="text-4xl md:text-5xl font-black mb-6 text-[#1A1A1A]">5 Centres.<br/>5 Âmes.</h2>
                 <p className="text-neutral-500 mb-8 leading-relaxed">Chaque centre est un lieu de vie unique, adapté aux besoins spécifiques de son quartier et de sa ville.</p>
                 <div className="space-y-4">
                     {CENTERS.map((center, i) => (
-                        <motion.div key={i} className="p-4 rounded-xl border border-neutral-100 hover:border-[#F25C05] hover:bg-[#FFF5F0] cursor-pointer transition-colors group" onMouseEnter={() => setCursorImage(center.image)} onMouseLeave={() => setCursorImage(null)}>
-                            <div className="flex justify-between items-center"><h4 className="font-bold text-lg group-hover:text-[#F25C05] transition-colors">{center.city}</h4><span className="text-xs font-mono text-neutral-400">0{i+1}</span></div>
+                        <motion.div key={i} className="p-4 rounded-xl border border-neutral-100 hover:border-[#5e2b79] hover:bg-[#FFF5F0] cursor-pointer transition-colors group" onMouseEnter={() => setCursorImage(center.image)} onMouseLeave={() => setCursorImage(null)}>
+                            <div className="flex justify-between items-center"><h4 className="font-bold text-lg group-hover:text-[#5e2b79] transition-colors">{center.city}</h4><span className="text-xs font-mono text-neutral-400">0{i+1}</span></div>
                             <p className="text-sm text-neutral-500 mt-1">{center.name}</p>
                         </motion.div>
                     ))}
                 </div>
-                <button onClick={() => setView('centers')} className="mt-8 text-[#F25C05] font-bold border-b-2 border-[#F25C05] pb-1 hover:text-black hover:border-black transition-colors">Voir tous les détails →</button>
+                <button onClick={() => setView('centers')} className="mt-8 text-[#5e2b79] font-bold border-b-2 border-[#5e2b79] pb-1 hover:text-black hover:border-black transition-colors">Voir tous les détails →</button>
             </div>
-            <div className="md:w-2/3 relative h-[500px] bg-[#F4F4F0] rounded-[3rem] p-8 hidden md:block">
-                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#1A1A1A 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+            
+            {/* Map container visible on mobile */}
+            <div className="w-full md:w-2/3 relative h-[400px] md:h-[600px] bg-[#F4F4F0] rounded-[2rem] md:rounded-[3rem] p-4 md:p-8 overflow-hidden mt-8 md:mt-0">
+                 {/* Real Morocco Map from Wikipedia */}
+                 <img src="https://simplemaps.com/static/svg/country/ma/admin1/ma.svg" alt="Carte du Maroc" className="absolute inset-0 w-full h-full object-contain opacity-20 mix-blend-multiply p-4" />
+                 
                  {CENTERS.map((center, i) => (
-                     <motion.div key={i} className="absolute w-4 h-4 bg-[#F25C05] rounded-full shadow-[0_0_0_8px_rgba(242,92,5,0.2)] cursor-pointer hover:scale-150 transition-transform z-10" style={{ top: center.coords.top, left: center.coords.left }} whileHover={{ scale: 1.5 }}>
-                        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">{center.city}</div>
+                     <motion.div 
+                        key={i} 
+                        className="absolute w-4 h-4 bg-[#5e2b79] rounded-full shadow-[0_0_0_8px_rgba(242,92,5,0.2)] cursor-pointer hover:scale-150 transition-transform z-10" 
+                        style={{ top: center.coords.top, left: center.coords.left }} 
+                        whileHover={{ scale: 1.5 }}
+                     >
+                        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white px-3 py-1 rounded-full text-xs font-bold shadow-lg z-20 pointer-events-none">{center.city}</div>
                      </motion.div>
                  ))}
-                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20"><path d="M 400 50 Q 350 200 380 300 T 250 380" stroke="#F25C05" strokeWidth="2" fill="none" /></svg>
             </div>
         </div>
     </section>
@@ -410,7 +418,7 @@ const GetInvolved = ({ setView }) => (
             <h2 className="text-4xl md:text-6xl font-black mb-8 text-[#1A1A1A]">Agissons Ensemble.</h2>
             <div className="flex justify-center gap-4 mb-12">
                 <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#1A1A1A] text-white shadow-lg hover:scale-105">Devenir Bénévole</button>
-                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#F25C05] text-white shadow-lg hover:scale-105">Faire un Don</button>
+                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#5e2b79] text-white shadow-lg hover:scale-105">Faire un Don</button>
             </div>
         </div>
     </section>
@@ -422,9 +430,9 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-16">
           <div className="col-span-1 md:col-span-2">
               <h2 className="text-3xl font-black mb-6">Restez informés</h2>
-              <div className="flex gap-4"><input type="email" placeholder="Votre email" className="bg-white/10 border-none rounded-lg px-6 py-4 w-full md:w-80 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#F25C05]" /><button className="bg-[#F25C05] px-6 py-4 rounded-lg font-bold hover:bg-white hover:text-[#F25C05] transition-colors">OK</button></div>
+              <div className="flex gap-4"><input type="email" placeholder="Votre email" className="bg-white/10 border-none rounded-lg px-6 py-4 w-full md:w-80 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#5e2b79]" /><button className="bg-[#5e2b79] px-6 py-4 rounded-lg font-bold hover:bg-white hover:text-[#5e2b79] transition-colors">OK</button></div>
           </div>
-          <div><h4 className="font-bold text-gray-500 mb-6 uppercase text-sm">Contact</h4><p className="mb-4 text-gray-300">Sidi Moumen, Casablanca<br/>Maroc</p><p className="text-[#F25C05] font-bold">contact@troupe.ma</p></div>
+          <div><h4 className="font-bold text-gray-500 mb-6 uppercase text-sm">Contact</h4><p className="mb-4 text-gray-300">Sidi Moumen, Casablanca<br/>Maroc</p><p className="text-[#5e2b79] font-bold">contact@troupe.ma</p></div>
       </div>
       <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600"><p>© 2025 Troupe Les Étoiles. Tous droits réservés.</p><div className="flex gap-6 mt-4 md:mt-0"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a></div></div>
     </div>
@@ -437,7 +445,7 @@ const ProjectsPage = ({ setView }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white min-h-screen pt-32 pb-20">
     <div className="container mx-auto px-6">
       <div className="text-center mb-16">
-        <button onClick={() => setView('home')} className="text-[#F25C05] font-bold mb-4 hover:underline">← Retour à l'accueil</button>
+        <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-4 hover:underline">← Retour à l'accueil</button>
         <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-6">SPECTACLES & CRÉATIONS</h1>
         <p className="text-xl text-neutral-500 max-w-2xl mx-auto">Découvrez les productions artistiques de la Troupe Les Étoiles.</p>
       </div>
@@ -446,7 +454,7 @@ const ProjectsPage = ({ setView }) => (
           <motion.div key={show.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all">
             <div className="aspect-[3/4] relative overflow-hidden"><img src={show.image} alt={show.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" /></div>
             <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-              <div className="flex justify-between items-end mb-2"><span className="bg-[#F25C05] text-xs font-bold px-2 py-1 rounded text-white">{show.category}</span><span className="text-sm font-mono opacity-70">{show.year}</span></div>
+              <div className="flex justify-between items-end mb-2"><span className="bg-[#5e2b79] text-xs font-bold px-2 py-1 rounded text-white">{show.category}</span><span className="text-sm font-mono opacity-70">{show.year}</span></div>
               <h3 className="text-2xl font-bold mb-2 leading-tight">{show.title}</h3>
               <p className="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">{show.desc}</p>
             </div>
@@ -460,17 +468,17 @@ const ProjectsPage = ({ setView }) => (
 const CentersPage = ({ setView }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#F4F4F0] min-h-screen pt-32 pb-20">
     <div className="container mx-auto px-6">
-      <button onClick={() => setView('home')} className="text-[#F25C05] font-bold mb-8 hover:underline">← Retour à l'accueil</button>
+      <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline">← Retour à l'accueil</button>
       <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-16 text-center">NOS CENTRES</h1>
       <div className="space-y-12">
         {CENTERS.map((center, i) => (
           <div key={i} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl flex flex-col md:flex-row gap-12 items-center">
              <div className="w-full md:w-1/2 h-64 md:h-96 rounded-2xl overflow-hidden relative"><img src={center.image} className="w-full h-full object-cover" alt={center.city} /></div>
              <div className="w-full md:w-1/2">
-                <div className="flex items-center gap-4 mb-4"><span className="text-[#F25C05] font-black text-2xl">0{i+1}</span><h2 className="text-4xl font-black text-[#1A1A1A]">{center.city}</h2></div>
+                <div className="flex items-center gap-4 mb-4"><span className="text-[#5e2b79] font-black text-2xl">0{i+1}</span><h2 className="text-4xl font-black text-[#1A1A1A]">{center.city}</h2></div>
                 <h3 className="text-xl font-bold text-neutral-700 mb-6">{center.name}</h3>
                 <p className="text-lg text-neutral-600 mb-6 leading-relaxed">{center.details}</p>
-                <button className="border-b-2 border-black pb-1 font-bold hover:text-[#F25C05] hover:border-[#F25C05] transition-colors">Voir la programmation →</button>
+                <button className="border-b-2 border-black pb-1 font-bold hover:text-[#5e2b79] hover:border-[#5e2b79] transition-colors">Voir la programmation →</button>
              </div>
           </div>
         ))}
@@ -483,23 +491,23 @@ const ContactPage = ({ setView }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#1A1A1A] text-white min-h-screen pt-32 pb-20">
     <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-16">
       <div className="lg:w-1/2">
-         <button onClick={() => setView('home')} className="text-[#F25C05] font-bold mb-8 hover:underline">← Retour</button>
+         <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline">← Retour</button>
          <h1 className="text-5xl md:text-7xl font-black mb-8">CONTACT</h1>
          <p className="text-xl text-gray-400 mb-12">Vous souhaitez devenir bénévole, partenaire ou simplement nous dire bonjour ?</p>
          <div className="space-y-6">
-            <div className="flex gap-4"><span className="text-[#F25C05] text-xl">📍</span><div><h4 className="font-bold">Siège Social</h4><p className="text-gray-400">Sidi Moumen, Casablanca</p></div></div>
-            <div className="flex gap-4"><span className="text-[#F25C05] text-xl">✉️</span><div><h4 className="font-bold">Email</h4><p className="text-gray-400">contact@troupe.ma</p></div></div>
+            <div className="flex gap-4"><span className="text-[#5e2b79] text-xl">📍</span><div><h4 className="font-bold">Siège Social</h4><p className="text-gray-400">Sidi Moumen, Casablanca</p></div></div>
+            <div className="flex gap-4"><span className="text-[#5e2b79] text-xl">✉️</span><div><h4 className="font-bold">Email</h4><p className="text-gray-400">contact@troupe.ma</p></div></div>
          </div>
       </div>
       <div className="lg:w-1/2 bg-white/5 p-8 rounded-3xl border border-white/10">
          <form className="space-y-6">
             <div className="grid grid-cols-2 gap-6">
-               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Nom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none" /></div>
-               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Prénom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none" /></div>
+               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Nom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
+               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Prénom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
             </div>
-            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Email</label><input type="email" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none" /></div>
-            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Message</label><textarea rows="4" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#F25C05] focus:outline-none"></textarea></div>
-            <button className="w-full bg-[#F25C05] text-white font-bold py-4 rounded-xl hover:bg-white hover:text-[#F25C05] transition-colors">Envoyer</button>
+            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Email</label><input type="email" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
+            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Message</label><textarea rows="4" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none"></textarea></div>
+            <button className="w-full bg-[#5e2b79] text-white font-bold py-4 rounded-xl hover:bg-white hover:text-[#5e2b79] transition-colors">Envoyer</button>
          </form>
       </div>
     </div>
@@ -515,7 +523,7 @@ export default function App() {
   useEffect(() => { window.scrollTo(0, 0); }, [currentView]);
 
   return (
-    <div className="bg-white min-h-screen cursor-none selection:bg-[#F25C05] selection:text-white">
+    <div className="bg-white min-h-screen cursor-none selection:bg-[#5e2b79] selection:text-white">
       <div className="hidden md:block"><Cursor activeImage={cursorImage} /></div>
       <Navbar currentView={currentView} setView={setCurrentView} />
       <AnimatePresence mode='wait'>
