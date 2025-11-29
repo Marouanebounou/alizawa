@@ -429,7 +429,7 @@ const Hero = ({ setView }) => {
                   à <span className="text-[#f4e222]">Tanger</span>
                 </h1>
              </div>
-             <p className="text-neutral-500 text-lg mt-6 max-w-xl mx-auto">
+             <p className="text-neutral-500 text-lg mt-6 max-w-xl mx-auto lg:pb-10 md:pb-10">
                Depuis 2017, nous accompagnons la jeunesse tangéroise dans son épanouissement à travers l'art et la culture.
              </p>
           </motion.div>
@@ -1561,20 +1561,16 @@ const Footer = () => (
         <div>
           <h4 className="font-bold text-white mb-6 uppercase text-sm">Horaires</h4>
           <div className="space-y-2 text-neutral-400 text-sm">
-            <div className="flex justify-between"><span>Dimanche - Jeudi</span><span className="text-white">10:00 - 18:00</span></div>
-            <div className="flex justify-between"><span>Vendredi</span><span className="text-white">14:00 - 18:00</span></div>
-            <div className="flex justify-between"><span>Samedi</span><span className="text-[#f4e222]">Fermé</span></div>
+            <div className="flex justify-between"><span>Dimanche - samedi</span><span className="text-white">10:00 - 20:00</span></div>
+            <div className="flex justify-between"><span>lundi</span><span className="text-[#f4e222]">Fermé</span></div>
           </div>
 
           <h4 className="font-bold text-white mt-8 mb-4 uppercase text-sm">Suivez-nous</h4>
           <div className="flex gap-3">
-            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#5e2b79] transition-colors">
+            <a href="https://www.instagram.com/lesetoilesmaroc/" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#5e2b79] transition-colors">
               <span>📷</span>
             </a>
-            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#5e2b79] transition-colors">
-              <span>📘</span>
-            </a>
-            <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#5e2b79] transition-colors">
+            <a href="https://www.facebook.com/p/Centre-culturel-Les-Etoiles-du-D%C3%A9troit-%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AB%D9%82%D8%A7%D9%81%D9%8A-%D9%86%D8%AC%D9%88%D9%85-%D8%A7%D9%84%D8%A8%D9%88%D8%BA%D8%A7%D8%B2-100037288646441/" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#5e2b79] transition-colors">
               <span>▶️</span>
             </a>
           </div>
