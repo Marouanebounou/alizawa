@@ -37,8 +37,8 @@ import activity1 from "./IMG_2824.PNG";
 import activity2 from "./IMG_2822.PNG";
 import activity3 from "./IMG_2871.JPG";
 import activity4 from "./IMG_2870.JPG";
-import activity5 from "./IMG_2869.jpg";
-import activity6 from "./IMG_2872.jpg";
+import activity5 from "./IMG_2869.JPG";
+import activity6 from "./IMG_2872.JPG";
 
 const HERO_IMAGES = [
   hero1,
