@@ -35,8 +35,8 @@ import tangerImage4 from "./24.jpg";
 
 import activity1 from "./IMG_2824.PNG";
 import activity2 from "./IMG_2822.PNG";
-import activity3 from "./IMG_2871.jpg";
-import activity4 from "./IMG_2870.jpg";
+import activity3 from "./IMG_2871.JPG";
+import activity4 from "./IMG_2870.JPG";
 import activity5 from "./IMG_2869.jpg";
 import activity6 from "./IMG_2872.jpg";
 
