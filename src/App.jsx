@@ -48,6 +48,14 @@ const HERO_IMAGES = [
 
 const SHOWS = [
   { 
+    id: 3, 
+    title: "Cours de Luth (Adultes)", 
+    category: "Musique", 
+    year: "2025", 
+    image: activity5, // Make sure this matches your import name
+    desc: "Apprentissage du Luth Oriental pour adultes avec l'artiste Kamal Elaidi. Chaque Vendredi à 16h." 
+  },
+  { 
     id: 1, 
     title: "Match d'Improvisation", 
     category: "Théâtre", 
@@ -62,14 +70,6 @@ const SHOWS = [
     year: "2025", 
     image: show2, 
     desc: "Programme spécial: Atelier manuel, projection de film et karaoké." 
-  },
-  { 
-    id: 3, 
-    title: "Atelier de Coaching", 
-    category: "Formation", 
-    year: "2025", 
-    image: show1,
-    desc: "L'art de gérer son temps, équilibre et efficacité avec Fatima Zahra Zouaki." 
   },
   { 
     id: 4, 
@@ -1949,9 +1949,8 @@ const ContactPage = ({ setView }) => {
                 <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
                   <h4 className="font-bold text-lg mb-4">Horaires d'ouverture</h4>
                   <div className="space-y-2 text-gray-400">
-                    <div className="flex justify-between"><span>Dimanche - Jeudi</span><span className="text-white">10:00 - 18:00</span></div>
-                    <div className="flex justify-between"><span>Vendredi</span><span className="text-white">14:00 - 18:00</span></div>
-                    <div className="flex justify-between"><span>Samedi</span><span className="text-[#f4e222]">Fermé</span></div>
+                    <div className="flex justify-between"><span>Dimanche - samedi</span><span className="text-white">10:00 - 20:00</span></div>
+                    <div className="flex justify-between"><span>lundi</span><span className="text-[#f4e222]">Fermé</span></div>
                   </div>
                 </div>
 
