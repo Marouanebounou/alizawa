@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
-// import logo from './logo.jpg'; // Uncomment this if running locally with the file
-import logo from './1.png'; // Placeholder to prevent build errors
+import logo from './1.png';
 
 // --- 1. DATA & CONFIGURATION ---
 
@@ -20,12 +19,12 @@ import hero3 from "./img2.jpg"
 import projet1 from "./20.jpg"
 import projet2 from "./25.jpg"
 
-import show1 from "./25.jpg";          // Coaching
-import show2 from "./26.jpg";          // Independence Day
-import show3 from "./23.jpg";          // Improvisation
-import show4 from "./24.jpg";          // Reading Club
-import show5 from "./affiche faz.jpg"; // Percussions (Make sure filename matches exactly)
-import show6 from "./20.jpg";          // Jeux Collectifs
+import show1 from "./25.jpg";
+import show2 from "./26.jpg";
+import show3 from "./23.jpg";
+import show4 from "./24.jpg";
+import show5 from "./affiche faz.jpg";
+import show6 from "./20.jpg";
 import show7 from "./21.jpg";
 
 const HERO_IMAGES = [
@@ -393,62 +392,252 @@ const KeyNumbers = () => (
 
 const NewsSection = () => (
     <section id="actualites" className="py-0 bg-[#F4F4F0]">
-        {/* <div className="container mx-auto px-6">
-            <div className="flex justify-between items-end mb-12">
-                <div>
-                    <h3 className="text-[#5e2b79] font-bold uppercase tracking-widest mb-2 text-sm">Agenda</h3>
-                    <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A]">Actualités</h2>
-                </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {NEWS.map((item, i) => (
-                    <motion.div key={i} whileHover={{ y: -10 }} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer group">
-                        <div className="h-48 overflow-hidden relative">
-                            <span className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold z-10">{item.category}</span>
-                            <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={item.title} />
-                        </div>
-                        <div className="p-6">
-                            <span className="text-[#5e2b79] font-bold text-sm mb-2 block">{item.date}</span>
-                            <h3 className="text-xl font-bold mb-4 leading-tight">{item.title}</h3>
-                            <p className="text-sm text-neutral-500 flex items-center gap-2 group-hover:text-black transition-colors">Lire la suite <span>→</span></p>
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
-        </div> */}
     </section>
 );
 
-const MajorProjects = ({ setView }) => (
-  <section id="projets" className="bg-[#1A1A1A] text-white">
-    <div className="container mx-auto px-6 py-24">
-        <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-black mb-4">Nos Grands Projets</h2>
-            <p className="text-neutral-400 max-w-2xl mx-auto">Des initiatives structurantes qui rayonnent sur tout le territoire national.</p>
+// NEW MODERN ANIMATED MAJOR PROJECTS SECTION
+const MajorProjects = ({ setView }) => {
+  const [hoveredId, setHoveredId] = useState(null);
+  const containerRef = useRef(null);
+
+  // Define different sizes for variety in the grid
+  const getGridClass = (index) => {
+    const patterns = [
+      'col-span-12 md:col-span-8 row-span-2',
+      'col-span-12 md:col-span-4 row-span-1',
+      'col-span-12 md:col-span-4 row-span-1',
+      'col-span-12 md:col-span-4 row-span-1',
+      'col-span-12 md:col-span-4 row-span-1',
+      'col-span-12 md:col-span-4 row-span-1',
+      'col-span-12 md:col-span-6 row-span-1',
+      'col-span-12 md:col-span-6 row-span-1',
+    ];
+    return patterns[index] || 'col-span-12 md:col-span-4';
+  };
+
+  const getHeight = (index) => {
+    if (index === 0) return 'h-[400px] md:h-[500px]';
+    return 'h-[300px] md:h-[250px]';
+  };
+
+  return (
+    <section id="projets" className="bg-[#0a0a0a] text-white py-24 overflow-hidden" ref={containerRef}>
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <motion.div 
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <motion.div 
+              className="h-px bg-gradient-to-r from-[#5e2b79] to-transparent flex-1"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+            <span className="text-[#f4e222] font-mono text-sm uppercase tracking-widest">Programmation 2025</span>
+            <motion.div 
+              className="h-px bg-gradient-to-l from-[#5e2b79] to-transparent flex-1"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+          </div>
+          <div className="text-center">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-4">
+              Nos <span className="text-[#f4e222]">Grands</span> Projets
+            </h2>
+            <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
+              Découvrez nos événements, ateliers et spectacles qui animent nos centres culturels.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-12 gap-4 md:gap-6 auto-rows-auto">
+          {SHOWS.map((show, i) => (
+            <motion.div
+              key={show.id}
+              className={`${getGridClass(i)} ${getHeight(i)} relative group`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: i * 0.1 }}
+              onMouseEnter={() => setHoveredId(show.id)}
+              onMouseLeave={() => setHoveredId(null)}
+            >
+              <motion.div 
+                className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer"
+                whileHover={{ scale: 0.98 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setView('projects')}
+              >
+                {/* Image */}
+                <motion.img 
+                  src={show.image} 
+                  alt={show.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  animate={{ 
+                    scale: hoveredId === show.id ? 1.1 : 1,
+                  }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                />
+                
+                {/* Gradient Overlay */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
+                  animate={{ 
+                    opacity: hoveredId === show.id ? 0.9 : 0.7,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* Animated Border */}
+                <motion.div 
+                  className="absolute inset-0 border-2 border-[#5e2b79] rounded-2xl md:rounded-3xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: hoveredId === show.id ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* Content Wrapper */}
+                <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-between">
+                  {/* Top Row */}
+                  <div className="flex justify-between items-start">
+                    <motion.span 
+                      className="px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-bold border border-white/30 backdrop-blur-sm"
+                      animate={{
+                        backgroundColor: hoveredId === show.id ? '#5e2b79' : 'rgba(0,0,0,0.3)',
+                        borderColor: hoveredId === show.id ? '#5e2b79' : 'rgba(255,255,255,0.3)',
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {show.category}
+                    </motion.span>
+                    
+                    {/* Large Number for featured */}
+                    {i === 0 && (
+                      <span className="font-mono text-white/10 text-6xl md:text-8xl font-black leading-none">
+                        {String(show.id).padStart(2, '0')}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Bottom Content */}
+                  <div>
+                    <motion.div
+                      animate={{ 
+                        y: hoveredId === show.id ? 0 : 10,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <span className="text-[#f4e222] text-xs md:text-sm font-mono mb-1 md:mb-2 block">{show.year}</span>
+                      <h3 className={`font-black mb-2 md:mb-3 leading-tight ${i === 0 ? 'text-2xl md:text-4xl' : 'text-lg md:text-xl'}`}>
+                        {show.title}
+                      </h3>
+                    </motion.div>
+                    
+                    <motion.p 
+                      className={`text-white/70 text-xs md:text-sm ${i === 0 ? 'max-w-md' : 'max-w-xs'}`}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ 
+                        opacity: hoveredId === show.id ? 1 : 0,
+                        y: hoveredId === show.id ? 0 : 10
+                      }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                    >
+                      {show.desc}
+                    </motion.p>
+
+                    <motion.div 
+                      className="flex items-center gap-2 mt-3 md:mt-4 text-white font-bold text-sm"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ 
+                        opacity: hoveredId === show.id ? 1 : 0,
+                        x: hoveredId === show.id ? 0 : -10
+                      }}
+                      transition={{ duration: 0.3, delay: 0.15 }}
+                    >
+                      <span>En savoir plus</span>
+                      <motion.span
+                        animate={{ x: hoveredId === show.id ? 5 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        →
+                      </motion.span>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Hover Arrow Button */}
+                <motion.div 
+                  className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-10 h-10 md:w-12 md:h-12 bg-[#5e2b79] rounded-full flex items-center justify-center text-white text-lg md:text-xl"
+                  initial={{ opacity: 0, scale: 0, rotate: -45 }}
+                  animate={{ 
+                    opacity: hoveredId === show.id ? 1 : 0,
+                    scale: hoveredId === show.id ? 1 : 0,
+                    rotate: hoveredId === show.id ? 0 : -45
+                  }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  ↗
+                </motion.div>
+
+                {/* Corner Accent */}
+                <motion.div 
+                  className="absolute top-0 right-0 w-16 h-16 md:w-20 md:h-20"
+                  style={{
+                    background: 'linear-gradient(135deg, transparent 50%, #5e2b79 50%)',
+                    borderTopRightRadius: '1rem',
+                  }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ 
+                    opacity: hoveredId === show.id ? 1 : 0,
+                    scale: hoveredId === show.id ? 1 : 0
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <motion.div whileHover={{ scale: 0.98 }} onClick={() => setView('projects')} className="relative rounded-[2rem] overflow-hidden bg-[#FDB813] text-black h-[500px] group cursor-pointer">
-              <div className="absolute inset-0 z-0"><img src={projet1} className="w-full h-full object-cover opacity-20 group-hover:opacity-70 transition-opacity duration-500" alt="School" /></div>
-              <div className="relative z-10 p-10 flex flex-col h-full justify-between">
-                  <div><span className="font-bold border border-black px-3 py-1 rounded-full text-xs">Event: Jeux Collectifs</span><h3 className="text-5xl md:text-7xl font-black mt-6 leading-none">26 October 2025</h3></div>
-                  <div className="flex justify-between items-end"><p className="font-bold max-w-xs">Jeux Collectifs: Le Saut de la Confiance (Collective Games: The Leap of Trust)</p><div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center text-2xl group-hover:rotate-45 transition-transform">↗</div></div>
-              </div>
-          </motion.div>
-          <motion.div whileHover={{ scale: 0.98 }} onClick={() => setView('projects')} className="relative rounded-[2rem] overflow-hidden bg-indigo-600 text-white h-[500px] group cursor-pointer">
-              <div className="absolute inset-0 z-0"><img src={projet2} className="w-full h-full object-cover opacity-20 group-hover:opacity-70 transition-opacity duration-500" alt="School" /></div>
-              <div className="relative z-10 p-10 flex flex-col h-full justify-between">
-                  <div><span className="font-bold border border-white/30 px-3 py-1 rounded-full text-xs">Event: Atelier de Coaching</span><h3 className="text-5xl md:text-7xl font-black mt-6 leading-none">19 November 2025</h3></div>
-                  <div className="flex justify-between items-end"><p className="font-medium opacity-80 max-w-xs">Atelier de Coaching: L’art de gérer son temps, équilibre et efficacité</p><div className="w-12 h-12 bg-white text-indigo-900 rounded-full flex items-center justify-center text-2xl group-hover:rotate-45 transition-transform">↗</div></div>
-              </div>
-          </motion.div>
-        </div>
-    </div>
-  </section>
-);
+
+        {/* Bottom CTA */}
+        <motion.div 
+          className="flex justify-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <MagneticButton 
+            onClick={() => setView('projects')}
+            className="group flex items-center gap-4 bg-transparent border-2 border-white/20 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold hover:bg-white hover:text-[#1A1A1A] hover:border-white transition-all duration-500"
+          >
+            <span>Explorer tous les événements</span>
+            <motion.span 
+              className="text-xl"
+              whileHover={{ x: 5 }}
+            >
+              →
+            </motion.span>
+          </MagneticButton>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 // Updated InteractiveMapSection - TANGER FOCUSED
 const InteractiveMapSection = ({ setCursorImage, setView }) => {
-    // Filter to get only Tanger for this specific view
     const tangerCenter = CENTERS.filter(center => center.id === "tanger");
 
     return (
@@ -480,12 +669,9 @@ const InteractiveMapSection = ({ setCursorImage, setView }) => {
                     <button onClick={() => setView('centers')} className="mt-8 text-[#5e2b79] font-bold border-b-2 border-[#5e2b79] pb-1 hover:text-black hover:border-black transition-colors">Voir tous les détails →</button>
                 </div>
                 
-                {/* Map container visible on mobile and desktop */}
                 <div className="w-full md:w-2/3 relative h-[400px] md:h-[600px] bg-[#F4F4F0] rounded-[2rem] md:rounded-[3rem] p-4 md:p-8 overflow-hidden mt-8 md:mt-0">
-                     {/* Real Morocco Map from Wikipedia */}
                      <img src="https://simplemaps.com/static/svg/country/ma/admin1/ma.svg" alt="Carte du Maroc" className="absolute inset-0 w-full h-full object-contain opacity-20 mix-blend-multiply p-4" />
                      
-                     {/* Only map Tanger */}
                      {tangerCenter.map((center, i) => (
                          <motion.div 
                             key={center.id} 
@@ -507,136 +693,136 @@ const InteractiveMapSection = ({ setCursorImage, setView }) => {
 };
 
 const GetInvolved = ({ setView }) => (
-    <section id="contact" className="py-24 bg-[#F4F4F0]">
-        <div className="container mx-auto px-6 text-center max-w-4xl">
-            <h2 className="text-4xl md:text-6xl font-black mb-8 text-[#1A1A1A]">Agissons Ensemble.</h2>
-            <div className="flex justify-center gap-4 mb-12">
-                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#1A1A1A] text-white shadow-lg hover:scale-105">Devenir Bénévole</button>
-                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#5e2b79] text-white shadow-lg hover:scale-105">Faire un Don</button>
-            </div>
-        </div>
-    </section>
+    <section id="contact" className="py-24 bg-[#F4F4F0]">
+        <div className="container mx-auto px-6 text-center max-w-4xl">
+            <h2 className="text-4xl md:text-6xl font-black mb-8 text-[#1A1A1A]">Agissons Ensemble.</h2>
+            <div className="flex justify-center gap-4 mb-12">
+                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#1A1A1A] text-white shadow-lg hover:scale-105">Devenir Bénévole</button>
+                <button onClick={() => setView('contact')} className="px-8 py-3 rounded-full font-bold transition-all bg-[#5e2b79] text-white shadow-lg hover:scale-105">Faire un Don</button>
+            </div>
+        </div>
+    </section>
 );
 
 const Footer = () => (
-  <footer className="bg-[#1A1A1A] text-white pt-20 pb-10">
-    <div className="container mx-auto px-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-16">
-          <div className="col-span-1 md:col-span-2">
-              <h2 className="text-3xl font-black mb-6">Restez informés</h2>
-              <div className="flex gap-4"><input type="email" placeholder="Votre email" className="bg-white/10 border-none rounded-lg px-6 py-4 w-full md:w-80 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#5e2b79]" /><button className="bg-[#5e2b79] px-6 py-4 rounded-lg font-bold hover:bg-white hover:text-[#5e2b79] transition-colors">OK</button></div>
-          </div>
-          <div><h4 className="font-bold text-gray-500 mb-6 uppercase text-sm">Contact</h4><p className="mb-4 text-gray-300">Centre Culturel les Etoiles du Détroit, Ali Bay - 13 Rue Barcelone, Tanger<br/>Maroc</p><p className="text-[#5e2b79] font-bold">+212669360651</p></div>
-      </div>
-      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600"><p>© 2025 Troupe Les Étoiles. Tous droits réservés.</p><div className="flex gap-6 mt-4 md:mt-0"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a></div></div>
-    </div>
-  </footer>
+  <footer className="bg-[#1A1A1A] text-white pt-20 pb-10">
+    <div className="container mx-auto px-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-16">
+          <div className="col-span-1 md:col-span-2">
+              <h2 className="text-3xl font-black mb-6">Restez informés</h2>
+              <div className="flex gap-4"><input type="email" placeholder="Votre email" className="bg-white/10 border-none rounded-lg px-6 py-4 w-full md:w-80 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#5e2b79]" /><button className="bg-[#5e2b79] px-6 py-4 rounded-lg font-bold hover:bg-white hover:text-[#5e2b79] transition-colors">OK</button></div>
+          </div>
+          <div><h4 className="font-bold text-gray-500 mb-6 uppercase text-sm">Contact</h4><p className="mb-4 text-gray-300">Centre Culturel les Etoiles du Détroit, Ali Bay - 13 Rue Barcelone, Tanger<br/>Maroc</p><p className="text-[#5e2b79] font-bold">+212669360651</p></div>
+      </div>
+      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600"><p>© 2025 Troupe Les Étoiles. Tous droits réservés.</p><div className="flex gap-6 mt-4 md:mt-0"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a></div></div>
+    </div>
+  </footer>
 );
 
 // --- 4. ADDITIONAL PAGES ---
 
 const ProjectsPage = ({ setView }) => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white min-h-screen pt-32 pb-20">
-    <div className="container mx-auto px-6">
-      <div className="text-center mb-16">
-        <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-4 hover:underline">← Retour à l'accueil</button>
-        <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-6">Nos Grands Projets</h1>
-        <p className="text-xl text-neutral-500 max-w-2xl mx-auto">Découvrez les productions artistiques de la Troupe Les Étoiles Tanger.</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {SHOWS.map((show, i) => (
-          <motion.div key={show.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all">
-            <div className="aspect-[3/4] relative overflow-hidden"><img src={show.image} alt={show.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" /></div>
-            <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-              <div className="flex justify-between items-end mb-2"><span className="bg-[#5e2b79] text-xs font-bold px-2 py-1 rounded text-white">{show.category}</span><span className="text-sm font-mono opacity-70">{show.year}</span></div>
-              <h3 className="text-2xl font-bold mb-2 leading-tight">{show.title}</h3>
-              <p className="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">{show.desc}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </motion.div>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white min-h-screen pt-32 pb-20">
+    <div className="container mx-auto px-6">
+      <div className="text-center mb-16">
+        <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-4 hover:underline">← Retour à l'accueil</button>
+        <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-6">Nos Grands Projets</h1>
+        <p className="text-xl text-neutral-500 max-w-2xl mx-auto">Découvrez les productions artistiques de la Troupe Les Étoiles Tanger.</p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {SHOWS.map((show, i) => (
+          <motion.div key={show.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all">
+            <div className="aspect-[3/4] relative overflow-hidden"><img src={show.image} alt={show.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /><div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" /></div>
+            <div className="absolute bottom-0 left-0 w-full p-8 text-white">
+              <div className="flex justify-between items-end mb-2"><span className="bg-[#5e2b79] text-xs font-bold px-2 py-1 rounded text-white">{show.category}</span><span className="text-sm font-mono opacity-70">{show.year}</span></div>
+              <h3 className="text-2xl font-bold mb-2 leading-tight">{show.title}</h3>
+              <p className="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">{show.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </motion.div>
 );
 
 const CentersPage = ({ setView }) => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#F4F4F0] min-h-screen pt-32 pb-20">
-    <div className="container mx-auto px-6">
-      <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline">← Retour à l'accueil</button>
-      <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-16 text-center">NOS CENTRES</h1>
-      <div className="space-y-12">
-        {CENTERS.map((center, i) => (
-          <div key={i} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl flex flex-col md:flex-row gap-12 items-center">
-             <div className="w-full md:w-1/2 h-64 md:h-96 rounded-2xl overflow-hidden relative"><img src={center.image} className="w-full h-full object-cover" alt={center.city} /></div>
-             <div className="w-full md:w-1/2">
-                <div className="flex items-center gap-4 mb-4"><span className="text-[#5e2b79] font-black text-2xl">0{i+1}</span><h2 className="text-4xl font-black text-[#1A1A1A]">{center.city}</h2></div>
-                <h3 className="text-xl font-bold text-neutral-700 mb-6">{center.name}</h3>
-                <p className="text-lg text-neutral-600 mb-6 leading-relaxed">{center.details}</p>
-                <button className="border-b-2 border-black pb-1 font-bold hover:text-[#5e2b79] hover:border-[#5e2b79] transition-colors">Voir la programmation →</button>
-             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </motion.div>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#F4F4F0] min-h-screen pt-32 pb-20">
+    <div className="container mx-auto px-6">
+      <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline">← Retour à l'accueil</button>
+      <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-16 text-center">NOS CENTRES</h1>
+      <div className="space-y-12">
+        {CENTERS.map((center, i) => (
+          <div key={i} className="bg-white rounded-3xl p-8 md:p-12 shadow-xl flex flex-col md:flex-row gap-12 items-center">
+             <div className="w-full md:w-1/2 h-64 md:h-96 rounded-2xl overflow-hidden relative"><img src={center.image} className="w-full h-full object-cover" alt={center.city} /></div>
+             <div className="w-full md:w-1/2">
+                <div className="flex items-center gap-4 mb-4"><span className="text-[#5e2b79] font-black text-2xl">0{i+1}</span><h2 className="text-4xl font-black text-[#1A1A1A]">{center.city}</h2></div>
+                <h3 className="text-xl font-bold text-neutral-700 mb-6">{center.name}</h3>
+                <p className="text-lg text-neutral-600 mb-6 leading-relaxed">{center.details}</p>
+                <button className="border-b-2 border-black pb-1 font-bold hover:text-[#5e2b79] hover:border-[#5e2b79] transition-colors">Voir la programmation →</button>
+             </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </motion.div>
 );
 
 const ContactPage = ({ setView }) => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#1A1A1A] text-white min-h-screen pt-32 pb-20">
-    <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-16">
-      <div className="lg:w-1/2">
-         <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline">← Retour</button>
-         <h1 className="text-5xl md:text-7xl font-black mb-8">CONTACT</h1>
-         <p className="text-xl text-gray-400 mb-12">Vous souhaitez devenir bénévole, partenaire ou simplement nous dire bonjour ?</p>
-         <div className="space-y-6">
-            <div className="flex gap-4"><span className="text-[#5e2b79] text-xl">📍</span><div><h4 className="font-bold">Siège Social</h4><p className="text-gray-400">addresse : Centre Culturel les Etoiles du Détroit, Ali Bay - 13 Rue Barcelone, Tanger</p></div></div>
-            <div className="flex gap-4"><span className="text-[#5e2b79] text-xl">📱</span><div><h4 className="font-bold">Number</h4><p className="text-gray-400">+212669360651</p></div></div>
-         </div>
-      </div>
-      <div className="lg:w-1/2 bg-white/5 p-8 rounded-3xl border border-white/10">
-         <form className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
-               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Nom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
-               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Prénom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
-            </div>
-            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Email</label><input type="email" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
-            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Message</label><textarea rows="4" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none"></textarea></div>
-            <button className="w-full bg-[#5e2b79] text-white font-bold py-4 rounded-xl hover:bg-white hover:text-[#5e2b79] transition-colors">Envoyer</button>
-         </form>
-      </div>
-    </div>
-  </motion.div>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-[#1A1A1A] text-white min-h-screen pt-32 pb-20">
+    <div className="container mx-auto px-6 flex flex-col lg:flex-row gap-16">
+      <div className="lg:w-1/2">
+         <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline">← Retour</button>
+         <h1 className="text-5xl md:text-7xl font-black mb-8">CONTACT</h1>
+         <p className="text-xl text-gray-400 mb-12">Vous souhaitez devenir bénévole, partenaire ou simplement nous dire bonjour ?</p>
+         <div className="space-y-6">
+            <div className="flex gap-4"><span className="text-[#5e2b79] text-xl">📍</span><div><h4 className="font-bold">Siège Social</h4><p className="text-gray-400">addresse : Centre Culturel les Etoiles du Détroit, Ali Bay - 13 Rue Barcelone, Tanger</p></div></div>
+            <div className="flex gap-4"><span className="text-[#5e2b79] text-xl">📱</span><div><h4 className="font-bold">Number</h4><p className="text-gray-400">+212669360651</p></div></div>
+         </div>
+      </div>
+      <div className="lg:w-1/2 bg-white/5 p-8 rounded-3xl border border-white/10">
+         <form className="space-y-6">
+            <div className="grid grid-cols-2 gap-6">
+               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Nom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
+               <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Prénom</label><input type="text" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
+            </div>
+            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Email</label><input type="email" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none" /></div>
+            <div className="space-y-2"><label className="text-sm font-bold text-gray-400">Message</label><textarea rows="4" className="w-full bg-white/10 border border-white/10 rounded-lg p-4 focus:border-[#5e2b79] focus:outline-none"></textarea></div>
+            <button className="w-full bg-[#5e2b79] text-white font-bold py-4 rounded-xl hover:bg-white hover:text-[#5e2b79] transition-colors">Envoyer</button>
+         </form>
+      </div>
+    </div>
+  </motion.div>
 );
 
 // --- 5. MAIN APP ---
 
 export default function App() {
-  const [cursorImage, setCursorImage] = useState(null);
-  const [currentView, setCurrentView] = useState('home');
+  const [cursorImage, setCursorImage] = useState(null);
+  const [currentView, setCurrentView] = useState('home');
 
-  useEffect(() => { window.scrollTo(0, 0); }, [currentView]);
+  useEffect(() => { window.scrollTo(0, 0); }, [currentView]);
 
-  return (
-    <div className="bg-white min-h-screen cursor-none selection:bg-[#5e2b79] selection:text-white">
-      <div className="hidden md:block"><Cursor activeImage={cursorImage} /></div>
-      <Navbar currentView={currentView} setView={setCurrentView} />
-      <AnimatePresence mode='wait'>
-        {currentView === 'home' && (
-          <motion.main key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Hero setView={setCurrentView} />
-            <KeyNumbers />
-            <MajorProjects setView={setCurrentView} />
-            <NewsSection />
-            <InteractiveMapSection setCursorImage={setCursorImage} setView={setCurrentView} />
-            <GetInvolved setView={setCurrentView} />
-          </motion.main>
-        )}
-        {currentView === 'projects' && <ProjectsPage key="projects" setView={setCurrentView} />}
-        {currentView === 'centers' && <CentersPage key="centers" setView={setCurrentView} />}
-        {currentView === 'contact' && <ContactPage key="contact" setView={setCurrentView} />}
-      </AnimatePresence>
-      <Footer />
-      <style>{`html { scroll-behavior: smooth; } body::-webkit-scrollbar { display: none; } body { -ms-overflow-style: none; scrollbar-width: none; } @media (pointer: coarse) { .cursor-none { cursor: auto; } }`}</style>
-    </div>
-  );
+  return (
+    <div className="bg-white min-h-screen cursor-none selection:bg-[#5e2b79] selection:text-white">
+      <div className="hidden md:block"><Cursor activeImage={cursorImage} /></div>
+      <Navbar currentView={currentView} setView={setCurrentView} />
+      <AnimatePresence mode='wait'>
+        {currentView === 'home' && (
+          <motion.main key="home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <Hero setView={setCurrentView} />
+            <KeyNumbers />
+            <MajorProjects setView={setCurrentView} />
+            <NewsSection />
+            <InteractiveMapSection setCursorImage={setCursorImage} setView={setCurrentView} />
+            <GetInvolved setView={setCurrentView} />
+          </motion.main>
+        )}
+        {currentView === 'projects' && <ProjectsPage key="projects" setView={setCurrentView} />}
+        {currentView === 'centers' && <CentersPage key="centers" setView={setCurrentView} />}
+        {currentView === 'contact' && <ContactPage key="contact" setView={setCurrentView} />}
+      </AnimatePresence>
+      <Footer />
+      <style>{`html { scroll-behavior: smooth; } body::-webkit-scrollbar { display: none; } body { -ms-overflow-style: none; scrollbar-width: none; } @media (pointer: coarse) { .cursor-none { cursor: auto; } }`}</style>
+    </div>
+  );
 }
