@@ -49,59 +49,66 @@ const HERO_IMAGES = [
 const SHOWS = [
   { 
     id: 3, 
-    title: "Cours de Luth (Adultes)", 
-    category: "Musique", 
+    title: "Cours de Luth (Adultes)", titleAr: "دروس العود (بالغون)",
+    category: "Musique", categoryAr: "موسيقى",
     year: "2025", 
-    image: activity5, // Make sure this matches your import name
-    desc: "Apprentissage du Luth Oriental pour adultes avec l'artiste Kamal Elaidi. Chaque Vendredi à 16h." 
+    image: activity5,
+    desc: "Apprentissage du Luth Oriental pour adultes avec l'artiste Kamal Elaidi. Chaque Vendredi à 16h.",
+    descAr: "تعلّم العود الشرقي للبالغين مع الفنان كمال العيدي. كل جمعة على الساعة 16:00."
   },
   { 
     id: 1, 
-    title: "Match d'Improvisation", 
-    category: "Théâtre", 
+    title: "Match d'Improvisation", titleAr: "مباراة الارتجال",
+    category: "Théâtre", categoryAr: "مسرح",
     year: "2025", 
     image: show3, 
-    desc: "Spectacle d'improvisation théâtrale au Dabatek Technopark." 
+    desc: "Spectacle d'improvisation théâtrale au Dabatek Technopark.",
+    descAr: "عرض مسرحي ارتجالي في داباتيك تيكنوبارك."
   },
   { 
     id: 2, 
-    title: "Fête de l'Indépendance", 
-    category: "Célébration", 
+    title: "Fête de l'Indépendance", titleAr: "عيد الاستقلال",
+    category: "Célébration", categoryAr: "احتفال",
     year: "2025", 
     image: show2, 
-    desc: "Programme spécial: Atelier manuel, projection de film et karaoké." 
+    desc: "Programme spécial: Atelier manuel, projection de film et karaoké.",
+    descAr: "برنامج خاص: ورشة يدوية، عرض فيلم وكاراوكي."
   },
   { 
     id: 4, 
-    title: "Club de Lecture", 
-    category: "Littérature", 
+    title: "Club de Lecture", titleAr: "نادي القراءة",
+    category: "Littérature", categoryAr: "أدب",
     year: "2025", 
     image: show4, 
-    desc: "Rencontre et échange autour du livre à la Maison des jeunes." 
+    desc: "Rencontre et échange autour du livre à la Maison des jeunes.",
+    descAr: "لقاء وتبادل حول الكتاب في دار الشباب."
   },
   { 
     id: 5, 
-    title: "Cours de Percussions", 
-    category: "Musique", 
+    title: "Cours de Percussions", titleAr: "دروس الإيقاع",
+    category: "Musique", categoryAr: "موسيقى",
     year: "2025", 
     image: show5, 
-    desc: "Cours chaque dimanche avec El Radan Salaheddine." 
+    desc: "Cours chaque dimanche avec El Radan Salaheddine.",
+    descAr: "دروس كل أحد مع صلاح الدين الرادان."
   },
   { 
     id: 6, 
-    title: "Jeux Collectifs", 
-    category: "Animation", 
+    title: "Jeux Collectifs", titleAr: "ألعاب جماعية",
+    category: "Animation", categoryAr: "أنشطة",
     year: "2025", 
     image: show6, 
-    desc: "Le saut de la confiance - Activités ludiques à la Maison des jeunes." 
+    desc: "Le saut de la confiance - Activités ludiques à la Maison des jeunes.",
+    descAr: "قفزة الثقة - أنشطة ترفيهية في دار الشباب."
   },
   { 
     id: 7, 
-    title: "Atelier Créatif", 
-    category: "Artisanat", 
+    title: "Atelier Créatif", titleAr: "ورشة إبداعية",
+    category: "Artisanat", categoryAr: "حرف يدوية",
     year: "2025", 
     image: show7, 
-    desc: "Mères des étoiles - Atelier de fabrication de bracelets." 
+    desc: "Mères des étoiles - Atelier de fabrication de bracelets.",
+    descAr: "أمهات النجوم - ورشة صنع الأساور."
   },
 ];
 
@@ -109,53 +116,57 @@ const SHOWS = [
 const UPCOMING_ACTIVITIES = [
   {
     id: 1,
-    title: "Think Out Loud",
-    category: "Expression",
-    date: "29 Novembre 2025",
+    title: "Think Out Loud", titleAr: "عبّر بصوت عالٍ",
+    category: "Expression", categoryAr: "تعبير",
+    date: "29 Novembre 2025", dateAr: "29 نوفمبر 2025",
     time: "A partir de 16:00",
     location: "Les Étoiles du Détroit",
     instructor: "Entrée Libre",
     image: activity1, 
     description: "Exprime-toi à haute voix. Une tribune libre pour la jeunesse tangéroise.",
+    descriptionAr: "عبّر عن نفسك بصوت عالٍ. منبر حر لشباب طنجة.",
     isNew: true,
     isFeatured: true
   },
   {
     id: 2,
-    title: "Workshop: Vision Board",
-    category: "Artisanat",
-    date: "30 Novembre 2025",
+    title: "Workshop: Vision Board", titleAr: "ورشة: لوحة الأحلام",
+    category: "Artisanat", categoryAr: "حرف يدوية",
+    date: "30 Novembre 2025", dateAr: "30 نوفمبر 2025",
     time: "16:00",
     location: "Maison des Jeunes (El Mers)",
     instructor: "Atelier Créatif",
     image: activity2, 
     description: "Design Your Future: Créez votre tableau de visualisation pour l'année à venir.",
+    descriptionAr: "صمّم مستقبلك: أنشئ لوحة التصوّر الخاصة بك للعام القادم.",
     isNew: true,
     isFeatured: false
   },
   {
     id: 3,
-    title: "Cours de Luth (Oud)",
-    category: "Musique",
-    date: "Chaque Vendredi",
+    title: "Cours de Luth (Oud)", titleAr: "دروس العود",
+    category: "Musique", categoryAr: "موسيقى",
+    date: "Chaque Vendredi", dateAr: "كل جمعة",
     time: "16:00",
     location: "Les Étoiles du Détroit",
     instructor: "Kamal Elaidi",
     image: activity3, 
     description: "Formation musicale traditionnelle pour Ados et Adultes.",
+    descriptionAr: "تكوين موسيقي تراثي للمراهقين والبالغين.",
     isNew: false,
     isFeatured: true
   },
   {
     id: 4,
-    title: "Cours de Percussions",
-    category: "Musique",
-    date: "Chaque Dimanche",
+    title: "Cours de Percussions", titleAr: "دروس الإيقاع",
+    category: "Musique", categoryAr: "موسيقى",
+    date: "Chaque Dimanche", dateAr: "كل أحد",
     time: "16:00",
     location: "Les Étoiles du Détroit",
     instructor: "Salaheddine El Radani",
     image: activity4, 
     description: "Rythmes et percussions pour Ados et Adultes.",
+    descriptionAr: "إيقاعات وطبول للمراهقين والبالغين.",
     isNew: false,
     isFeatured: true
   }
@@ -171,6 +182,7 @@ const TANGER_CENTERS = [
     city: "Tanger",
     tagline: "Un phare culturel face à l'Europe, ancré dans l'Afrique.",
     description: "Situé au cœur de Tanger, notre centre principal est un espace de création et d'échange où les jeunes découvrent leur potentiel à travers l'art, la culture et l'expression créative.",
+    descriptionAr: "يقع في قلب طنجة، مركزنا الرئيسي هو فضاء للإبداع والتبادل حيث يكتشف الشباب إمكاناتهم من خلال الفن والثقافة والتعبير الإبداعي.",
     address: "N° 13, Rue Barcelone, Tanger",
     phone: "0669-360651",
     email: "tanger@lesetoiles.ma",
@@ -191,6 +203,7 @@ const TANGER_CENTERS = [
     city: "Tanger - El Mers",
     tagline: "Rayonnement culturel dans le quartier El Mers.",
     description: "Notre deuxième centre à El Mers étend notre mission culturelle pour toucher plus de jeunes dans la région de Tanger.",
+    descriptionAr: "مركزنا الثاني في المرس يمدّ مهمتنا الثقافية للوصول إلى المزيد من الشباب في منطقة طنجة.",
     address: "Rte Mers Rocade 9, Tanger",
     phone: "0668-954532",
     email: "elmers@lesetoiles.ma",
@@ -208,20 +221,20 @@ const TANGER_CENTERS = [
 // Shared data for both centers
 const TANGER_DATA = {
   stats: [
-    { number: "10,000+", label: "Bénéficiaires" },
-    { number: "350+", label: "Jeunes Actifs" },
-    { number: "2", label: "Centres" },
-    { number: "2017", label: "Date de Création" }
+    { number: "10,000+", label: "Bénéficiaires", labelAr: "المستفيدون" },
+    { number: "350+", label: "Jeunes Actifs", labelAr: "الشباب النشيط" },
+    { number: "2", label: "Centres à Tanger", labelAr: "مراكز في طنجة" },
+    { number: "2017", label: "Date de Création", labelAr: "تاريخ التأسيس" }
   ],
   activities: [
-    { icon: "🎤", name: "Chant", desc: "Cours de chant et technique vocale" },
-    { icon: "🇫🇷", name: "Français", desc: "Apprentissage et perfectionnement" },
-    { icon: "🎭", name: "Théâtre", desc: "Expression dramatique et mise en scène" },
-    { icon: "🎨", name: "Arts Plastiques", desc: "Peinture, dessin et sculpture" },
-    { icon: "💻", name: "Bureautique", desc: "Introduction aux outils informatiques" },
-    { icon: "🇬🇧", name: "Anglais", desc: "Cours de langue anglaise" },
-    { icon: "🖥️", name: "Design Digital", desc: "Graphisme et création numérique" },
-    { icon: "🎹", name: "Piano", desc: "Initiation et cours de piano" }
+    { icon: "🎤", name: "Chant", nameAr: "الغناء", desc: "Cours de chant et technique vocale", descAr: "دروس الغناء وتقنية الصوت" },
+    { icon: "🇫🇷", name: "Français", nameAr: "الفرنسية", desc: "Apprentissage et perfectionnement", descAr: "التعلم والتحسين" },
+    { icon: "🎭", name: "Théâtre", nameAr: "المسرح", desc: "Expression dramatique et mise en scène", descAr: "التعبير الدرامي والإخراج" },
+    { icon: "🎨", name: "Arts Plastiques", nameAr: "الفنون التشكيلية", desc: "Peinture, dessin et sculpture", descAr: "الرسم والتصوير والنحت" },
+    { icon: "💻", name: "Bureautique", nameAr: "الإعلام الآلي", desc: "Introduction aux outils informatiques", descAr: "مقدمة في أدوات الإعلام الآلي" },
+    { icon: "🇬🇧", name: "Anglais", nameAr: "الإنجليزية", desc: "Cours de langue anglaise", descAr: "دروس اللغة الإنجليزية" },
+    { icon: "🖥️", name: "Design Digital", nameAr: "التصميم الرقمي", desc: "Graphisme et création numérique", descAr: "الجرافيك والإبداع الرقمي" },
+    { icon: "🎹", name: "Piano", nameAr: "البيانو", desc: "Initiation et cours de piano", descAr: "مقدمة ودروس البيانو" }
   ],
   features: [
     "Salle de spectacle",
@@ -230,7 +243,46 @@ const TANGER_DATA = {
     "Bibliothèque",
     "Espace polyvalent",
     "Salle de cours"
+  ],
+  featuresAr: [
+    "قاعة العروض",
+    "استوديو موسيقي",
+    "قاعة الإعلام الآلي",
+    "مكتبة",
+    "فضاء متعدد الأغراض",
+    "قاعة الدروس"
   ]
+};
+
+// --- 1b. TRANSLATIONS ---
+
+const T = {
+  fr: {
+    nav: { home:'Accueil', activities:'Activités', events:'Événements', centers:'Nos Centres', hors:'Hors les murs', contact:'Contact', donate:'Faire un Don' },
+    hero: { label:'Centre Culturel Les Étoiles du Détroit', line1:"L'Art et la Culture", line2:'à Tanger', sub:"Depuis 2017, nous accompagnons la jeunesse tangéroise dans son épanouissement à travers l'art et la culture.", eventsBtn:'Nos événements', horsBtn:'Hors les murs' },
+    stats: { beneficiaries:'Bénéficiaires', youth:'Jeunes Actifs', centers:'Centres à Tanger', created:'Date de Création' },
+    upcoming: { badge:'Rejoignez-nous', title:'Prochaines', highlight:'Activités', sub:"Découvrez nos ateliers et formations. Inscrivez-vous et rejoignez notre communauté créative !", all:'Toutes les activités', register:"S'inscrire maintenant", date:'Date', time:'Heure', notFound:'Vous ne trouvez pas ce que vous cherchez ?', contactUs:'Nous contacter', contactSub:"Contactez-nous pour plus d'informations sur nos programmes." },
+    events: { badge:'Nos Réalisations', title:'Nos', highlight:'Événements', sub:'Retour sur les moments forts qui ont marqué nos centres culturels.', seeAll:'Voir tous les événements' },
+    centers: { badge:'Nos Espaces', title:'2 Centres,', highlight:'1 Mission', sub:"Depuis 2017, nous œuvrons pour l'épanouissement de la jeunesse tangéroise à travers l'art et la culture.", workshops:"Nos Ateliers & Formations", address:'Adresse', phone:'Téléphone', hours:'Horaires', map:'Voir sur Google Maps', primary:'Centre Principal' },
+    involved: { badge:'Rejoignez le mouvement', title:'Agissons', highlight:'Ensemble.', sub:"Chaque contribution compte. Devenez acteur du changement et participez à l'épanouissement de la jeunesse tangéroise.", volunteer:'Devenir Bénévole', donate:'Faire un Don' },
+    footer: { newsletter:"Inscrivez-vous à notre newsletter pour recevoir les dernières actualités de nos centres culturels à Tanger.", subscribe:"S'inscrire", ourCenters:'Nos Centres', hoursTitle:'Horaires', hoursDetail:'Dimanche - samedi', monday:'lundi', closed:'Fermé', follow:'Suivez-nous', rights:'© 2025 Centre Culturel Les Étoiles du Détroit - Tanger. Tous droits réservés.', legal:'Mentions légales', privacy:'Politique de confidentialité' },
+    projectsPage: { back:"← Retour à l'accueil", title:'Nos Événements', sub:'Découvrez tous les événements et activités du Centre Culturel Les Étoiles du Détroit.', upcoming:'Prochaines Activités', register:"S'inscrire →" },
+    centersPage: { back:"← Retour à l'accueil", title:'Nos Centres', sub:'Deux espaces culturels au service de la jeunesse tangéroise', since:'Depuis', workshops:'Nos Ateliers', address:'Adresse', phone:'Téléphone', hours:'Horaires', map:'Voir sur Google Maps →', primary:'Centre Principal' },
+    contactPage: { back:'← Retour', title:'Contact', sub:'Rejoignez notre communauté de plus de', and:'et', name:'Nom', firstname:'Prénom', emailLabel:'Email', center:'Centre concerné', subject:'Sujet', subjectPh:'Sélectionnez un sujet', message:'Message', messagePh:'Votre message...', send:'Envoyer le message', hoursTitle:"Horaires d'ouverture", map:'Voir sur Google Maps →' },
+  },
+  ar: {
+    nav: { home:'الرئيسية', activities:'الأنشطة', events:'الفعاليات', centers:'مراكزنا', hors:'خارج الأسوار', contact:'اتصل بنا', donate:'تبرع' },
+    hero: { label:'المركز الثقافي نجوم البوغاز', line1:'الفن والثقافة', line2:'في طنجة', sub:'منذ 2017، نرافق شباب طنجة في رحلة الازدهار من خلال الفن والثقافة.', eventsBtn:'فعالياتنا', horsBtn:'خارج الأسوار' },
+    stats: { beneficiaries:'المستفيدون', youth:'الشباب النشيط', centers:'مراكز في طنجة', created:'تاريخ التأسيس' },
+    upcoming: { badge:'انضموا إلينا', title:'الأنشطة', highlight:'القادمة', sub:'اكتشفوا ورشاتنا وتكويناتنا. سجلوا وانضموا إلى مجتمعنا الإبداعي!', all:'جميع الأنشطة', register:'سجل الآن', date:'التاريخ', time:'الوقت', notFound:'لم تجد ما تبحث عنه؟', contactUs:'اتصل بنا', contactSub:'تواصل معنا للمزيد من المعلومات حول برامجنا.' },
+    events: { badge:'إنجازاتنا', title:'', highlight:'فعالياتنا', sub:"استعادة أبرز اللحظات التي ميّزت مراكزنا الثقافية.", seeAll:'عرض جميع الفعاليات' },
+    centers: { badge:'فضاءاتنا', title:'مركزان،', highlight:'مهمة واحدة', sub:'منذ 2017، نعمل على إزهار شباب طنجة من خلال الفن والثقافة.', workshops:'ورشاتنا وتكويناتنا', address:'العنوان', phone:'الهاتف', hours:'أوقات العمل', map:'عرض على خرائط Google', primary:'المركز الرئيسي' },
+    involved: { badge:'انضم إلى الحركة', title:'لنتحرك', highlight:'معاً.', sub:'كل مساهمة تُحدث فرقاً. كن فاعلاً للتغيير وشارك في ازدهار شباب طنجة.', volunteer:'تطوع معنا', donate:'تبرع' },
+    footer: { newsletter:'اشترك في نشرتنا البريدية لتلقي آخر أخبار مراكزنا الثقافية في طنجة.', subscribe:'اشترك', ourCenters:'مراكزنا', hoursTitle:'أوقات العمل', hoursDetail:'الأحد - السبت', monday:'الاثنين', closed:'مغلق', follow:'تابعونا', rights:'© 2025 المركز الثقافي نجوم البوغاز - طنجة. جميع الحقوق محفوظة.', legal:'الشروط القانونية', privacy:'سياسة الخصوصية' },
+    projectsPage: { back:'← العودة إلى الرئيسية', title:'فعالياتنا', sub:'اكتشف جميع فعاليات وأنشطة المركز الثقافي نجوم البوغاز.', upcoming:'الأنشطة القادمة', register:'سجل ←' },
+    centersPage: { back:'← العودة إلى الرئيسية', title:'مراكزنا', sub:'فضاءان ثقافيان في خدمة شباب طنجة', since:'منذ', workshops:'ورشاتنا', address:'العنوان', phone:'الهاتف', hours:'أوقات العمل', map:'عرض على خرائط Google ←', primary:'المركز الرئيسي' },
+    contactPage: { back:'← رجوع', title:'اتصل بنا', sub:'انضم إلى مجتمعنا الذي يضم أكثر من', and:'و', name:'اللقب', firstname:'الاسم', emailLabel:'البريد الإلكتروني', center:'المركز المعني', subject:'الموضوع', subjectPh:'اختر موضوعاً', message:'الرسالة', messagePh:'رسالتك...', send:'إرسال الرسالة', hoursTitle:'أوقات العمل', map:'عرض على خرائط Google ←' },
+  },
 };
 
 // --- 2. UI COMPONENTS ---
@@ -293,7 +345,7 @@ const MagneticButton = ({ children, className = "", onClick }) => {
   );
 };
 
-const Navbar = ({ currentView, setView }) => {
+const Navbar = ({ currentView, setView, lang, setLang }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -345,17 +397,25 @@ const Navbar = ({ currentView, setView }) => {
             <div className={`hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
                 isScrolled ? "opacity-100" : "bg-white/60 backdrop-blur-md rounded-full px-6 py-2 border border-white/40 shadow-sm"
             }`}>
-              <button onClick={() => handleNavClick('home', 'accueil')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'home' ? 'text-black' : 'text-neutral-600'}`}>Accueil</button>
-              <button onClick={() => handleNavClick('home', 'activites')} className="px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 text-neutral-600 whitespace-nowrap">Activités</button>
-              <button onClick={() => handleNavClick('projects')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'projects' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Événements</button>
-              <button onClick={() => handleNavClick('centers')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'centers' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Nos Centres</button>
-              <button onClick={() => handleNavClick('kharij')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'kharij' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Hors les murs</button>
-              <button onClick={() => handleNavClick('contact')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'contact' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Contact</button>
+              <button onClick={() => handleNavClick('home', 'accueil')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'home' ? 'text-black' : 'text-neutral-600'}`}>{T[lang].nav.home}</button>
+              <button onClick={() => handleNavClick('home', 'activites')} className="px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 text-neutral-600 whitespace-nowrap">{T[lang].nav.activities}</button>
+              <button onClick={() => handleNavClick('projects')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'projects' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>{T[lang].nav.events}</button>
+              <button onClick={() => handleNavClick('centers')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'centers' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>{T[lang].nav.centers}</button>
+              <button onClick={() => handleNavClick('kharij')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'kharij' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>{T[lang].nav.hors}</button>
+              <button onClick={() => handleNavClick('contact')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'contact' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>{T[lang].nav.contact}</button>
             </div>
 
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => setLang(lang === 'fr' ? 'ar' : 'fr')}
+                className="hidden md:flex items-center gap-1 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 rounded-full px-3 py-2 text-xs font-bold transition-colors"
+              >
+                <span className="text-neutral-600">{lang === 'fr' ? 'FR' : 'AR'}</span>
+                <span className="text-neutral-300">/</span>
+                <span className="text-[#5e2b79] font-bold">{lang === 'fr' ? 'عربي' : 'FR'}</span>
+              </button>
               <button onClick={() => handleNavClick('contact')} className="bg-[#5e2b79] text-white px-6 py-3 rounded-full text-xs font-bold hover:bg-[#1A1A1A] transition-colors shadow-md flex items-center gap-2">
-                <span>Faire un Don</span>
+                <span>{T[lang].nav.donate}</span>
               </button>
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden w-11 h-11 bg-white rounded-full flex items-center justify-center text-[#1A1A1A] shadow-sm border border-neutral-100 active:scale-95 transition-transform">
                 {mobileMenuOpen ? "✕" : "☰"}
@@ -375,12 +435,15 @@ const Navbar = ({ currentView, setView }) => {
             className="fixed inset-0 z-40 bg-[#1A1A1A] pt-28 px-6 md:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 text-3xl font-black text-white tracking-tight">
-              <button onClick={() => handleNavClick('home', 'accueil')} className="text-left">Accueil</button>
-              <button onClick={() => handleNavClick('home', 'activites')} className="text-left text-[#f4e222]">Activités</button>
-              <button onClick={() => handleNavClick('projects')} className="text-left text-[#5e2b79]">Événements</button>
-              <button onClick={() => handleNavClick('centers')} className="text-left">Nos Centres</button>
-              <button onClick={() => handleNavClick('kharij')} className="text-left text-[#f4e222]">Hors les murs</button>
-              <button onClick={() => handleNavClick('contact')} className="text-left">Contact</button>
+              <button onClick={() => handleNavClick('home', 'accueil')} className="text-left">{T[lang].nav.home}</button>
+              <button onClick={() => handleNavClick('home', 'activites')} className="text-left text-[#f4e222]">{T[lang].nav.activities}</button>
+              <button onClick={() => handleNavClick('projects')} className="text-left text-[#5e2b79]">{T[lang].nav.events}</button>
+              <button onClick={() => handleNavClick('centers')} className="text-left">{T[lang].nav.centers}</button>
+              <button onClick={() => handleNavClick('kharij')} className="text-left text-[#f4e222]">{T[lang].nav.hors}</button>
+              <button onClick={() => handleNavClick('contact')} className="text-left">{T[lang].nav.contact}</button>
+              <button onClick={() => setLang(lang === 'fr' ? 'ar' : 'fr')} className="text-left text-sm mt-2 text-neutral-400">
+                {lang === 'fr' ? 'عربي عربي' : 'Passer en Français'}
+              </button>
             </div>
           </motion.div>
         )}
@@ -414,7 +477,7 @@ const VideoModal = ({ isOpen, onClose }) => {
 
 // --- 3. HOME SECTIONS ---
 
-const Hero = ({ setView }) => {
+const Hero = ({ setView, lang }) => {
   const [videoOpen, setVideoOpen] = useState(false);
   return (
     <>
@@ -422,17 +485,17 @@ const Hero = ({ setView }) => {
       <section id="accueil" className="min-h-screen relative flex flex-col justify-center items-center bg-[#F4F4F0] pt-24 pb-20 overflow-hidden">
         <div className="container mx-auto px-6 text-center z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mb-8">
-             <h2 className="text-sm font-bold tracking-[0.3em] text-neutral-500 mb-4 uppercase">Centre Culturel Les Étoiles du Détroit</h2>
+             <h2 className="text-sm font-bold tracking-[0.3em] text-neutral-500 mb-4 uppercase">{T[lang].hero.label}</h2>
              <div className="flex flex-col items-center">
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-[#1A1A1A] tracking-tight leading-[0.9]">
-                  L'Art et la Culture
+                  {T[lang].hero.line1}
                 </h1>
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9]">
-                  à <span className="text-[#f4e222]">Tanger</span>
+                  {lang === 'fr' ? <>à <span className="text-[#f4e222]">Tanger</span></> : <>في <span className="text-[#f4e222]">طنجة</span></>}
                 </h1>
              </div>
              <p className="text-neutral-500 text-lg mt-6 max-w-xl mx-auto lg:pb-10 md:pb-10">
-               Depuis 2017, nous accompagnons la jeunesse tangéroise dans son épanouissement à travers l'art et la culture.
+               {T[lang].hero.sub}
              </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
@@ -443,9 +506,9 @@ const Hero = ({ setView }) => {
              ))}
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-             <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#5e2b79] transition-colors shadow-lg">Nos événements</MagneticButton>
+             <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#5e2b79] transition-colors shadow-lg">{T[lang].hero.eventsBtn}</MagneticButton>
              <MagneticButton onClick={() => setView('kharij')} className="bg-[#5e2b79] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1A1A1A] transition-colors shadow-lg flex items-center gap-2">
-               <span>Hors les murs</span>
+               <span>{T[lang].hero.horsBtn}</span>
                <span>←</span>
              </MagneticButton>
           </div>
@@ -456,15 +519,15 @@ const Hero = ({ setView }) => {
 };
 
 // UPDATED KEY NUMBERS WITH NEW STATS
-const KeyNumbers = () => {
+const KeyNumbers = ({ lang }) => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.5 });
   
   const stats = [
-    { num: "10,000+", label: "Bénéficiaires", icon: "👥", color: "#5e2b79" },
-    { num: "350+", label: "Jeunes Actifs", icon: "⭐", color: "#f4e222" },
-    { num: "2", label: "Centres à Tanger", icon: "🏛️", color: "#5e2b79" },
-    { num: "2017", label: "Date de Création", icon: "📅", color: "#f4e222" }
+    { num: "10,000+", labelKey: 'beneficiaries', icon: "👥", color: "#5e2b79" },
+    { num: "350+", labelKey: 'youth', icon: "⭐", color: "#f4e222" },
+    { num: "12", labelKey: 'centers', icon: "🏛️", color: "#5e2b79" },
+    { num: "2017", labelKey: 'created', icon: "📅", color: "#f4e222" }
   ];
 
   return (
@@ -496,7 +559,7 @@ const KeyNumbers = () => {
               </motion.h3>
               
               {/* Label */}
-              <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">{stat.label}</p>
+              <p className="text-sm font-bold text-neutral-500 uppercase tracking-widest">{T[lang].stats[stat.labelKey]}</p>
               
               {/* Decorative line */}
               <motion.div 
@@ -515,7 +578,7 @@ const KeyNumbers = () => {
 };
 
 // NEW REDESIGNED UPCOMING ACTIVITIES SECTION
-const UpcomingActivities = ({ setView }) => {
+const UpcomingActivities = ({ setView, lang }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [hoveredId, setHoveredId] = useState(null);
   const containerRef = useRef(null);
@@ -547,14 +610,14 @@ const UpcomingActivities = ({ setView }) => {
                 transition={{ delay: 0.2 }}
               >
                 <span className="w-2 h-2 bg-[#f4e222] rounded-full animate-pulse" />
-                Rejoignez-nous
+                {T[lang].upcoming.badge}
               </motion.span>
               
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1A1A1A] mb-4">
-                Prochaines <span className="text-[#5e2b79]">Activités</span>
+                {T[lang].upcoming.title} <span className="text-[#5e2b79]">{T[lang].upcoming.highlight}</span>
               </h2>
               <p className="text-neutral-500 text-lg md:text-xl max-w-xl">
-                Découvrez nos ateliers et formations. Inscrivez-vous et rejoignez notre communauté créative !
+                {T[lang].upcoming.sub}
               </p>
             </div>
 
@@ -568,7 +631,7 @@ const UpcomingActivities = ({ setView }) => {
                 whileHover={{ y: -5, shadow: "0 20px 40px rgba(0,0,0,0.1)" }}
               >
                 <div className="text-3xl md:text-4xl font-black text-[#5e2b79]">10,000+</div>
-                <div className="text-sm text-neutral-500 font-bold uppercase tracking-wider mt-1">Bénéficiaires</div>
+                <div className="text-sm text-neutral-500 font-bold uppercase tracking-wider mt-1">{T[lang].stats.beneficiaries}</div>
               </motion.div>
               <motion.div 
                 className="bg-[#1A1A1A] rounded-2xl p-6 shadow-sm text-center min-w-[140px]"
@@ -578,7 +641,7 @@ const UpcomingActivities = ({ setView }) => {
                 whileHover={{ y: -5 }}
               >
                 <div className="text-3xl md:text-4xl font-black text-[#f4e222]">350+</div>
-                <div className="text-sm text-neutral-400 font-bold uppercase tracking-wider mt-1">Jeunes Actifs</div>
+                <div className="text-sm text-neutral-400 font-bold uppercase tracking-wider mt-1">{T[lang].stats.youth}</div>
               </motion.div>
             </div>
           </div>
@@ -601,7 +664,7 @@ const UpcomingActivities = ({ setView }) => {
                   : 'bg-white text-neutral-600 hover:bg-neutral-100 border border-neutral-200'
               }`}
             >
-              {cat === 'all' ? 'Toutes les activités' : cat}
+              {cat === 'all' ? T[lang].upcoming.all : (lang === 'ar' ? (UPCOMING_ACTIVITIES.find(a => a.category === cat)?.categoryAr || cat) : cat)}
             </button>
           ))}
         </motion.div>
@@ -660,17 +723,17 @@ const UpcomingActivities = ({ setView }) => {
                     {/* Category */}
                     <div className="absolute top-4 right-4">
                       <span className="px-3 py-1.5 bg-white/95 backdrop-blur text-neutral-700 text-xs font-bold rounded-full">
-                        {activity.category}
+                        {lang === 'ar' ? activity.categoryAr : activity.category}
                       </span>
                     </div>
 
                     {/* Content on Image */}
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <h3 className="text-2xl font-black text-white mb-2 leading-tight">
-                        {activity.title}
+                        {lang === 'ar' ? activity.titleAr : activity.title}
                       </h3>
                       <p className="text-white/80 text-sm line-clamp-2">
-                        {activity.description}
+                        {lang === 'ar' ? activity.descriptionAr : activity.description}
                       </p>
                     </div>
                   </div>
@@ -683,8 +746,8 @@ const UpcomingActivities = ({ setView }) => {
                           <span className="text-lg">📅</span>
                         </div>
                         <div>
-                          <div className="text-xs text-neutral-400 uppercase font-bold">Date</div>
-                          <div className="text-sm font-bold text-[#1A1A1A]">{activity.date}</div>
+                          <div className="text-xs text-neutral-400 uppercase font-bold">{T[lang].upcoming.date}</div>
+                          <div className="text-sm font-bold text-[#1A1A1A]">{lang === 'ar' ? activity.dateAr : activity.date}</div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
@@ -692,7 +755,7 @@ const UpcomingActivities = ({ setView }) => {
                           <span className="text-lg">🕐</span>
                         </div>
                         <div>
-                          <div className="text-xs text-neutral-400 uppercase font-bold">Heure</div>
+                          <div className="text-xs text-neutral-400 uppercase font-bold">{T[lang].upcoming.time}</div>
                           <div className="text-sm font-bold text-[#1A1A1A]">{activity.time}</div>
                         </div>
                       </div>
@@ -713,7 +776,7 @@ const UpcomingActivities = ({ setView }) => {
                       whileTap={{ scale: 0.98 }}
                       onClick={() => setView('contact')}
                     >
-                      <span>S'inscrire maintenant</span>
+                      <span>{T[lang].upcoming.register}</span>
                       <motion.span
                         className="text-lg"
                         animate={{ x: hoveredId === activity.id ? 5 : 0 }}
@@ -770,7 +833,7 @@ const UpcomingActivities = ({ setView }) => {
                     {/* Title on Image */}
                     <div className="absolute bottom-3 left-3 right-3">
                       <h3 className="text-xl font-black text-white leading-tight">
-                        {activity.title}
+                        {lang === 'ar' ? activity.titleAr : activity.title}
                       </h3>
                     </div>
                   </div>
@@ -778,12 +841,12 @@ const UpcomingActivities = ({ setView }) => {
                   {/* Content */}
                   <div className="p-4">
                     <p className="text-neutral-500 text-sm mb-4 line-clamp-2">
-                      {activity.description}
+                      {lang === 'ar' ? activity.descriptionAr : activity.description}
                     </p>
 
                     <div className="flex items-center gap-2 text-sm text-neutral-600 mb-2">
                       <span>📅</span>
-                      <span className="font-bold">{activity.date}</span>
+                      <span className="font-bold">{lang === 'ar' ? activity.dateAr : activity.date}</span>
                       <span className="text-neutral-300">•</span>
                       <span>{activity.time}</span>
                     </div>
@@ -797,7 +860,7 @@ const UpcomingActivities = ({ setView }) => {
                       className="w-full py-3 bg-[#5e2b79] text-white font-bold rounded-xl text-sm"
                       onClick={() => setView('contact')}
                     >
-                      S'inscrire →
+                      {T[lang].upcoming.register}
                     </button>
                   </div>
                 </motion.div>
@@ -815,14 +878,14 @@ const UpcomingActivities = ({ setView }) => {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-white rounded-2xl shadow-sm border border-neutral-100">
             <div className="text-left">
-              <h4 className="font-bold text-[#1A1A1A]">Vous ne trouvez pas ce que vous cherchez ?</h4>
-              <p className="text-sm text-neutral-500">Contactez-nous pour plus d'informations sur nos programmes.</p>
+              <h4 className="font-bold text-[#1A1A1A]">{T[lang].upcoming.notFound}</h4>
+              <p className="text-sm text-neutral-500">{T[lang].upcoming.contactSub}</p>
             </div>
             <MagneticButton
               onClick={() => setView('contact')}
               className="bg-[#1A1A1A] text-white px-6 py-3 rounded-full font-bold hover:bg-[#5e2b79] transition-all whitespace-nowrap"
             >
-              Nous contacter
+              {T[lang].upcoming.contactUs}
             </MagneticButton>
           </div>
         </motion.div>
@@ -838,7 +901,7 @@ const UpcomingActivities = ({ setView }) => {
 };
 
 // MODERN ANIMATED MAJOR PROJECTS SECTION
-const MajorProjects = ({ setView }) => {
+const MajorProjects = ({ setView, lang }) => {
   const [hoveredId, setHoveredId] = useState(null);
   const containerRef = useRef(null);
 
@@ -880,7 +943,7 @@ const MajorProjects = ({ setView }) => {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.2 }}
             />
-            <span className="text-[#f4e222] font-mono text-sm uppercase tracking-widest">Nos Réalisations</span>
+            <span className="text-[#f4e222] font-mono text-sm uppercase tracking-widest">{T[lang].events.badge}</span>
             <motion.div 
               className="h-px bg-gradient-to-l from-[#5e2b79] to-transparent flex-1"
               initial={{ scaleX: 0 }}
@@ -891,10 +954,10 @@ const MajorProjects = ({ setView }) => {
           </div>
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-4">
-              Nos <span className="text-[#f4e222]">Événements</span>
+              {T[lang].events.title} <span className="text-[#f4e222]">{T[lang].events.highlight}</span>
             </h2>
             <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
-              Retour sur les moments forts qui ont marqué nos centres culturels.
+              {T[lang].events.sub}
             </p>
           </div>
         </motion.div>
@@ -955,7 +1018,7 @@ const MajorProjects = ({ setView }) => {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      {show.category}
+                      {lang === 'ar' ? show.categoryAr : show.category}
                     </motion.span>
                     
                     {i === 0 && (
@@ -974,7 +1037,7 @@ const MajorProjects = ({ setView }) => {
                     >
                       <span className="text-[#f4e222] text-xs md:text-sm font-mono mb-1 md:mb-2 block">{show.year}</span>
                       <h3 className={`font-black mb-2 md:mb-3 leading-tight ${i === 0 ? 'text-2xl md:text-4xl' : 'text-lg md:text-xl'}`}>
-                        {show.title}
+                        {lang === 'ar' ? show.titleAr : show.title}
                       </h3>
                     </motion.div>
                     
@@ -987,7 +1050,7 @@ const MajorProjects = ({ setView }) => {
                       }}
                       transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                      {show.desc}
+                      {lang === 'ar' ? show.descAr : show.desc}
                     </motion.p>
 
                     <motion.div 
@@ -1053,7 +1116,7 @@ const MajorProjects = ({ setView }) => {
             onClick={() => setView('projects')}
             className="group flex items-center gap-4 bg-transparent border-2 border-white/20 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold hover:bg-white hover:text-[#1A1A1A] hover:border-white transition-all duration-500"
           >
-            <span>Voir tous les événements</span>
+            <span>{T[lang].events.seeAll}</span>
             <motion.span 
               className="text-xl"
               whileHover={{ x: 5 }}
@@ -1068,7 +1131,7 @@ const MajorProjects = ({ setView }) => {
 };
 
 // TANGER CENTERS SECTION
-const TangerCenterSection = ({ setView }) => {
+const TangerCenterSection = ({ setView, lang }) => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.1 });
   const [activeImage, setActiveImage] = useState(0);
@@ -1103,14 +1166,14 @@ const TangerCenterSection = ({ setView }) => {
             transition={{ delay: 0.2 }}
           >
             <span className="w-2 h-2 bg-[#5e2b79] rounded-full animate-pulse" />
-            Nos Espaces
+            {T[lang].centers.badge}
           </motion.span>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1A1A1A] mb-4">
-            <span className="text-[#f4e222]">2</span> Centres, <span className="text-[#5e2b79]">1</span> Mission
+            <span className="text-[#f4e222]">{T[lang].centers.title}</span> <span className="text-[#5e2b79]">{T[lang].centers.highlight}</span>
           </h2>
           <p className="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto">
-            Depuis 2017, nous œuvrons pour l'épanouissement de la jeunesse tangéroise à travers l'art et la culture.
+            {T[lang].centers.sub}
           </p>
         </motion.div>
 
@@ -1181,7 +1244,7 @@ const TangerCenterSection = ({ setView }) => {
                 </span>
                 {currentCenter.isPrimary && (
                   <span className="px-3 py-1 bg-[#5e2b79] text-white text-xs font-bold rounded-full">
-                    Centre Principal
+                    {T[lang].centers.primary}
                   </span>
                 )}
               </div>
@@ -1193,7 +1256,7 @@ const TangerCenterSection = ({ setView }) => {
                 {currentCenter.nameFr}
               </h4>
               <p className="text-white/70 text-sm md:text-base max-w-md hidden md:block">
-                {currentCenter.description}
+                {lang === 'ar' ? currentCenter.descriptionAr : currentCenter.description}
               </p>
             </div>
 
@@ -1215,7 +1278,7 @@ const TangerCenterSection = ({ setView }) => {
 
             {/* Creation Year Badge */}
             <div className="absolute top-6 right-6 bg-[#5e2b79] text-white px-4 py-2 rounded-xl">
-              <div className="text-xs opacity-80">Depuis</div>
+              <div className="text-xl font-black">{T[lang].centers.since || 'Depuis'}</div>
               <div className="text-xl font-black">{currentCenter.creationYear}</div>
             </div>
           </motion.div>
@@ -1229,7 +1292,7 @@ const TangerCenterSection = ({ setView }) => {
             whileHover={{ scale: 1.02, y: -5 }}
           >
             <span className="text-3xl md:text-4xl font-black text-[#5e2b79] mb-1">10,000+</span>
-            <span className="text-xs md:text-sm font-bold text-neutral-500 uppercase tracking-wider">Bénéficiaires</span>
+            <span className="text-xs md:text-sm font-bold text-neutral-500 uppercase tracking-wider">{T[lang].stats.beneficiaries}</span>
           </motion.div>
 
           <motion.div
@@ -1240,7 +1303,7 @@ const TangerCenterSection = ({ setView }) => {
             whileHover={{ scale: 1.02, y: -5 }}
           >
             <span className="text-3xl md:text-4xl font-black text-[#f4e222] mb-1">350+</span>
-            <span className="text-xs md:text-sm font-bold text-neutral-400 uppercase tracking-wider">Jeunes Actifs</span>
+            <span className="text-xs md:text-sm font-bold text-neutral-400 uppercase tracking-wider">{T[lang].stats.youth}</span>
           </motion.div>
 
           {/* Location Card */}
@@ -1264,7 +1327,7 @@ const TangerCenterSection = ({ setView }) => {
               📍
             </div>
             <div className="relative z-10 flex-1 min-w-0">
-              <h4 className="text-white font-bold text-base md:text-lg mb-1">Adresse</h4>
+              <h4 className="text-white font-bold text-base md:text-lg mb-1">{T[lang].centers.address}</h4>
               <p className="text-white/60 text-sm truncate">{currentCenter.address}</p>
             </div>
             <motion.div 
@@ -1311,7 +1374,7 @@ const TangerCenterSection = ({ setView }) => {
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
               <div>
-                <h3 className="text-xl md:text-2xl font-black text-[#1A1A1A]">Nos Ateliers & Formations</h3>
+                <h3 className="text-xl md:text-2xl font-black text-[#1A1A1A]">{T[lang].centers.workshops}</h3>
                 <p className="text-neutral-500 text-sm">Découvrez nos 8 disciplines artistiques et éducatives</p>
               </div>
               <span className="text-sm text-[#5e2b79] font-bold bg-[#5e2b79]/10 px-4 py-2 rounded-full self-start">
@@ -1334,7 +1397,7 @@ const TangerCenterSection = ({ setView }) => {
                   whileHover={{ scale: 1.02 }}
                 >
                   <span className="text-3xl mb-3 block">{activity.icon}</span>
-                  <h4 className="font-bold text-sm md:text-base mb-1">{activity.name}</h4>
+                  <h4 className="font-bold text-sm md:text-base mb-1">{lang === 'ar' ? activity.nameAr : activity.name}</h4>
                   <motion.p 
                     className={`text-xs ${hoveredActivity === i ? 'text-white/80' : 'text-neutral-500'}`}
                     initial={{ opacity: 0, height: 0 }}
@@ -1343,7 +1406,7 @@ const TangerCenterSection = ({ setView }) => {
                       height: hoveredActivity === i ? 'auto' : 0
                     }}
                   >
-                    {activity.desc}
+                    {lang === 'ar' ? activity.descAr : activity.desc}
                   </motion.p>
                 </motion.div>
               ))}
@@ -1362,7 +1425,7 @@ const TangerCenterSection = ({ setView }) => {
             <div className="absolute -bottom-4 -right-4 text-8xl opacity-20">★</div>
             <div className="relative z-10">
               <span className="text-xs font-bold bg-black/10 px-3 py-1 rounded-full">
-                {activeCenter === 0 ? 'Voir l\'autre centre' : 'Voir le centre principal'}
+                {activeCenter === 0 ? (lang === 'ar' ? 'عرض المركز الآخر' : 'Voir l\'autre centre') : (lang === 'ar' ? 'عرض المركز الرئيسي' : 'Voir le centre principal')}
               </span>
               <h4 className="font-bold text-xl mt-4 text-[#1A1A1A]">
                 {activeCenter === 0 ? TANGER_CENTERS[1].nameFr : TANGER_CENTERS[0].nameFr}
@@ -1371,7 +1434,7 @@ const TangerCenterSection = ({ setView }) => {
                 {activeCenter === 0 ? TANGER_CENTERS[1].address : TANGER_CENTERS[0].address}
               </p>
               <div className="flex items-center gap-2 mt-3 font-bold text-sm group-hover:gap-4 transition-all">
-                <span>Découvrir</span>
+                <span>{lang === 'ar' ? 'اكتشف' : 'Découvrir'}</span>
                 <span>→</span>
               </div>
             </div>
@@ -1386,7 +1449,7 @@ const TangerCenterSection = ({ setView }) => {
           >
             <h4 className="font-bold text-lg text-[#1A1A1A] mb-4">Nos Équipements</h4>
             <div className="flex flex-wrap gap-2">
-              {TANGER_DATA.features.map((feature, i) => (
+              {(lang === 'ar' ? TANGER_DATA.featuresAr : TANGER_DATA.features).map((feature, i) => (
                 <motion.span
                   key={i}
                   className="px-4 py-2 bg-[#5e2b79]/10 rounded-full text-sm font-bold text-[#5e2b79] hover:bg-[#5e2b79] hover:text-white transition-colors cursor-pointer"
@@ -1414,7 +1477,7 @@ const TangerCenterSection = ({ setView }) => {
             onClick={() => setView('contact')}
             className="bg-[#1A1A1A] text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-bold text-lg hover:bg-[#5e2b79] transition-all shadow-xl hover:shadow-2xl inline-flex items-center gap-3"
           >
-            <span>Visitez nos centres</span>
+            <span>{lang === 'ar' ? 'زوروا مراكزنا' : 'Visitez nos centres'}</span>
             <span className="text-xl">→</span>
           </MagneticButton>
         </motion.div>
@@ -1424,7 +1487,7 @@ const TangerCenterSection = ({ setView }) => {
   );
 };
 
-const GetInvolved = ({ setView }) => {
+const GetInvolved = ({ setView, lang }) => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
 
@@ -1459,7 +1522,7 @@ const GetInvolved = ({ setView }) => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
             >
-              Rejoignez le mouvement
+              {T[lang].involved.badge}
             </motion.span>
             
             <motion.h2 
@@ -1468,7 +1531,7 @@ const GetInvolved = ({ setView }) => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
             >
-              Agissons <span className="text-[#f4e222]">Ensemble</span>.
+              {T[lang].involved.title} <span className="text-[#f4e222]">{T[lang].involved.highlight}</span>
             </motion.h2>
             
             <motion.p 
@@ -1477,7 +1540,7 @@ const GetInvolved = ({ setView }) => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4 }}
             >
-              Chaque contribution compte. Devenez acteur du changement et participez à l'épanouissement de la jeunesse tangéroise.
+              {T[lang].involved.sub}
             </motion.p>
 
             {/* Stats Row */}
@@ -1489,12 +1552,12 @@ const GetInvolved = ({ setView }) => {
             >
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-black text-[#f4e222]">10,000+</div>
-                <div className="text-sm text-neutral-500">Bénéficiaires</div>
+                <div className="text-sm text-neutral-500">{T[lang].stats.beneficiaries}</div>
               </div>
               <div className="w-px bg-white/20" />
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-black text-[#5e2b79]">350+</div>
-                <div className="text-sm text-neutral-500">Jeunes Actifs</div>
+                <div className="text-sm text-neutral-500">{T[lang].stats.youth}</div>
               </div>
             </motion.div>
 
@@ -1508,13 +1571,13 @@ const GetInvolved = ({ setView }) => {
                 onClick={() => setView('contact')} 
                 className="px-8 py-4 rounded-full font-bold transition-all bg-white text-[#1A1A1A] shadow-lg hover:scale-105 hover:shadow-xl"
               >
-                Devenir Bénévole
+                {T[lang].involved.volunteer}
               </MagneticButton>
               <MagneticButton 
                 onClick={() => setView('contact')} 
                 className="px-8 py-4 rounded-full font-bold transition-all bg-[#5e2b79] text-white shadow-lg hover:scale-105 hover:shadow-xl"
               >
-                Faire un Don
+                {T[lang].involved.donate}
               </MagneticButton>
             </motion.div>
           </div>
@@ -1524,7 +1587,7 @@ const GetInvolved = ({ setView }) => {
   );
 };
 
-const Footer = () => (
+const Footer = ({ lang }) => (
   <footer className="bg-[#1A1A1A] text-white pt-20 pb-10">
     <div className="container mx-auto px-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-16">
@@ -1536,22 +1599,22 @@ const Footer = () => (
           <div className="flex gap-6 mb-6">
             <div>
               <div className="text-2xl font-black text-[#f4e222]">10,000+</div>
-              <div className="text-xs text-neutral-500 uppercase">Bénéficiaires</div>
+              <div className="text-xs text-neutral-500 uppercase">{T[lang].stats.beneficiaries}</div>
             </div>
             <div>
               <div className="text-2xl font-black text-[#5e2b79]">350+</div>
-              <div className="text-xs text-neutral-500 uppercase">Jeunes Actifs</div>
+              <div className="text-xs text-neutral-500 uppercase">{T[lang].stats.youth}</div>
             </div>
           </div>
 
-          <p className="text-neutral-400 mb-6 max-w-md">Inscrivez-vous à notre newsletter pour recevoir les dernières actualités de nos centres culturels à Tanger.</p>
+          <p className="text-neutral-400 mb-6 max-w-md">{T[lang].footer.newsletter}</p>
           <div className="flex gap-4">
             <input type="email" placeholder="Votre email" className="bg-white/10 border border-white/10 rounded-xl px-6 py-4 w-full md:w-80 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#5e2b79] focus:border-transparent outline-none transition-all" />
-            <button className="bg-[#5e2b79] px-6 py-4 rounded-xl font-bold hover:bg-white hover:text-[#5e2b79] transition-colors whitespace-nowrap">S'inscrire</button>
+            <button className="bg-[#5e2b79] px-6 py-4 rounded-xl font-bold hover:bg-white hover:text-[#5e2b79] transition-colors whitespace-nowrap">{T[lang].footer.subscribe}</button>
           </div>
         </div>
         <div>
-          <h4 className="font-bold text-white mb-6 uppercase text-sm">Nos Centres</h4>
+          <h4 className="font-bold text-white mb-6 uppercase text-sm">{T[lang].footer.ourCenters}</h4>
           <ul className="space-y-4 text-neutral-400">
             {TANGER_CENTERS.map((center, i) => (
               <li key={i}>
@@ -1563,13 +1626,13 @@ const Footer = () => (
           </ul>
         </div>
         <div>
-          <h4 className="font-bold text-white mb-6 uppercase text-sm">Horaires</h4>
+          <h4 className="font-bold text-white mb-6 uppercase text-sm">{T[lang].footer.hoursTitle}</h4>
           <div className="space-y-2 text-neutral-400 text-sm">
-            <div className="flex justify-between"><span>Dimanche - samedi</span><span className="text-white">10:00 - 20:00</span></div>
-            <div className="flex justify-between"><span>lundi</span><span className="text-[#f4e222]">Fermé</span></div>
+            <div className="flex justify-between"><span>{T[lang].footer.hoursDetail}</span><span className="text-white">10:00 - 20:00</span></div>
+            <div className="flex justify-between"><span>{T[lang].footer.monday}</span><span className="text-[#f4e222]">{T[lang].footer.closed}</span></div>
           </div>
 
-          <h4 className="font-bold text-white mt-8 mb-4 uppercase text-sm">Suivez-nous</h4>
+          <h4 className="font-bold text-white mt-8 mb-4 uppercase text-sm">{T[lang].footer.follow}</h4>
           <div className="flex gap-3">
             <a href="https://www.instagram.com/lesetoilesmaroc/" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#5e2b79] transition-colors">
               <span>📷</span>
@@ -1581,10 +1644,10 @@ const Footer = () => (
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
-        <p>© 2025 Centre Culturel Les Étoiles du Détroit - Tanger. Tous droits réservés.</p>
+        <p>{T[lang].footer.rights}</p>
         <div className="flex gap-6 mt-4 md:mt-0">
-          <a href="#" className="hover:text-[#5e2b79] transition-colors">Mentions légales</a>
-          <a href="#" className="hover:text-[#5e2b79] transition-colors">Politique de confidentialité</a>
+          <a href="#" className="hover:text-[#5e2b79] transition-colors">{T[lang].footer.legal}</a>
+          <a href="#" className="hover:text-[#5e2b79] transition-colors">{T[lang].footer.privacy}</a>
         </div>
       </div>
     </div>
@@ -1593,7 +1656,7 @@ const Footer = () => (
 
 // --- 4. ADDITIONAL PAGES ---
 
-const ProjectsPage = ({ setView }) => {
+const ProjectsPage = ({ setView, lang }) => {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
@@ -1606,22 +1669,22 @@ const ProjectsPage = ({ setView }) => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-4 hover:underline inline-flex items-center gap-2">
-            <span>←</span> Retour à l'accueil
+            <span>←</span> {T[lang].projectsPage.back.replace('← ', '')}
           </button>
-          <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-6">Nos Événements</h1>
+          <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-6">{T[lang].projectsPage.title}</h1>
           <p className="text-xl text-neutral-500 max-w-2xl mx-auto">
-            Découvrez tous les événements et activités du Centre Culturel Les Étoiles du Détroit.
+            {T[lang].projectsPage.sub}
           </p>
 
           {/* Stats */}
           <div className="flex justify-center gap-8 mt-8">
             <div className="bg-white rounded-2xl px-8 py-4 shadow-sm">
               <div className="text-3xl font-black text-[#5e2b79]">10,000+</div>
-              <div className="text-sm text-neutral-500">Bénéficiaires</div>
+              <div className="text-sm text-neutral-500">{T[lang].stats.beneficiaries}</div>
             </div>
             <div className="bg-[#1A1A1A] rounded-2xl px-8 py-4">
               <div className="text-3xl font-black text-[#f4e222]">350+</div>
-              <div className="text-sm text-neutral-400">Jeunes Actifs</div>
+              <div className="text-sm text-neutral-400">{T[lang].stats.youth}</div>
             </div>
           </div>
         </div>
@@ -1649,10 +1712,10 @@ const ProjectsPage = ({ setView }) => {
               </div>
               <div className="absolute bottom-0 left-0 w-full p-8 text-white">
                 <div className="flex justify-between items-end mb-3">
-                  <span className="bg-[#5e2b79] text-xs font-bold px-3 py-1.5 rounded-full text-white">{show.category}</span>
+                  <span className="bg-[#5e2b79] text-xs font-bold px-3 py-1.5 rounded-full text-white">{lang === 'ar' ? show.categoryAr : show.category}</span>
                   <span className="text-sm font-mono opacity-70">{show.year}</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2 leading-tight">{show.title}</h3>
+                <h3 className="text-2xl font-bold mb-2 leading-tight">{lang === 'ar' ? show.titleAr : show.title}</h3>
                 <motion.p 
                   className="text-sm text-gray-300"
                   initial={{ opacity: 0, y: 10 }}
@@ -1662,7 +1725,7 @@ const ProjectsPage = ({ setView }) => {
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  {show.desc}
+                  {lang === 'ar' ? show.descAr : show.desc}
                 </motion.p>
               </div>
             </motion.div>
@@ -1671,7 +1734,7 @@ const ProjectsPage = ({ setView }) => {
 
         {/* Upcoming Activities Section */}
         <div className="mt-20">
-          <h2 className="text-3xl font-black text-[#1A1A1A] mb-8 text-center">Prochaines Activités</h2>
+          <h2 className="text-3xl font-black text-[#1A1A1A] mb-8 text-center">{T[lang].projectsPage.upcoming}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {UPCOMING_ACTIVITIES.map((activity, i) => (
               <motion.div
@@ -1688,16 +1751,16 @@ const ProjectsPage = ({ setView }) => {
                     {activity.isNew && (
                       <span className="px-2 py-1 bg-[#f4e222] text-black text-xs font-bold rounded-full">NEW</span>
                     )}
-                    <span className="px-2 py-1 bg-white/90 text-neutral-700 text-xs font-bold rounded-full">{activity.category}</span>
+                    <span className="px-2 py-1 bg-white/90 text-neutral-700 text-xs font-bold rounded-full">{lang === 'ar' ? activity.categoryAr : activity.category}</span>
                   </div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold">{activity.title}</h3>
+                    <h3 className="text-xl font-bold">{lang === 'ar' ? activity.titleAr : activity.title}</h3>
                   </div>
                 </div>
                 <div className="p-5">
-                  <p className="text-neutral-500 text-sm mb-4">{activity.description}</p>
+                  <p className="text-neutral-500 text-sm mb-4">{lang === 'ar' ? activity.descriptionAr : activity.description}</p>
                   <div className="flex items-center gap-2 text-sm text-neutral-600 mb-2">
-                    <span>📅</span> {activity.date} • {activity.time}
+                    <span>📅</span> {lang === 'ar' ? activity.dateAr : activity.date} • {activity.time}
                   </div>
                   <div className="flex items-center gap-2 text-sm text-neutral-600 mb-4">
                     <span>📍</span> {activity.location}
@@ -1706,7 +1769,7 @@ const ProjectsPage = ({ setView }) => {
                     onClick={() => setView('contact')}
                     className="w-full py-3 bg-[#5e2b79] text-white font-bold rounded-xl hover:bg-[#1A1A1A] transition-colors"
                   >
-                    S'inscrire →
+                    {T[lang].projectsPage.register}
                   </button>
                 </div>
               </motion.div>
@@ -1718,7 +1781,7 @@ const ProjectsPage = ({ setView }) => {
   );
 };
 
-const CentersPage = ({ setView }) => {
+const CentersPage = ({ setView, lang }) => {
   const [activeCenter, setActiveCenter] = useState(0);
 
   return (
@@ -1730,24 +1793,24 @@ const CentersPage = ({ setView }) => {
     >
       <div className="container mx-auto px-6">
         <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline inline-flex items-center gap-2">
-          <span>←</span> Retour à l'accueil
+          <span>←</span> {T[lang].centersPage.back.replace('← ', '')}
         </button>
         
         <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-4">Nos Centres</h1>
+          <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-4">{T[lang].centersPage.title}</h1>
           <p className="text-xl text-neutral-500 max-w-2xl mx-auto">
-            Deux espaces culturels au service de la jeunesse tangéroise
+            {T[lang].centersPage.sub}
           </p>
 
           {/* Stats */}
           <div className="flex justify-center gap-8 mt-8">
             <div className="text-center">
               <div className="text-4xl font-black text-[#5e2b79]">10,000+</div>
-              <div className="text-sm text-neutral-500">Bénéficiaires depuis 2017</div>
+              <div className="text-sm text-neutral-500">{T[lang].stats.beneficiaries} depuis 2017</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-black text-[#f4e222]">350+</div>
-              <div className="text-sm text-neutral-500">Jeunes Actifs</div>
+              <div className="text-sm text-neutral-500">{T[lang].stats.youth}</div>
             </div>
           </div>
         </div>
@@ -1800,7 +1863,7 @@ const CentersPage = ({ setView }) => {
                   </span>
                   {TANGER_CENTERS[activeCenter].isPrimary && (
                     <span className="px-3 py-1 bg-[#5e2b79] text-white text-sm font-bold rounded-full">
-                      Centre Principal
+                      {T[lang].centersPage.primary}
                     </span>
                   )}
                 </div>
@@ -1812,28 +1875,28 @@ const CentersPage = ({ setView }) => {
                   {TANGER_CENTERS[activeCenter].nameFr}
                 </h3>
                 <p className="text-neutral-500 text-lg mb-6">
-                  {TANGER_CENTERS[activeCenter].description}
+                  {lang === 'ar' ? TANGER_CENTERS[activeCenter].descriptionAr : TANGER_CENTERS[activeCenter].description}
                 </p>
 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-4 p-4 bg-white rounded-xl">
                     <span className="text-2xl">📍</span>
                     <div>
-                      <div className="font-bold text-[#1A1A1A]">Adresse</div>
+                      <div className="font-bold text-[#1A1A1A]">{T[lang].centersPage.address}</div>
                       <div className="text-neutral-500">{TANGER_CENTERS[activeCenter].address}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 p-4 bg-white rounded-xl">
                     <span className="text-2xl">📞</span>
                     <div>
-                      <div className="font-bold text-[#1A1A1A]">Téléphone</div>
+                      <div className="font-bold text-[#1A1A1A]">{T[lang].centersPage.phone}</div>
                       <div className="text-[#5e2b79] font-bold">{TANGER_CENTERS[activeCenter].phone}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 p-4 bg-white rounded-xl">
                     <span className="text-2xl">🕐</span>
                     <div>
-                      <div className="font-bold text-[#1A1A1A]">Horaires</div>
+                      <div className="font-bold text-[#1A1A1A]">{T[lang].centersPage.hours}</div>
                       <div className="text-neutral-500">{TANGER_CENTERS[activeCenter].openTime}</div>
                     </div>
                   </div>
@@ -1843,21 +1906,20 @@ const CentersPage = ({ setView }) => {
                   onClick={() => window.open(TANGER_CENTERS[activeCenter].mapLink, '_blank')}
                   className="w-full py-4 bg-[#1A1A1A] text-white font-bold rounded-xl hover:bg-[#5e2b79] transition-colors flex items-center justify-center gap-2"
                 >
-                  <span>Voir sur Google Maps</span>
-                  <span>→</span>
+                  <span>{T[lang].centersPage.map}</span>
                 </button>
               </div>
             </div>
 
             {/* Activities */}
             <div className="mt-12">
-              <h3 className="text-2xl font-black text-[#1A1A1A] mb-6">Nos Ateliers</h3>
+              <h3 className="text-2xl font-black text-[#1A1A1A] mb-6">{T[lang].centersPage.workshops}</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {TANGER_DATA.activities.map((activity, i) => (
                   <div key={i} className="bg-white p-5 rounded-xl text-center hover:shadow-lg transition-all">
                     <span className="text-3xl mb-3 block">{activity.icon}</span>
-                    <h4 className="font-bold text-[#1A1A1A]">{activity.name}</h4>
-                    <p className="text-xs text-neutral-500 mt-1">{activity.desc}</p>
+                    <h4 className="font-bold text-[#1A1A1A]">{lang === 'ar' ? activity.nameAr : activity.name}</h4>
+                    <p className="text-xs text-neutral-500 mt-1">{lang === 'ar' ? activity.descAr : activity.desc}</p>
                   </div>
                 ))}
               </div>
@@ -1869,7 +1931,7 @@ const CentersPage = ({ setView }) => {
   );
 };
 
-const ContactPage = ({ setView }) => {
+const ContactPage = ({ setView, lang }) => {
   const [selectedCenter, setSelectedCenter] = useState(0);
 
   return (
@@ -1881,15 +1943,15 @@ const ContactPage = ({ setView }) => {
     >
       <div className="container mx-auto px-6">
         <button onClick={() => setView('home')} className="text-[#5e2b79] font-bold mb-8 hover:underline inline-flex items-center gap-2">
-          <span>←</span> Retour
+          <span>←</span> {T[lang].contactPage.back.replace('← ', '')}
         </button>
         
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Left Side */}
           <div className="lg:w-1/2">
-            <h1 className="text-5xl md:text-7xl font-black mb-4">Contact</h1>
+            <h1 className="text-5xl md:text-7xl font-black mb-4">{T[lang].contactPage.title}</h1>
             <p className="text-xl text-neutral-400 mb-8">
-              Rejoignez notre communauté de plus de <span className="text-[#f4e222] font-bold">10,000 bénéficiaires</span> et <span className="text-[#5e2b79] font-bold">350+ jeunes actifs</span>.
+              {T[lang].contactPage.sub} <span className="text-[#f4e222] font-bold">10,000 {T[lang].stats.beneficiaries}</span> {T[lang].contactPage.and} <span className="text-[#5e2b79] font-bold">350+ {T[lang].stats.youth}</span>.
             </p>
 
             {/* Center Selector */}
@@ -1928,21 +1990,21 @@ const ContactPage = ({ setView }) => {
                     <div className="flex gap-4 items-start">
                       <div className="w-10 h-10 bg-[#5e2b79]/20 rounded-xl flex items-center justify-center text-[#5e2b79]">📍</div>
                       <div>
-                        <h5 className="font-bold text-sm mb-1">Adresse</h5>
+                        <h5 className="font-bold text-sm mb-1">{T[lang].centersPage.address}</h5>
                         <p className="text-gray-400 text-sm">{TANGER_CENTERS[selectedCenter].address}</p>
                       </div>
                     </div>
                     <div className="flex gap-4 items-start">
                       <div className="w-10 h-10 bg-[#5e2b79]/20 rounded-xl flex items-center justify-center text-[#5e2b79]">📱</div>
                       <div>
-                        <h5 className="font-bold text-sm mb-1">Téléphone</h5>
+                        <h5 className="font-bold text-sm mb-1">{T[lang].centersPage.phone}</h5>
                         <p className="text-[#f4e222] font-bold">{TANGER_CENTERS[selectedCenter].phone}</p>
                       </div>
                     </div>
                     <div className="flex gap-4 items-start">
                       <div className="w-10 h-10 bg-[#5e2b79]/20 rounded-xl flex items-center justify-center text-[#5e2b79]">✉️</div>
                       <div>
-                        <h5 className="font-bold text-sm mb-1">Email</h5>
+                        <h5 className="font-bold text-sm mb-1">{T[lang].contactPage.emailLabel}</h5>
                         <p className="text-gray-400">{TANGER_CENTERS[selectedCenter].email}</p>
                       </div>
                     </div>
@@ -1951,10 +2013,10 @@ const ContactPage = ({ setView }) => {
 
                 {/* Opening Hours */}
                 <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
-                  <h4 className="font-bold text-lg mb-4">Horaires d'ouverture</h4>
+                  <h4 className="font-bold text-lg mb-4">{T[lang].contactPage.hoursTitle}</h4>
                   <div className="space-y-2 text-gray-400">
-                    <div className="flex justify-between"><span>Dimanche - samedi</span><span className="text-white">10:00 - 20:00</span></div>
-                    <div className="flex justify-between"><span>lundi</span><span className="text-[#f4e222]">Fermé</span></div>
+                    <div className="flex justify-between"><span>{T[lang].footer.hoursDetail}</span><span className="text-white">10:00 - 20:00</span></div>
+                    <div className="flex justify-between"><span>{T[lang].footer.monday}</span><span className="text-[#f4e222]">{T[lang].footer.closed}</span></div>
                   </div>
                 </div>
 
@@ -1962,7 +2024,7 @@ const ContactPage = ({ setView }) => {
                   onClick={() => window.open(TANGER_CENTERS[selectedCenter].mapLink, '_blank')}
                   className="w-full py-4 bg-[#5e2b79] text-white font-bold rounded-xl hover:bg-[#f4e222] hover:text-black transition-colors"
                 >
-                  Voir sur Google Maps →
+                  {T[lang].centersPage.map}
                 </button>
               </motion.div>
             </AnimatePresence>
@@ -1974,20 +2036,20 @@ const ContactPage = ({ setView }) => {
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400">Nom</label>
+                  <label className="text-sm font-bold text-gray-400">{T[lang].contactPage.name}</label>
                   <input type="text" className="w-full bg-white/10 border border-white/10 rounded-xl p-4 focus:border-[#5e2b79] focus:outline-none focus:ring-2 focus:ring-[#5e2b79]/20 transition-all" placeholder="Votre nom" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400">Prénom</label>
+                  <label className="text-sm font-bold text-gray-400">{T[lang].contactPage.firstname}</label>
                   <input type="text" className="w-full bg-white/10 border border-white/10 rounded-xl p-4 focus:border-[#5e2b79] focus:outline-none focus:ring-2 focus:ring-[#5e2b79]/20 transition-all" placeholder="Votre prénom" />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400">Email</label>
+                <label className="text-sm font-bold text-gray-400">{T[lang].contactPage.emailLabel}</label>
                 <input type="email" className="w-full bg-white/10 border border-white/10 rounded-xl p-4 focus:border-[#5e2b79] focus:outline-none focus:ring-2 focus:ring-[#5e2b79]/20 transition-all" placeholder="votre@email.com" />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400">Centre concerné</label>
+                <label className="text-sm font-bold text-gray-400">{T[lang].contactPage.center}</label>
                 <select 
                   className="w-full bg-white/10 border border-white/10 rounded-xl p-4 focus:border-[#5e2b79] focus:outline-none text-white"
                   value={selectedCenter}
@@ -1999,23 +2061,23 @@ const ContactPage = ({ setView }) => {
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400">Sujet</label>
+                <label className="text-sm font-bold text-gray-400">{T[lang].contactPage.subject}</label>
                 <select className="w-full bg-white/10 border border-white/10 rounded-xl p-4 focus:border-[#5e2b79] focus:outline-none text-white">
-                  <option value="" className="bg-[#1A1A1A]">Sélectionnez un sujet</option>
-                  <option value="inscription" className="bg-[#1A1A1A]">Inscription aux ateliers</option>
-                  <option value="benevole" className="bg-[#1A1A1A]">Devenir bénévole</option>
-                  <option value="partenaire" className="bg-[#1A1A1A]">Devenir partenaire</option>
-                  <option value="don" className="bg-[#1A1A1A]">Faire un don</option>
-                  <option value="info" className="bg-[#1A1A1A]">Demande d'information</option>
-                  <option value="autre" className="bg-[#1A1A1A]">Autre</option>
+                  <option value="" className="bg-[#1A1A1A]">{T[lang].contactPage.subjectPh}</option>
+                  <option value="inscription" className="bg-[#1A1A1A]">{lang === 'ar' ? 'التسجيل في الورشات' : 'Inscription aux ateliers'}</option>
+                  <option value="benevole" className="bg-[#1A1A1A]">{lang === 'ar' ? 'التطوع' : 'Devenir bénévole'}</option>
+                  <option value="partenaire" className="bg-[#1A1A1A]">{lang === 'ar' ? 'الشراكة' : 'Devenir partenaire'}</option>
+                  <option value="don" className="bg-[#1A1A1A]">{lang === 'ar' ? 'التبرع' : 'Faire un don'}</option>
+                  <option value="info" className="bg-[#1A1A1A]">{lang === 'ar' ? 'طلب معلومات' : "Demande d'information"}</option>
+                  <option value="autre" className="bg-[#1A1A1A]">{lang === 'ar' ? 'أخرى' : 'Autre'}</option>
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-400">Message</label>
-                <textarea rows="5" className="w-full bg-white/10 border border-white/10 rounded-xl p-4 focus:border-[#5e2b79] focus:outline-none focus:ring-2 focus:ring-[#5e2b79]/20 transition-all resize-none" placeholder="Votre message..."></textarea>
+                <label className="text-sm font-bold text-gray-400">{T[lang].contactPage.message}</label>
+                <textarea rows="5" className="w-full bg-white/10 border border-white/10 rounded-xl p-4 focus:border-[#5e2b79] focus:outline-none focus:ring-2 focus:ring-[#5e2b79]/20 transition-all resize-none" placeholder={T[lang].contactPage.messagePh}></textarea>
               </div>
               <button type="submit" className="w-full bg-gradient-to-r from-[#5e2b79] to-[#8f4699] text-white font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-[#5e2b79]/30 transition-all transform hover:scale-[1.02]">
-                Envoyer le message
+                {T[lang].contactPage.send}
               </button>
             </form>
           </div>
@@ -2204,8 +2266,7 @@ const SchoolCard = ({ school, index, lang }) => {
   );
 };
 
-const KharijAlAswarPage = ({ setView }) => {
-  const [lang, setLang] = useState('fr');
+const KharijAlAswarPage = ({ setView, lang }) => {
   const isAr = lang === 'ar';
 
   return (
@@ -2216,34 +2277,14 @@ const KharijAlAswarPage = ({ setView }) => {
       className="bg-[#F4F4F0] min-h-screen pt-32 pb-20"
     >
       <div className="container mx-auto px-6">
-        {/* Top bar: back + language toggle */}
+        {/* Top bar: back */}
         <div className="flex items-center justify-between mb-10">
           <button
             onClick={() => setView('home')}
             className="text-[#5e2b79] font-bold hover:underline inline-flex items-center gap-2"
           >
-            <span>←</span> Retour à l'accueil
+            <span>←</span> {isAr ? 'العودة إلى الرئيسية' : "Retour à l'accueil"}
           </button>
-
-          {/* Language toggle */}
-          <div className="flex items-center gap-1 bg-white rounded-full p-1 shadow-sm border border-neutral-200">
-            <button
-              onClick={() => setLang('fr')}
-              className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
-                lang === 'fr' ? 'bg-[#5e2b79] text-white shadow' : 'text-neutral-500 hover:text-neutral-800'
-              }`}
-            >
-              FR
-            </button>
-            <button
-              onClick={() => setLang('ar')}
-              className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
-                lang === 'ar' ? 'bg-[#5e2b79] text-white shadow' : 'text-neutral-500 hover:text-neutral-800'
-              }`}
-            >
-              عربي
-            </button>
-          </div>
         </div>
 
         {/* Page Hero */}
@@ -2311,6 +2352,7 @@ const KharijAlAswarPage = ({ setView }) => {
 
 const App = () => {
   const [view, setView] = useState('home');
+  const [lang, setLang] = useState('fr');
   const [cursorImage, setCursorImage] = useState(null);
 
   // Scroll to top when view changes
@@ -2319,9 +2361,9 @@ const App = () => {
   }, [view]);
 
   return (
-    <div className="bg-white min-h-screen text-[#1A1A1A] font-sans selection:bg-[#f4e222] selection:text-black">
+    <div className="bg-white min-h-screen text-[#1A1A1A] font-sans selection:bg-[#f4e222] selection:text-black" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <Cursor activeImage={cursorImage} />
-      <Navbar currentView={view} setView={setView} />
+      <Navbar currentView={view} setView={setView} lang={lang} setLang={setLang} />
       
       <AnimatePresence mode="wait">
         {view === 'home' && (
@@ -2331,33 +2373,33 @@ const App = () => {
             animate={{ opacity: 1 }} 
             exit={{ opacity: 0 }}
           >
-            <Hero setView={setView} />
-            <KeyNumbers />
-            <UpcomingActivities setView={setView} />
-            <MajorProjects setView={setView} />
-            <TangerCenterSection setView={setView} />
-            <GetInvolved setView={setView} />
+            <Hero setView={setView} lang={lang} />
+            <KeyNumbers lang={lang} />
+            <UpcomingActivities setView={setView} lang={lang} />
+            <MajorProjects setView={setView} lang={lang} />
+            <TangerCenterSection setView={setView} lang={lang} />
+            <GetInvolved setView={setView} lang={lang} />
           </motion.main>
         )}
 
         {view === 'projects' && (
-          <ProjectsPage key="projects" setView={setView} />
+          <ProjectsPage key="projects" setView={setView} lang={lang} />
         )}
 
         {view === 'centers' && (
-          <CentersPage key="centers" setView={setView} />
+          <CentersPage key="centers" setView={setView} lang={lang} />
         )}
 
         {view === 'contact' && (
-          <ContactPage key="contact" setView={setView} />
+          <ContactPage key="contact" setView={setView} lang={lang} />
         )}
 
         {view === 'kharij' && (
-          <KharijAlAswarPage key="kharij" setView={setView} />
+          <KharijAlAswarPage key="kharij" setView={setView} lang={lang} />
         )}
       </AnimatePresence>
 
-      <Footer />
+      <Footer lang={lang} />
 
       {/* Global Styles */}
       <style jsx global>{`
