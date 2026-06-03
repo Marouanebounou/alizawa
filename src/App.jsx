@@ -349,7 +349,7 @@ const Navbar = ({ currentView, setView }) => {
               <button onClick={() => handleNavClick('home', 'activites')} className="px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 text-neutral-600 whitespace-nowrap">Activités</button>
               <button onClick={() => handleNavClick('projects')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'projects' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Événements</button>
               <button onClick={() => handleNavClick('centers')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'centers' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Nos Centres</button>
-              <button onClick={() => handleNavClick('kharij')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'kharij' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>خارج الأسوار</button>
+              <button onClick={() => handleNavClick('kharij')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'kharij' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Hors les murs</button>
               <button onClick={() => handleNavClick('contact')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'contact' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Contact</button>
             </div>
 
@@ -379,7 +379,7 @@ const Navbar = ({ currentView, setView }) => {
               <button onClick={() => handleNavClick('home', 'activites')} className="text-left text-[#f4e222]">Activités</button>
               <button onClick={() => handleNavClick('projects')} className="text-left text-[#5e2b79]">Événements</button>
               <button onClick={() => handleNavClick('centers')} className="text-left">Nos Centres</button>
-              <button onClick={() => handleNavClick('kharij')} className="text-left text-[#f4e222]">خارج الأسوار</button>
+              <button onClick={() => handleNavClick('kharij')} className="text-left text-[#f4e222]">Hors les murs</button>
               <button onClick={() => handleNavClick('contact')} className="text-left">Contact</button>
             </div>
           </motion.div>
@@ -445,7 +445,7 @@ const Hero = ({ setView }) => {
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
              <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#5e2b79] transition-colors shadow-lg">Nos événements</MagneticButton>
              <MagneticButton onClick={() => setView('kharij')} className="bg-[#5e2b79] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1A1A1A] transition-colors shadow-lg flex items-center gap-2">
-               <span>خارج الأسوار</span>
+               <span>Hors les murs</span>
                <span>←</span>
              </MagneticButton>
           </div>
@@ -2030,9 +2030,16 @@ const ContactPage = ({ setView }) => {
 const KHARIJ_SCHOOLS = [
   {
     id: 1,
-    titleAr: "مجموعة مدارس الزينات – فرعية الخرب",
-    subtitleAr: "جماعة السبت الزينات",
-    descAr: "في إطار برنامج خارج الأسوار، تمت زيارة فرعية الخرب التابعة لمجموعة مدارس الزينات، حيث استفاد التلاميذ من يوم تربوي وفني متكامل جمع بين ورشات المسرح والسينما والرسم. وقد شكلت هذه الأنشطة فرصة لاكتشاف مواهب الأطفال وتعزيز قدراتهم على التعبير والإبداع، في أجواء تفاعلية مفعمة بالحماس والمشاركة.",
+    fr: {
+      title: "Groupe scolaire Al-Zinaat – annexe Al-Kharb",
+      subtitle: "Commune de Sebt Al-Zinaat",
+      desc: "Dans le cadre du programme Hors les murs, l'annexe Al-Kharb, rattachée au groupe scolaire Al-Zinaat, a accueilli une journée éducative et artistique complète alliant ateliers de théâtre, de cinéma et de dessin. Ces activités ont offert aux élèves une précieuse occasion de découvrir leurs talents et de développer leur capacité d'expression et de créativité, dans une atmosphère interactive empreinte d'enthousiasme et de participation.",
+    },
+    ar: {
+      title: "مجموعة مدارس الزينات – فرعية الخرب",
+      subtitle: "جماعة السبت الزينات",
+      desc: "في إطار برنامج Hors les murs، تمت زيارة فرعية الخرب التابعة لمجموعة مدارس الزينات، حيث استفاد التلاميذ من يوم تربوي وفني متكامل جمع بين ورشات المسرح والسينما والرسم. وقد شكلت هذه الأنشطة فرصة لاكتشاف مواهب الأطفال وتعزيز قدراتهم على التعبير والإبداع، في أجواء تفاعلية مفعمة بالحماس والمشاركة.",
+    },
     images: [
       "/ne page/IMG_2755.png",
       "/ne page/IMG_2822.png",
@@ -2041,9 +2048,16 @@ const KHARIJ_SCHOOLS = [
   },
   {
     id: 2,
-    titleAr: "مجموعة مدارس البريدية",
-    subtitleAr: "دوار البرايدية – جماعة أحد الغربية",
-    descAr: "حل برنامج خارج الأسوار بمجموعة مدارس البريدية، حاملاً معه مجموعة من الأنشطة الثقافية والفنية التي شملت المسرح والسينما والرسم. وقد ساهمت هذه المبادرة في فتح آفاق جديدة أمام التلاميذ، وتشجيعهم على التعلم من خلال الإبداع، مع خلق فضاء للتعبير الحر وتنمية الحس الفني والثقافي لديهم.",
+    fr: {
+      title: "Groupe scolaire Al-Breidiya",
+      subtitle: "Douar Al-Braydiya – Commune d'Ahd Al-Gharbiya",
+      desc: "Le programme Hors les murs s'est rendu au groupe scolaire Al-Breidiya, apportant avec lui un ensemble d'activités culturelles et artistiques couvrant le théâtre, le cinéma et le dessin. Cette initiative a contribué à ouvrir de nouveaux horizons aux élèves, en les encourageant à apprendre par la créativité, tout en créant un espace d'expression libre et en développant leur sens artistique et culturel.",
+    },
+    ar: {
+      title: "مجموعة مدارس البريدية",
+      subtitle: "دوار البرايدية – جماعة أحد الغربية",
+      desc: "حل برنامج Hors les murs بمجموعة مدارس البريدية، حاملاً معه مجموعة من الأنشطة الثقافية والفنية التي شملت المسرح والسينما والرسم. وقد ساهمت هذه المبادرة في فتح آفاق جديدة أمام التلاميذ، وتشجيعهم على التعلم من خلال الإبداع، مع خلق فضاء للتعبير الحر وتنمية الحس الفني والثقافي لديهم.",
+    },
     images: [
       "/ne page/IMG_3234.png",
       "/ne page/IMG_3353.png",
@@ -2051,9 +2065,16 @@ const KHARIJ_SCHOOLS = [
   },
   {
     id: 3,
-    titleAr: "مجموعة مدارس حجرة النحل – فرعية سكدلة",
-    subtitleAr: "دوار سكدلة",
-    descAr: "استضافت فرعية سكدلة التابعة لمجموعة مدارس حجرة النحل أنشطة برنامج خارج الأسوار، حيث شارك التلاميذ في ورشات متنوعة للمسرح والسينما والرسم. وعرفت هذه المحطة تفاعلاً كبيراً من طرف الأطفال الذين أبانوا عن روح الابتكار والرغبة في التعلم، مما جعل من الزيارة تجربة ثقافية وتربوية مميزة تركت أثراً إيجابياً في نفوسهم.",
+    fr: {
+      title: "Groupe scolaire Hjar Al-Nahl – annexe Skadla",
+      subtitle: "Douar Skadla",
+      desc: "L'annexe de Skadla, rattachée au groupe scolaire Hjar Al-Nahl, a accueilli les activités du programme Hors les murs, au cours desquelles les élèves ont participé à des ateliers variés de théâtre, de cinéma et de dessin. Cette étape a été marquée par une grande interactivité de la part des enfants, qui ont fait preuve d'un esprit d'innovation et d'une réelle envie d'apprendre, faisant de cette visite une expérience culturelle et éducative remarquable, laissant une empreinte positive dans leurs cœurs.",
+    },
+    ar: {
+      title: "مجموعة مدارس حجرة النحل – فرعية سكدلة",
+      subtitle: "دوار سكدلة",
+      desc: "استضافت فرعية سكدلة التابعة لمجموعة مدارس حجرة النحل أنشطة برنامج Hors les murs، حيث شارك التلاميذ في ورشات متنوعة للمسرح والسينما والرسم. وعرفت هذه المحطة تفاعلاً كبيراً من طرف الأطفال الذين أبانوا عن روح الابتكار والرغبة في التعلم، مما جعل من الزيارة تجربة ثقافية وتربوية مميزة تركت أثراً إيجابياً في نفوسهم.",
+    },
     images: [
       "/ne page/IMG_3368.png",
       "/ne page/IMG_3452.png",
@@ -2062,11 +2083,13 @@ const KHARIJ_SCHOOLS = [
   },
 ];
 
-const SchoolCard = ({ school, index }) => {
+const SchoolCard = ({ school, index, lang }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
   const [activeImg, setActiveImg] = useState(0);
   const isEven = index % 2 === 0;
+  const content = lang === 'ar' ? school.ar : school.fr;
+  const isAr = lang === 'ar';
 
   return (
     <motion.div
@@ -2084,7 +2107,7 @@ const SchoolCard = ({ school, index }) => {
               <motion.img
                 key={activeImg}
                 src={school.images[activeImg]}
-                alt={school.titleAr}
+                alt={content.title}
                 className="absolute inset-0 w-full h-full object-cover"
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -2092,13 +2115,10 @@ const SchoolCard = ({ school, index }) => {
                 transition={{ duration: 0.5 }}
               />
             </AnimatePresence>
-            {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            {/* Image counter badge */}
             <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full">
               {activeImg + 1} / {school.images.length}
             </div>
-            {/* Thumbnail strip */}
             {school.images.length > 1 && (
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                 {school.images.map((_, i) => (
@@ -2113,7 +2133,6 @@ const SchoolCard = ({ school, index }) => {
               </div>
             )}
           </div>
-          {/* Thumbnail row */}
           {school.images.length > 1 && (
             <div className="flex gap-3 mt-4">
               {school.images.map((img, i) => (
@@ -2132,7 +2151,7 @@ const SchoolCard = ({ school, index }) => {
         </div>
 
         {/* Text Content */}
-        <div className="w-full lg:w-1/2" dir="rtl">
+        <div className={`w-full lg:w-1/2`} dir={isAr ? 'rtl' : 'ltr'}>
           <motion.span
             className="inline-flex items-center gap-2 px-4 py-2 bg-[#5e2b79]/10 rounded-full text-[#5e2b79] font-bold text-sm mb-4"
             initial={{ opacity: 0, x: 20 }}
@@ -2140,7 +2159,7 @@ const SchoolCard = ({ school, index }) => {
             transition={{ delay: 0.3 }}
           >
             <span className="w-2 h-2 bg-[#5e2b79] rounded-full" />
-            {school.subtitleAr}
+            {content.subtitle}
           </motion.span>
           <motion.h2
             className="text-2xl md:text-3xl lg:text-4xl font-black text-[#1A1A1A] mb-5 leading-tight"
@@ -2148,7 +2167,7 @@ const SchoolCard = ({ school, index }) => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.35 }}
           >
-            {school.titleAr}
+            {content.title}
           </motion.h2>
           <motion.p
             className="text-neutral-600 text-base md:text-lg leading-relaxed"
@@ -2156,10 +2175,10 @@ const SchoolCard = ({ school, index }) => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4 }}
           >
-            {school.descAr.split('خارج الأسوار').map((part, i, arr) =>
+            {content.desc.split('Hors les murs').map((part, i, arr) =>
               i < arr.length - 1 ? (
                 <React.Fragment key={i}>
-                  {part}<span className="font-bold text-[#5e2b79]">خارج الأسوار</span>
+                  {part}<span className="font-bold text-[#5e2b79]">Hors les murs</span>
                 </React.Fragment>
               ) : part
             )}
@@ -2170,7 +2189,10 @@ const SchoolCard = ({ school, index }) => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.5 }}
           >
-            {['المسرح', 'السينما', 'الرسم'].map((tag) => (
+            {(isAr
+              ? ['المسرح', 'السينما', 'الرسم']
+              : ['Théâtre', 'Cinéma', 'Dessin']
+            ).map((tag) => (
               <span key={tag} className="px-4 py-2 bg-[#f4e222]/20 text-[#1A1A1A] font-bold text-sm rounded-full border border-[#f4e222]/40">
                 {tag}
               </span>
@@ -2183,6 +2205,9 @@ const SchoolCard = ({ school, index }) => {
 };
 
 const KharijAlAswarPage = ({ setView }) => {
+  const [lang, setLang] = useState('fr');
+  const isAr = lang === 'ar';
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -2191,69 +2216,91 @@ const KharijAlAswarPage = ({ setView }) => {
       className="bg-[#F4F4F0] min-h-screen pt-32 pb-20"
     >
       <div className="container mx-auto px-6">
-        {/* Back button */}
-        <button
-          onClick={() => setView('home')}
-          className="text-[#5e2b79] font-bold mb-10 hover:underline inline-flex items-center gap-2"
-        >
-          <span>←</span> Retour à l'accueil
-        </button>
+        {/* Top bar: back + language toggle */}
+        <div className="flex items-center justify-between mb-10">
+          <button
+            onClick={() => setView('home')}
+            className="text-[#5e2b79] font-bold hover:underline inline-flex items-center gap-2"
+          >
+            <span>←</span> Retour à l'accueil
+          </button>
+
+          {/* Language toggle */}
+          <div className="flex items-center gap-1 bg-white rounded-full p-1 shadow-sm border border-neutral-200">
+            <button
+              onClick={() => setLang('fr')}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
+                lang === 'fr' ? 'bg-[#5e2b79] text-white shadow' : 'text-neutral-500 hover:text-neutral-800'
+              }`}
+            >
+              FR
+            </button>
+            <button
+              onClick={() => setLang('ar')}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
+                lang === 'ar' ? 'bg-[#5e2b79] text-white shadow' : 'text-neutral-500 hover:text-neutral-800'
+              }`}
+            >
+              عربي
+            </button>
+          </div>
+        </div>
 
         {/* Page Hero */}
-        <div className="text-center mb-20" dir="rtl">
-          <motion.span
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#5e2b79] text-white rounded-full font-bold text-sm uppercase tracking-widest mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            <span className="w-2 h-2 bg-[#f4e222] rounded-full animate-pulse" />
-            برنامج خارج الأسوار
-          </motion.span>
-          <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-[#1A1A1A] mb-6 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            مدارس في قلب{' '}
-            <span className="text-[#5e2b79]">الإبداع</span>
-          </motion.h1>
-          <motion.p
-            className="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            في إطار برنامج <strong className="text-[#1A1A1A]">خارج الأسوار</strong>، حملنا الفن والثقافة إلى المدارس القروية، لنمنح أطفالها تجربة إبداعية لا تُنسى.
-          </motion.p>
+        <AnimatePresence mode="wait">
           <motion.div
-            className="flex justify-center gap-6 mt-10"
+            key={lang}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="text-center mb-20"
+            dir={isAr ? 'rtl' : 'ltr'}
           >
-            <div className="bg-white rounded-2xl px-8 py-4 shadow-sm text-center">
-              <div className="text-3xl font-black text-[#5e2b79]">3</div>
-              <div className="text-sm text-neutral-500 font-bold">مدارس</div>
-            </div>
-            <div className="bg-[#1A1A1A] rounded-2xl px-8 py-4 text-center">
-              <div className="text-3xl font-black text-[#f4e222]">3</div>
-              <div className="text-sm text-neutral-400 font-bold">ورشات</div>
+            <motion.span
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#5e2b79] text-white rounded-full font-bold text-sm uppercase tracking-widest mb-6"
+            >
+              <span className="w-2 h-2 bg-[#f4e222] rounded-full animate-pulse" />
+              Programme Hors les murs
+            </motion.span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#1A1A1A] mb-6 leading-tight">
+              {isAr ? (
+                <>مدارس في قلب <span className="text-[#5e2b79]">الإبداع</span></>
+              ) : (
+                <>Des écoles au cœur de la <span className="text-[#5e2b79]">créativité</span></>
+              )}
+            </h1>
+            <p className="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto">
+              {isAr
+                ? <>في إطار برنامج <strong className="text-[#1A1A1A]">Hors les murs</strong>، حملنا الفن والثقافة إلى المدارس القروية، لنمنح أطفالها تجربة إبداعية لا تُنسى.</>
+                : <>Dans le cadre du programme <strong className="text-[#1A1A1A]">Hors les murs</strong>, nous avons porté l'art et la culture dans les écoles rurales, offrant à leurs enfants une expérience créative inoubliable.</>
+              }
+            </p>
+            <div className="flex justify-center gap-6 mt-10">
+              <div className="bg-white rounded-2xl px-8 py-4 shadow-sm text-center">
+                <div className="text-3xl font-black text-[#5e2b79]">12</div>
+                <div className="text-sm text-neutral-500 font-bold">{isAr ? 'مدارس' : 'Écoles'}</div>
+              </div>
+              <div className="bg-[#1A1A1A] rounded-2xl px-8 py-4 text-center">
+                <div className="text-3xl font-black text-[#f4e222]">3</div>
+                <div className="text-sm text-neutral-400 font-bold">{isAr ? 'ورشات' : 'Ateliers'}</div>
+              </div>
             </div>
           </motion.div>
-        </div>
+        </AnimatePresence>
 
         {/* Divider */}
         <div className="flex items-center gap-4 mb-16">
           <div className="flex-1 h-px bg-neutral-300" />
-          <span className="text-[#5e2b79] font-bold text-sm uppercase tracking-widest">المحطات</span>
+          <span className="text-[#5e2b79] font-bold text-sm uppercase tracking-widest">
+            {isAr ? 'المحطات' : 'Les étapes'}
+          </span>
           <div className="flex-1 h-px bg-neutral-300" />
         </div>
 
         {/* School Sections */}
         {KHARIJ_SCHOOLS.map((school, i) => (
-          <SchoolCard key={school.id} school={school} index={i} />
+          <SchoolCard key={school.id} school={school} index={i} lang={lang} />
         ))}
       </div>
     </motion.div>
