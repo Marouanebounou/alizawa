@@ -345,11 +345,12 @@ const Navbar = ({ currentView, setView }) => {
             <div className={`hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
                 isScrolled ? "opacity-100" : "bg-white/60 backdrop-blur-md rounded-full px-6 py-2 border border-white/40 shadow-sm"
             }`}>
-              <button onClick={() => handleNavClick('home', 'accueil')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'home' ? 'text-black' : 'text-neutral-600'}`}>Accueil</button>
-              <button onClick={() => handleNavClick('home', 'activites')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 text-neutral-600`}>Activités</button>
-              <button onClick={() => handleNavClick('projects')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'projects' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Événements</button>
-              <button onClick={() => handleNavClick('centers')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'centers' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Nos Centres</button>
-              <button onClick={() => handleNavClick('contact')} className={`px-4 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 ${currentView === 'contact' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Contact</button>
+              <button onClick={() => handleNavClick('home', 'accueil')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'home' ? 'text-black' : 'text-neutral-600'}`}>Accueil</button>
+              <button onClick={() => handleNavClick('home', 'activites')} className="px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 text-neutral-600 whitespace-nowrap">Activités</button>
+              <button onClick={() => handleNavClick('projects')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'projects' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Événements</button>
+              <button onClick={() => handleNavClick('centers')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'centers' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Nos Centres</button>
+              <button onClick={() => handleNavClick('kharij')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'kharij' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>خارج الأسوار</button>
+              <button onClick={() => handleNavClick('contact')} className={`px-3 py-2 text-sm font-bold transition-colors rounded-full hover:bg-black/5 whitespace-nowrap ${currentView === 'contact' ? 'text-[#5e2b79]' : 'text-neutral-600'}`}>Contact</button>
             </div>
 
             <div className="flex items-center gap-2">
@@ -378,6 +379,7 @@ const Navbar = ({ currentView, setView }) => {
               <button onClick={() => handleNavClick('home', 'activites')} className="text-left text-[#f4e222]">Activités</button>
               <button onClick={() => handleNavClick('projects')} className="text-left text-[#5e2b79]">Événements</button>
               <button onClick={() => handleNavClick('centers')} className="text-left">Nos Centres</button>
+              <button onClick={() => handleNavClick('kharij')} className="text-left text-[#f4e222]">خارج الأسوار</button>
               <button onClick={() => handleNavClick('contact')} className="text-left">Contact</button>
             </div>
           </motion.div>
@@ -442,8 +444,10 @@ const Hero = ({ setView }) => {
           </div>
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
              <MagneticButton onClick={() => setView('projects')} className="bg-[#1A1A1A] text-white px-8 py-4 rounded-full font-bold hover:bg-[#5e2b79] transition-colors shadow-lg">Nos événements</MagneticButton>
-             <button onClick={() => setVideoOpen(true)} className="flex items-center gap-3 font-bold text-neutral-600 hover:text-black transition-colors group">
-             </button>
+             <MagneticButton onClick={() => setView('kharij')} className="bg-[#5e2b79] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1A1A1A] transition-colors shadow-lg flex items-center gap-2">
+               <span>خارج الأسوار</span>
+               <span>←</span>
+             </MagneticButton>
           </div>
         </div>
       </section>
@@ -2021,6 +2025,241 @@ const ContactPage = ({ setView }) => {
   );
 };
 
+// --- 4b. KHARIJ AL-ASWAR PAGE ---
+
+const KHARIJ_SCHOOLS = [
+  {
+    id: 1,
+    titleAr: "مجموعة مدارس الزينات – فرعية الخرب",
+    subtitleAr: "جماعة السبت الزينات",
+    descAr: "في إطار برنامج خارج الأسوار، تمت زيارة فرعية الخرب التابعة لمجموعة مدارس الزينات، حيث استفاد التلاميذ من يوم تربوي وفني متكامل جمع بين ورشات المسرح والسينما والرسم. وقد شكلت هذه الأنشطة فرصة لاكتشاف مواهب الأطفال وتعزيز قدراتهم على التعبير والإبداع، في أجواء تفاعلية مفعمة بالحماس والمشاركة.",
+    images: [
+      "/ne page/IMG_2755.png",
+      "/ne page/IMG_2822.png",
+      "/ne page/IMG_2985.png",
+    ],
+  },
+  {
+    id: 2,
+    titleAr: "مجموعة مدارس البريدية",
+    subtitleAr: "دوار البرايدية – جماعة أحد الغربية",
+    descAr: "حل برنامج خارج الأسوار بمجموعة مدارس البريدية، حاملاً معه مجموعة من الأنشطة الثقافية والفنية التي شملت المسرح والسينما والرسم. وقد ساهمت هذه المبادرة في فتح آفاق جديدة أمام التلاميذ، وتشجيعهم على التعلم من خلال الإبداع، مع خلق فضاء للتعبير الحر وتنمية الحس الفني والثقافي لديهم.",
+    images: [
+      "/ne page/IMG_3234.png",
+      "/ne page/IMG_3353.png",
+    ],
+  },
+  {
+    id: 3,
+    titleAr: "مجموعة مدارس حجرة النحل – فرعية سكدلة",
+    subtitleAr: "دوار سكدلة",
+    descAr: "استضافت فرعية سكدلة التابعة لمجموعة مدارس حجرة النحل أنشطة برنامج خارج الأسوار، حيث شارك التلاميذ في ورشات متنوعة للمسرح والسينما والرسم. وعرفت هذه المحطة تفاعلاً كبيراً من طرف الأطفال الذين أبانوا عن روح الابتكار والرغبة في التعلم، مما جعل من الزيارة تجربة ثقافية وتربوية مميزة تركت أثراً إيجابياً في نفوسهم.",
+    images: [
+      "/ne page/IMG_3368.png",
+      "/ne page/IMG_3452.png",
+      "/ne page/IMG_3521.png",
+    ],
+  },
+];
+
+const SchoolCard = ({ school, index }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
+  const [activeImg, setActiveImg] = useState(0);
+  const isEven = index % 2 === 0;
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 60 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: 0.1 }}
+      className="mb-20 md:mb-28"
+    >
+      <div className={`flex flex-col ${ isEven ? 'lg:flex-row' : 'lg:flex-row-reverse' } gap-10 lg:gap-16 items-center`}>
+        {/* Image Gallery */}
+        <div className="w-full lg:w-1/2">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[320px] md:h-[420px] bg-neutral-200">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeImg}
+                src={school.images[activeImg]}
+                alt={school.titleAr}
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              />
+            </AnimatePresence>
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            {/* Image counter badge */}
+            <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full">
+              {activeImg + 1} / {school.images.length}
+            </div>
+            {/* Thumbnail strip */}
+            {school.images.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                {school.images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveImg(i)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      i === activeImg ? 'bg-[#f4e222] scale-125' : 'bg-white/60 hover:bg-white'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          {/* Thumbnail row */}
+          {school.images.length > 1 && (
+            <div className="flex gap-3 mt-4">
+              {school.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImg(i)}
+                  className={`flex-1 rounded-xl overflow-hidden h-20 transition-all duration-300 ${
+                    i === activeImg ? 'ring-2 ring-[#5e2b79] ring-offset-2' : 'opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <img src={img} alt="" className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Text Content */}
+        <div className="w-full lg:w-1/2" dir="rtl">
+          <motion.span
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#5e2b79]/10 rounded-full text-[#5e2b79] font-bold text-sm mb-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.3 }}
+          >
+            <span className="w-2 h-2 bg-[#5e2b79] rounded-full" />
+            {school.subtitleAr}
+          </motion.span>
+          <motion.h2
+            className="text-2xl md:text-3xl lg:text-4xl font-black text-[#1A1A1A] mb-5 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.35 }}
+          >
+            {school.titleAr}
+          </motion.h2>
+          <motion.p
+            className="text-neutral-600 text-base md:text-lg leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 }}
+          >
+            {school.descAr.split('خارج الأسوار').map((part, i, arr) =>
+              i < arr.length - 1 ? (
+                <React.Fragment key={i}>
+                  {part}<span className="font-bold text-[#5e2b79]">خارج الأسوار</span>
+                </React.Fragment>
+              ) : part
+            )}
+          </motion.p>
+          <motion.div
+            className="mt-6 flex flex-wrap gap-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.5 }}
+          >
+            {['المسرح', 'السينما', 'الرسم'].map((tag) => (
+              <span key={tag} className="px-4 py-2 bg-[#f4e222]/20 text-[#1A1A1A] font-bold text-sm rounded-full border border-[#f4e222]/40">
+                {tag}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const KharijAlAswarPage = ({ setView }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-[#F4F4F0] min-h-screen pt-32 pb-20"
+    >
+      <div className="container mx-auto px-6">
+        {/* Back button */}
+        <button
+          onClick={() => setView('home')}
+          className="text-[#5e2b79] font-bold mb-10 hover:underline inline-flex items-center gap-2"
+        >
+          <span>←</span> Retour à l'accueil
+        </button>
+
+        {/* Page Hero */}
+        <div className="text-center mb-20" dir="rtl">
+          <motion.span
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#5e2b79] text-white rounded-full font-bold text-sm uppercase tracking-widest mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1 }}
+          >
+            <span className="w-2 h-2 bg-[#f4e222] rounded-full animate-pulse" />
+            برنامج خارج الأسوار
+          </motion.span>
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-[#1A1A1A] mb-6 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            مدارس في قلب{' '}
+            <span className="text-[#5e2b79]">الإبداع</span>
+          </motion.h1>
+          <motion.p
+            className="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            في إطار برنامج <strong className="text-[#1A1A1A]">خارج الأسوار</strong>، حملنا الفن والثقافة إلى المدارس القروية، لنمنح أطفالها تجربة إبداعية لا تُنسى.
+          </motion.p>
+          <motion.div
+            className="flex justify-center gap-6 mt-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <div className="bg-white rounded-2xl px-8 py-4 shadow-sm text-center">
+              <div className="text-3xl font-black text-[#5e2b79]">3</div>
+              <div className="text-sm text-neutral-500 font-bold">مدارس</div>
+            </div>
+            <div className="bg-[#1A1A1A] rounded-2xl px-8 py-4 text-center">
+              <div className="text-3xl font-black text-[#f4e222]">3</div>
+              <div className="text-sm text-neutral-400 font-bold">ورشات</div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-4 mb-16">
+          <div className="flex-1 h-px bg-neutral-300" />
+          <span className="text-[#5e2b79] font-bold text-sm uppercase tracking-widest">المحطات</span>
+          <div className="flex-1 h-px bg-neutral-300" />
+        </div>
+
+        {/* School Sections */}
+        {KHARIJ_SCHOOLS.map((school, i) => (
+          <SchoolCard key={school.id} school={school} index={i} />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
 // --- 5. MAIN APP COMPONENT ---
 
 const App = () => {
@@ -2064,6 +2303,10 @@ const App = () => {
 
         {view === 'contact' && (
           <ContactPage key="contact" setView={setView} />
+        )}
+
+        {view === 'kharij' && (
+          <KharijAlAswarPage key="kharij" setView={setView} />
         )}
       </AnimatePresence>
 
